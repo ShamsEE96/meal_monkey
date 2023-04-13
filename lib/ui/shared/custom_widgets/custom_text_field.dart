@@ -25,8 +25,10 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return TextFormField(
+      onChanged: myValidator,
       controller: controller,
       validator: myValidator,
+      // autovalidateMode: AutovalidateMode.onUserInteraction,
       obscureText: obscureText,
       textAlign: TextAlign.start,
       decoration: InputDecoration(
@@ -42,8 +44,9 @@ class CustomTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(30),
         ),
         enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30),
-            borderSide: BorderSide.none),
+          borderRadius: BorderRadius.circular(30),
+          borderSide: BorderSide.none,
+        ),
         filled: true,
         hintStyle: TextStyle(
           color: hintTextColor,

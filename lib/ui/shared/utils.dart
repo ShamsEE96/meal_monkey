@@ -5,7 +5,7 @@ bool isVaildEmail(String value) {
 }
 
 // 1 uppercase
-// 1 spical char [!@#\$&*~]
+// 1 special char [!@#\$&*~]
 // min 8 char length
 
 bool isVaildPassword(String value) {
@@ -22,6 +22,11 @@ bool isVaildPassword(String value) {
 bool isVaildMobileNo(String value) {
   RegExp regExp = new RegExp(r'^\+?09[0-9]{8}$');
   return regExp.hasMatch(value);
+}
+
+bool isValidSyriaMobileNo(String mobileNumber) {
+  RegExp regex = RegExp(r'^(!?(\+|00)?(963)|0)?9\d{8}$');
+  return regex.hasMatch(mobileNumber);
 }
 
 bool isVaildName(String value) {

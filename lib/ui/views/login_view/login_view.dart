@@ -28,131 +28,117 @@ class _LoginViewState extends State<LoginView> {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: size.height * 0.03,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              MyCustomText(
-                myText: 'Login',
-                fontSize: size.width * 0.1,
-                myTextColor: AppColors.mainGreyColor,
-              ),
-              (size.height * 0.02).ph,
-              MyCustomText(
-                myText: 'Add your details to login',
-                myTextColor: AppColors.secondaryGreyColor,
-              ),
-              (size.height * 0.04).ph,
-              CustomTextField(
-                myHintText: 'Your Email',
-                controller: emailController,
-                myValidator: (value) {
-                  if (value!.isEmpty || !isVaildEmail(value)) {
-                    return 'Please a valid email';
-                  }
-                  return null;
-                },
-                fillColor: AppColors.fillGreyColor,
-                hintTextColor: AppColors.placeholderGreyColor,
-                keyboardType: TextInputType.emailAddress,
-              ),
-              (size.height * 0.02).ph,
-              CustomTextField(
-                myHintText: 'Password',
-                controller: passwordController,
-                myValidator: (value) {
-                  if (value!.isEmpty || !isVaildPassword(value)) {
-                    return 'Please a valid password';
-                  }
-                  return null;
-                },
-                fillColor: AppColors.fillGreyColor,
-                hintTextColor: AppColors.placeholderGreyColor,
-                keyboardType: TextInputType.visiblePassword,
-                obscureText: true,
-              ),
-              (size.height * 0.02).ph,
-              CustomButton(
-                myButtonText: 'Login',
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {}
-
-                  // if (emailController.text.isEmpty) {
-                  //   print('Please enter your email');
-                  //   ScaffoldMessenger.of(context).showSnackBar(
-                  //     SnackBar(content: Text('Please enter your email')),
-                  //   );
-                  // } else if (passwordController.text.isEmpty) {
-                  //   print('Please enter your password');
-                  //   ScaffoldMessenger.of(context).showSnackBar(
-                  //     SnackBar(content: Text('Please enter your password')),
-                  //   );
-                  // } else if (!isVaildEmail(emailController.text)) {
-                  //   print('email is not valid');
-                  //   ScaffoldMessenger.of(context).showSnackBar(
-                  //     SnackBar(content: Text('email is not valid')),
-                  //   );
-                  // } else if (!isVaildPassword(passwordController.text)) {
-                  //   print('password is not valid');
-                  //   ScaffoldMessenger.of(context).showSnackBar(
-                  //       SnackBar(content: Text('password is not valid')));
-                  // }
-                },
-              ),
-              (size.height * 0.02).ph,
-              TextButton(
-                onPressed: () {
-                  context.push(ForgotPasswordView());
-                },
-                child: MyCustomText(
-                  myText: 'Forgot your password?',
-                  myTextColor: AppColors.mainOrangeColor,
+        body: Form(
+          key: _formKey,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: size.height * 0.03,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                MyCustomText(
+                  myText: 'Login',
+                  fontSize: size.width * 0.1,
+                  myTextColor: AppColors.mainGreyColor,
                 ),
-              ),
-              (size.height * 0.04).ph,
-              MyCustomText(
-                myText: 'or Login With',
-                myTextColor: AppColors.secondaryGreyColor,
-              ),
-              (size.height * 0.02).ph,
-              CustomButton(
-                myButtonText: 'Login with Facebook',
-                myImageName: 'ic_facebook',
-                onPressed: () {},
-                backgroundColor: AppColors.mainBlueColor,
-              ),
-              (size.height * 0.02).ph,
-              CustomButton(
-                myButtonText: 'Login with Google',
-                myImageName: 'ic_google_plus_logo',
-                onPressed: () {},
-                backgroundColor: AppColors.mainRedColor,
-              ),
-              Spacer(),
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    MyCustomText(
-                      myText: 'Don\'t have an Account?',
-                      myTextColor: AppColors.secondaryGreyColor,
-                    ),
-                    TextButton(
-                      onPressed: () {
-                        context.push(SignupView());
-                      },
-                      child: MyCustomText(
-                        myText: 'Sign Up',
-                        myTextColor: AppColors.mainOrangeColor,
+                (size.height * 0.02).ph,
+                MyCustomText(
+                  myText: 'Add your details to login',
+                  myTextColor: AppColors.secondaryGreyColor,
+                ),
+                (size.height * 0.04).ph,
+                CustomTextField(
+                  myHintText: 'Your Email',
+                  controller: emailController,
+                  myValidator: (value) {
+                    if (value!.isEmpty || !isVaildEmail(value)) {
+                      return 'Please enter a valid email';
+                    }
+                    return null;
+                  },
+                  fillColor: AppColors.fillGreyColor,
+                  hintTextColor: AppColors.placeholderGreyColor,
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                (size.height * 0.02).ph,
+                CustomTextField(
+                  myHintText: 'Password',
+                  controller: passwordController,
+                  myValidator: (value) {
+                    if (value!.isEmpty || !isVaildPassword(value)) {
+                      return 'Please enter a valid password';
+                    }
+                    return null;
+                  },
+                  fillColor: AppColors.fillGreyColor,
+                  hintTextColor: AppColors.placeholderGreyColor,
+                  keyboardType: TextInputType.visiblePassword,
+                  obscureText: true,
+                ),
+                (size.height * 0.02).ph,
+                CustomButton(
+                  myButtonText: 'Login',
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      print('OK');
+                    } else {
+                      print(':)');
+                    }
+                  },
+                ),
+                (size.height * 0.02).ph,
+                TextButton(
+                  onPressed: () {
+                    context.push(ForgotPasswordView());
+                  },
+                  child: MyCustomText(
+                    myText: 'Forgot your password?',
+                    myTextColor: AppColors.mainOrangeColor,
+                  ),
+                ),
+                (size.height * 0.04).ph,
+                MyCustomText(
+                  myText: 'or Login With',
+                  myTextColor: AppColors.secondaryGreyColor,
+                ),
+                (size.height * 0.02).ph,
+                CustomButton(
+                  myButtonText: 'Login with Facebook',
+                  myImageName: 'ic_facebook',
+                  onPressed: () {},
+                  backgroundColor: AppColors.mainBlueColor,
+                ),
+                (size.height * 0.02).ph,
+                CustomButton(
+                  myButtonText: 'Login with Google',
+                  myImageName: 'ic_google_plus_logo',
+                  onPressed: () {},
+                  backgroundColor: AppColors.mainRedColor,
+                ),
+                Spacer(),
+                Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      MyCustomText(
+                        myText: 'Don\'t have an Account?',
+                        myTextColor: AppColors.secondaryGreyColor,
                       ),
-                    ),
-                  ],
+                      InkWell(
+                        onTap: () {
+                          context.push(SignupView());
+                        },
+                        child: MyCustomText(
+                          myText: 'Sign Up',
+                          myTextColor: AppColors.mainOrangeColor,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

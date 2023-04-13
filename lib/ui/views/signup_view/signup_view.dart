@@ -31,186 +31,147 @@ class _SignupViewState extends State<SignupView> {
     return SafeArea(
       child: Scaffold(
         // resizeToAvoidBottomInset: false,
-        body: ListView(
-          shrinkWrap: true,
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(
-                vertical: size.width * 0.04,
-              ),
-              child: Column(
-                children: [
-                  MyCustomText(
-                    myText: 'Sign Up',
-                    myTextColor: AppColors.mainGreyColor,
-                    fontSize: size.width * 0.1,
-                  ),
-                  (size.height * 0.02).ph,
-                  MyCustomText(
-                    myText: 'Add your details to sign up',
-                    myTextColor: AppColors.secondaryGreyColor,
-                  ),
-                  (size.height * 0.02).ph,
-                  CustomTextField(
-                    myHintText: 'Name',
-                    controller: nameController,
-                    fillColor: AppColors.fillGreyColor,
-                    hintTextColor: AppColors.placeholderGreyColor,
-                  ),
-                  (size.height * 0.02).ph,
-                  CustomTextField(
-                    myHintText: 'Email',
-                    controller: emailController,
-                    myValidator: (value) {
-                      if (value!.isEmpty || !isVaildEmail(value)) {
-                        return 'Please a valid email';
-                      }
-                      return null;
-                    },
-                    fillColor: AppColors.fillGreyColor,
-                    hintTextColor: AppColors.placeholderGreyColor,
-                    keyboardType: TextInputType.emailAddress,
-                  ),
-                  (size.height * 0.02).ph,
-                  CustomTextField(
-                    myHintText: 'Mobile No',
-                    controller: mobileNoController,
-                    fillColor: AppColors.fillGreyColor,
-                    hintTextColor: AppColors.placeholderGreyColor,
-                    keyboardType: TextInputType.phone,
-                  ),
-                  (size.height * 0.02).ph,
-                  CustomTextField(
-                    myHintText: 'Address',
-                    controller: addressController,
-                    fillColor: AppColors.fillGreyColor,
-                    hintTextColor: AppColors.placeholderGreyColor,
-                    keyboardType: TextInputType.text,
-                  ),
-                  (size.height * 0.02).ph,
-                  CustomTextField(
-                    myHintText: 'Password',
-                    controller: passwordController,
-                    myValidator: (value) {
-                      if (value!.isEmpty || !isVaildPassword(value)) {
-                        return 'Please a valid password';
-                      }
-                      return null;
-                    },
-                    fillColor: AppColors.fillGreyColor,
-                    hintTextColor: AppColors.placeholderGreyColor,
-                    keyboardType: TextInputType.visiblePassword,
-                    obscureText: true,
-                  ),
-                  (size.height * 0.02).ph,
-                  CustomTextField(
-                    myHintText: 'Confirm Password',
-                    controller: confirmPasswordController,
-                    myValidator: (value) {
-                      if (value!.isEmpty ||
-                          passwordController.text !=
-                              confirmPasswordController.text ||
-                          !isVaildPassword(value)) {
-                        return 'Please a valid password';
-                      }
-                      return null;
-                    },
-                    fillColor: AppColors.fillGreyColor,
-                    hintTextColor: AppColors.placeholderGreyColor,
-                    keyboardType: TextInputType.visiblePassword,
-                    obscureText: true,
-                  ),
-                  (size.height * 0.02).ph,
-                  CustomButton(
-                    myButtonText: 'Sign Up',
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        context.pushReplacement(LoginView());
-                      }
-                      // if (nameController.text.isEmpty) {
-                      //   print('Please enter your name');
-                      //   ScaffoldMessenger.of(context).showSnackBar(
-                      //     SnackBar(content: Text('Please enter your name')),
-                      //   );
-                      // } else if (emailController.text.isEmpty) {
-                      //   print('Please enter your email');
-                      //   ScaffoldMessenger.of(context).showSnackBar(
-                      //     SnackBar(content: Text('Please enter your email')),
-                      //   );
-                      // } else if (mobileNoController.text.isEmpty) {
-                      //   print('Please enter your mobile number');
-                      //   ScaffoldMessenger.of(context).showSnackBar(
-                      //     SnackBar(
-                      //         content: Text('Please enter your mobile number')),
-                      //   );
-                      // } else if (addressController.text.isEmpty) {
-                      //   print('Please enter your address');
-                      //   ScaffoldMessenger.of(context).showSnackBar(
-                      //     SnackBar(content: Text('Please enter your address')),
-                      //   );
-                      // } else if (passwordController.text.isEmpty) {
-                      //   print('Please enter your password');
-                      //   ScaffoldMessenger.of(context).showSnackBar(
-                      //     SnackBar(content: Text('Please enter your password')),
-                      //   );
-                      // } else if (confirmPasswordController.text.isEmpty) {
-                      //   print('Please confirm your password');
-                      //   ScaffoldMessenger.of(context).showSnackBar(
-                      //     SnackBar(content: Text('Please enter your password')),
-                      //   );
-                      // } else if (!isVaildName(nameController.text)) {
-                      //   print('name is not valid');
-                      //   ScaffoldMessenger.of(context).showSnackBar(
-                      //     SnackBar(content: Text('name is not valid')),
-                      //   );
-                      // } else if (!isVaildEmail(emailController.text)) {
-                      //   print('email is not valid');
-                      //   ScaffoldMessenger.of(context).showSnackBar(
-                      //     SnackBar(content: Text('email is not valid')),
-                      //   );
-                      // } else if (!isVaildMobileNo(mobileNoController.text)) {
-                      //   print('mobile number is not valid');
-                      //   ScaffoldMessenger.of(context).showSnackBar(
-                      //     SnackBar(content: Text('mobile number is not valid')),
-                      //   );
-                      // } else if (!isVaildPassword(passwordController.text)) {
-                      //   print('password is not valid');
-                      //   ScaffoldMessenger.of(context).showSnackBar(
-                      //       SnackBar(content: Text('password is not valid')));
-                      // } else if (passwordController.text !=
-                      //     confirmPasswordController.text) {
-                      //   print('password does not match');
-                      //   ScaffoldMessenger.of(context).showSnackBar(
-                      //       SnackBar(content: Text('password does not match')));
-                      // }
-                      // // context.pushReplacement(LoginView());
-                    },
-                  ),
-                  (size.height * 0.02).ph,
-                  Container(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        MyCustomText(
-                          myText: 'Already have an Account? ',
-                          myTextColor: AppColors.secondaryGreyColor,
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            context.pushReplacement(LoginView());
-                          },
-                          child: MyCustomText(
-                            myText: 'Login',
-                            myTextColor: AppColors.mainOrangeColor,
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
+        body: Form(
+          key: _formKey,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: size.width * 0.04,
             ),
-          ],
+            child: ListView(
+              shrinkWrap: true,
+              children: [
+                MyCustomText(
+                  myText: 'Sign Up',
+                  myTextColor: AppColors.mainGreyColor,
+                  fontSize: size.width * 0.1,
+                ),
+                (size.height * 0.02).ph,
+                MyCustomText(
+                  myText: 'Add your details to sign up',
+                  myTextColor: AppColors.secondaryGreyColor,
+                ),
+                (size.height * 0.02).ph,
+                CustomTextField(
+                  myHintText: 'Name',
+                  controller: nameController,
+                  myValidator: (value) {
+                    if (value!.isEmpty || !isVaildName(value)) {
+                      return 'Enter a valid Name';
+                    }
+                    return null;
+                  },
+                  fillColor: AppColors.fillGreyColor,
+                  hintTextColor: AppColors.placeholderGreyColor,
+                  keyboardType: TextInputType.name,
+                ),
+                (size.height * 0.02).ph,
+                CustomTextField(
+                  myHintText: 'Email',
+                  controller: emailController,
+                  myValidator: (value) {
+                    if (value!.isEmpty || !isVaildEmail(value)) {
+                      return 'Please Enter a valid Email';
+                    }
+                    return null;
+                  },
+                  fillColor: AppColors.fillGreyColor,
+                  hintTextColor: AppColors.placeholderGreyColor,
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                (size.height * 0.02).ph,
+                CustomTextField(
+                  myHintText: 'Mobile No',
+                  controller: mobileNoController,
+                  myValidator: (value) {
+                    if (value!.isEmpty || !isVaildMobileNo(value)) {
+                      return 'Please Enter a valid Mobile Number';
+                    }
+                    return null;
+                  },
+                  fillColor: AppColors.fillGreyColor,
+                  hintTextColor: AppColors.placeholderGreyColor,
+                  keyboardType: TextInputType.phone,
+                ),
+                (size.height * 0.02).ph,
+                CustomTextField(
+                  myHintText: 'Address',
+                  controller: addressController,
+                  myValidator: (value) {
+                    if (value!.isEmpty || !isVaildName(value)) {
+                      return 'Please Enter a vaild Address';
+                    }
+                    return null;
+                  },
+                  fillColor: AppColors.fillGreyColor,
+                  hintTextColor: AppColors.placeholderGreyColor,
+                  keyboardType: TextInputType.text,
+                ),
+                (size.height * 0.02).ph,
+                CustomTextField(
+                  myHintText: 'Password',
+                  controller: passwordController,
+                  myValidator: (value) {
+                    if (value!.isEmpty || !isVaildPassword(value)) {
+                      return 'Please Enter a valid password';
+                    }
+                    return null;
+                  },
+                  fillColor: AppColors.fillGreyColor,
+                  hintTextColor: AppColors.placeholderGreyColor,
+                  keyboardType: TextInputType.visiblePassword,
+                  obscureText: true,
+                ),
+                (size.height * 0.02).ph,
+                CustomTextField(
+                  myHintText: 'Confirm Password',
+                  controller: confirmPasswordController,
+                  myValidator: (value) {
+                    if (value!.isEmpty || !isVaildPassword(value)) {
+                      return 'Please Enter a valid password ';
+                    } else if (passwordController.text !=
+                        confirmPasswordController.text) {
+                      return 'make sure your password match';
+                    }
+                    return null;
+                  },
+                  fillColor: AppColors.fillGreyColor,
+                  hintTextColor: AppColors.placeholderGreyColor,
+                  keyboardType: TextInputType.visiblePassword,
+                  obscureText: true,
+                ),
+                (size.height * 0.02).ph,
+                CustomButton(
+                  myButtonText: 'Sign Up',
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      // context.pushReplacement(LoginView());
+                    }
+                  },
+                ),
+                (size.height * 0.02).ph,
+                Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      MyCustomText(
+                        myText: 'Already have an Account? ',
+                        myTextColor: AppColors.secondaryGreyColor,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          context.pushReplacement(LoginView());
+                        },
+                        child: MyCustomText(
+                          myText: 'Login',
+                          myTextColor: AppColors.mainOrangeColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );
