@@ -1,5 +1,8 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
+import 'package:meal_monkey/data/enums/message_type.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
+import 'package:meal_monkey/ui/shared/custom_widgets/custom_toast.dart';
 import 'package:meal_monkey/ui/shared/extensions/custom_navigator_shared.dart';
 import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_text.dart';
@@ -81,9 +84,19 @@ class _LoginViewState extends State<LoginView> {
                   myButtonText: 'Login',
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      print('OK');
+                      // BotToast.showText(text: 'Everything is ok');
+                      CustomToast.showMessage(
+                        size: size,
+                        message: 'Everything ok',
+                        messageType: MessageType.SUCCESS,
+                      );
                     } else {
-                      print(':)');
+                      // BotToast.showText(text: 'xxxxx');
+                      CustomToast.showMessage(
+                        size: size,
+                        message: 'Error while connecting to server',
+                        messageType: MessageType.REJECTED,
+                      );
                     }
                   },
                 ),
