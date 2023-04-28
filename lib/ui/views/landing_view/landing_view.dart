@@ -193,10 +193,3 @@ class _ClipShadowShadowPainter extends CustomPainter {
     return true;
   }
 }
-
-
-// if(firstname!=null){
-//   return;
-// }else{
-//   firstname=malek;
-// }
