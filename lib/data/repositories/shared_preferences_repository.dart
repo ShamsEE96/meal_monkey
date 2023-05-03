@@ -16,8 +16,6 @@ class SharedPreferencesRepository {
 
   static bool getFirstLaunch() {
     if (globalSharedPreferences.containsKey(PREF_FIRST_LAUNCH)) {
-      print(globalSharedPreferences.get(PREF_FIRST_LAUNCH));
-
       return getPreference(key: PREF_FIRST_LAUNCH);
     } else {
       return true;
