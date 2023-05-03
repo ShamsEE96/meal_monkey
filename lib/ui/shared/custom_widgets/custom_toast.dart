@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meal_monkey/data/enums/message_type.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
-import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
 
 class CustomToast {
   static showMessage({
