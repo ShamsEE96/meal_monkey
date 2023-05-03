@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:meal_monkey/data/repositories/shared_preferences_repository.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
-import 'package:meal_monkey/ui/views/landing_view/landing_view.dart';
+import 'package:meal_monkey/ui/views/intro_view/intro_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:meal_monkey/ui/views/landing_view/landing_view.dart';
 
 class SplashScreenView extends StatefulWidget {
   const SplashScreenView({super.key});
@@ -15,16 +17,27 @@ class _SplashScreenViewState extends State<SplashScreenView> {
   @override
   void initState() {
     Future.delayed(
-      Duration(seconds: 10),
+      Duration(seconds: 4),
     ).then((value) {
-      return Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return LandingView();
-          },
-        ),
-      );
+      if (SharedPreferencesRepository.getFirstLaunch())
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return IntroView();
+            },
+          ),
+        );
+      else
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return LandingView();
+            },
+          ),
+        );
+      SharedPreferencesRepository.setFirstLaunch(false);
     });
 
     super.initState();
