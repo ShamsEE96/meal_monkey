@@ -5,6 +5,7 @@ import 'package:meal_monkey/ui/shared/colors.dart';
 import 'package:meal_monkey/ui/views/intro_view/intro_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meal_monkey/ui/views/landing_view/landing_view.dart';
+import 'package:meal_monkey/ui/views/test_home_view/test_home_view.dart';
 
 class SplashScreenView extends StatefulWidget {
   const SplashScreenView({super.key});
@@ -19,7 +20,9 @@ class _SplashScreenViewState extends State<SplashScreenView> {
     Future.delayed(
       Duration(seconds: 4),
     ).then((value) {
-      if (SharedPreferencesRepository.getFirstLaunch())
+      String tokenValue = SharedPreferencesRepository.getToken();
+
+      if (SharedPreferencesRepository.getFirstLaunch() && tokenValue == '') {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -28,7 +31,16 @@ class _SplashScreenViewState extends State<SplashScreenView> {
             },
           ),
         );
-      else
+      } else if (tokenValue != '') {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return TestHomeView();
+            },
+          ),
+        );
+      } else {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -37,7 +49,38 @@ class _SplashScreenViewState extends State<SplashScreenView> {
             },
           ),
         );
+      }
+      // else
+      //   Navigator.pushReplacement(
+      //     context,
+      //     MaterialPageRoute(
+      //       builder: (context) {
+      //         return LandingView();
+      //       },
+      //     ),
+      //   );
       SharedPreferencesRepository.setFirstLaunch(false);
+
+      // String tokenValue = SharedPreferencesRepository.getToken();
+      // if (tokenValue != '') {
+      //   Navigator.pushReplacement(
+      //     context,
+      //     MaterialPageRoute(
+      //       builder: (context) {
+      //         return TestHomeView();
+      //       },
+      //     ),
+      //   );
+      // } else {
+      //   Navigator.pushReplacement(
+      //     context,
+      //     MaterialPageRoute(
+      //       builder: (context) {
+      //         return LandingView();
+      //       },
+      //     ),
+      //   );
+      // }
     });
 
     super.initState();

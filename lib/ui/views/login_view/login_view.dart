@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meal_monkey/data/enums/message_type.dart';
+import 'package:meal_monkey/data/repositories/shared_preferences_repository.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_toast.dart';
 import 'package:meal_monkey/ui/shared/extensions/custom_navigator_shared.dart';
@@ -10,6 +11,7 @@ import 'package:meal_monkey/ui/shared/custom_widgets/custom_text_field.dart';
 import 'package:meal_monkey/ui/shared/utils.dart';
 import 'package:meal_monkey/ui/views/forgot_password_view/forgot_password_view.dart';
 import 'package:meal_monkey/ui/views/signup_view/signup_view.dart';
+import 'package:meal_monkey/ui/views/test_home_view/test_home_view.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -83,12 +85,23 @@ class _LoginViewState extends State<LoginView> {
                   myButtonText: 'Login',
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
+                      SharedPreferencesRepository.setToken(
+                          emailController.text);
+
                       // BotToast.showText(text: 'Everything is ok');
-                      CustomToast.showMessage(
-                        size: size,
-                        message: 'Everything ok',
-                        messageType: MessageType.SUCCESS,
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return TestHomeView();
+                          },
+                        ),
                       );
+                      // CustomToast.showMessage(
+                      //   size: size,
+                      //   message: 'Everything ok',
+                      //   messageType: MessageType.SUCCESS,
+                      // );
                     } else {
                       // BotToast.showText(text: 'xxxxx');
                       CustomToast.showMessage(

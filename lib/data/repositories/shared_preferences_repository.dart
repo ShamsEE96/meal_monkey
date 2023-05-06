@@ -4,6 +4,7 @@ import 'package:meal_monkey/main.dart';
 class SharedPreferencesRepository {
   //!--- Keys ----
   static String PREF_FIRST_LAUNCH = 'first_launch';
+  static String TOKEN = 'token';
 
   static void setFirstLaunch(bool value) {
     setPreference(
@@ -11,7 +12,6 @@ class SharedPreferencesRepository {
       key: PREF_FIRST_LAUNCH,
       value: value,
     );
-    print(globalSharedPreferences.get(PREF_FIRST_LAUNCH));
   }
 
   static bool getFirstLaunch() {
@@ -20,6 +20,26 @@ class SharedPreferencesRepository {
     } else {
       return true;
     }
+  }
+
+  static void setToken(String token) {
+    setPreference(
+      dataType: DataType.STRING,
+      key: TOKEN,
+      value: token,
+    );
+  }
+
+  static String getToken() {
+    if (globalSharedPreferences.containsKey(TOKEN)) {
+      return getPreference(key: TOKEN);
+    } else {
+      return '';
+    }
+  }
+
+  static void clearToken() {
+    globalSharedPreferences.setString(TOKEN, '');
   }
 
   //!--- Main Function ----
