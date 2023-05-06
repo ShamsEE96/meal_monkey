@@ -41,6 +41,7 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   dots_indicator: ^2.1.0
   shared_preferences: ^2.1.0
+  http: ^0.13.6
 
 dev_dependencies:
   flutter_test:
