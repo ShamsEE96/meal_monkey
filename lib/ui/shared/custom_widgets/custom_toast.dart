@@ -9,6 +9,7 @@ class CustomToast {
     required Size size,
     required String message,
     MessageType? messageType = MessageType.INFO,
+    void Function()? onClose,
   }) {
     String imageName = 'toast_info';
     Color shadowColor = AppColors.mainBlueColor;
@@ -35,10 +36,13 @@ class CustomToast {
     }
 
     BotToast.showCustomText(
-      duration: Duration(seconds: 10),
+      onClose: () {
+        onClose;
+      },
+      duration: Duration(seconds: 4),
       toastBuilder: (value) {
         return Container(
-          margin: EdgeInsets.all(size.width / 16),
+          margin: EdgeInsets.all(size.width / 10),
           width: size.width * 0.7,
           // height: size.width * 0.4,
           decoration: BoxDecoration(
