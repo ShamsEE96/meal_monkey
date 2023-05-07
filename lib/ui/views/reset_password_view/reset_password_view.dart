@@ -5,16 +5,16 @@ import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_text.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_button.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_text_field.dart';
-import 'package:meal_monkey/ui/views/otp_view/otp_view.dart';
+import 'package:meal_monkey/ui/views/verification_code_view/verification_code_view.dart';
 
-class ForgotPasswordView extends StatefulWidget {
-  const ForgotPasswordView({super.key});
+class ResetPasswordView extends StatefulWidget {
+  const ResetPasswordView({super.key});
 
   @override
-  State<ForgotPasswordView> createState() => _ForgotPasswordViewState();
+  State<ResetPasswordView> createState() => _ResetPasswordViewState();
 }
 
-class _ForgotPasswordViewState extends State<ForgotPasswordView> {
+class _ResetPasswordViewState extends State<ResetPasswordView> {
   TextEditingController emailController = TextEditingController();
 
   @override
@@ -54,7 +54,7 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                 CustomButton(
                   myButtonText: 'Send',
                   onPressed: () {
-                    context.pushReplacement(OneTimePasscodeView());
+                    context.pushReplacement(VerificationCodeView());
                   },
                 ),
               ],
