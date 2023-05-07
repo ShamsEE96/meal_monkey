@@ -9,7 +9,7 @@ import 'package:meal_monkey/ui/shared/custom_widgets/custom_text.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_button.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_text_field.dart';
 import 'package:meal_monkey/ui/shared/utils.dart';
-import 'package:meal_monkey/ui/views/forgot_password_view/forgot_password_view.dart';
+import 'package:meal_monkey/ui/views/reset_password_view/reset_password_view.dart';
 import 'package:meal_monkey/ui/views/signup_view/signup_view.dart';
 import 'package:meal_monkey/ui/views/test_home_view/test_home_view.dart';
 
@@ -115,7 +115,7 @@ class _LoginViewState extends State<LoginView> {
                 (size.height * 0.02).ph,
                 TextButton(
                   onPressed: () {
-                    context.push(ForgotPasswordView());
+                    context.push(ResetPasswordView());
                   },
                   child: MyCustomText(
                     myText: 'Forgot your password?',
@@ -155,7 +155,7 @@ class _LoginViewState extends State<LoginView> {
                           context.push(SignupView());
                         },
                         child: MyCustomText(
-                          myText: 'Sign Up',
+                          myText: ' Sign Up',
                           myTextColor: AppColors.mainOrangeColor,
                         ),
                       ),
