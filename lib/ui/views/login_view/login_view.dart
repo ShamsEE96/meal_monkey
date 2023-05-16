@@ -14,7 +14,6 @@ import 'package:meal_monkey/ui/shared/utils.dart';
 import 'package:meal_monkey/ui/views/main_view/main_view.dart';
 import 'package:meal_monkey/ui/views/reset_password_view/reset_password_view.dart';
 import 'package:meal_monkey/ui/views/signup_view/signup_view.dart';
-import 'package:meal_monkey/testlab/test_home_view/test_home_view.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
