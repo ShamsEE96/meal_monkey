@@ -3,7 +3,8 @@ import 'package:meal_monkey/ui/shared/custom_widgets/custom_button.dart';
 import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
 
 class HomeView extends StatefulWidget {
-  const HomeView({super.key});
+  const HomeView({super.key, required this.onMenuTap});
+  final Function onMenuTap;
 
   @override
   State<HomeView> createState() => _HomeViewState();
@@ -27,7 +28,7 @@ class _HomeViewState extends State<HomeView> {
         CustomButton(
           myButtonText: 'Open Drawer',
           onPressed: () {
-            Scaffold.of(context).openDrawer();
+            widget.onMenuTap();
           },
         ),
       ],
