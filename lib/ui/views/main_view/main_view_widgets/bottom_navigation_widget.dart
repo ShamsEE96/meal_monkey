@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:meal_monkey/data/enums/bottom_navigation.dart';
+import 'package:meal_monkey/core/enums/bottom_navigation.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
 import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
 

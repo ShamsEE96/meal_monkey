@@ -1,7 +1,7 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:meal_monkey/data/enums/message_type.dart';
+import 'package:meal_monkey/core/enums/message_type.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
 
 class CustomToast {

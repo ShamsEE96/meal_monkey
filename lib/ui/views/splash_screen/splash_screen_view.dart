@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:meal_monkey/data/repositories/shared_preferences_repository.dart';
+import 'package:meal_monkey/core/data/repositories/shared_preferences_repository.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
 import 'package:meal_monkey/ui/views/intro_view/intro_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meal_monkey/ui/views/landing_view/landing_view.dart';
-import 'package:meal_monkey/ui/views/test_home_view/test_home_view.dart';
+import 'package:meal_monkey/ui/views/main_view/main_view.dart';
+import 'package:meal_monkey/testlab/test_home_view/test_home_view.dart';
 
 class SplashScreenView extends StatefulWidget {
   const SplashScreenView({super.key});
@@ -36,7 +37,7 @@ class _SplashScreenViewState extends State<SplashScreenView> {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return TestHomeView();
+              return MainView();
             },
           ),
         );
