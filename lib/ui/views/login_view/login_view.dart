@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:meal_monkey/data/enums/message_type.dart';
-import 'package:meal_monkey/data/repositories/shared_preferences_repository.dart';
+import 'package:meal_monkey/core/enums/message_type.dart';
+import 'package:meal_monkey/core/data/repositories/shared_preferences_repository.dart';
+import 'package:meal_monkey/core/enums/request_type.dart';
+import 'package:meal_monkey/core/utils/network_utils.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_toast.dart';
 import 'package:meal_monkey/ui/shared/extensions/custom_navigator_shared.dart';
@@ -9,9 +11,10 @@ import 'package:meal_monkey/ui/shared/custom_widgets/custom_text.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_button.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_text_field.dart';
 import 'package:meal_monkey/ui/shared/utils.dart';
+import 'package:meal_monkey/ui/views/main_view/main_view.dart';
 import 'package:meal_monkey/ui/views/reset_password_view/reset_password_view.dart';
 import 'package:meal_monkey/ui/views/signup_view/signup_view.dart';
-import 'package:meal_monkey/ui/views/test_home_view/test_home_view.dart';
+import 'package:meal_monkey/testlab/test_home_view/test_home_view.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -84,32 +87,41 @@ class _LoginViewState extends State<LoginView> {
                 CustomButton(
                   myButtonText: 'Login',
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      SharedPreferencesRepository.setToken(
-                          emailController.text);
+                    NetworkUtil.sendRequest(
+                      type: RequestType.POST,
+                      url: 'api/web/user/login',
+                      headers: {'Content-Type': 'application/json'},
+                      body: {
+                        "password": "Test@1234",
+                        "userName": "Test@gmail.com"
+                      },
+                    );
+                    // if (_formKey.currentState!.validate()) {
+                    //   SharedPreferencesRepository.setToken(
+                    //       emailController.text);
 
-                      // BotToast.showText(text: 'Everything is ok');
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return TestHomeView();
-                          },
-                        ),
-                      );
-                      // CustomToast.showMessage(
-                      //   size: size,
-                      //   message: 'Everything ok',
-                      //   messageType: MessageType.SUCCESS,
-                      // );
-                    } else {
-                      // BotToast.showText(text: 'xxxxx');
-                      CustomToast.showMessage(
-                        size: size,
-                        message: 'Error while connecting to server',
-                        messageType: MessageType.REJECTED,
-                      );
-                    }
+                    //   // BotToast.showText(text: 'Everything is ok');
+                    //   Navigator.pushReplacement(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       builder: (context) {
+                    //         return MainView();
+                    //       },
+                    //     ),
+                    //   );
+                    //   // CustomToast.showMessage(
+                    //   //   size: size,
+                    //   //   message: 'Everything ok',
+                    //   //   messageType: MessageType.SUCCESS,
+                    //   // );
+                    // } else {
+                    //   // BotToast.showText(text: 'xxxxx');
+                    //   CustomToast.showMessage(
+                    //     size: size,
+                    //     message: 'Error while connecting to server',
+                    //     messageType: MessageType.REJECTED,
+                    //   );
+                    // }
                   },
                 ),
                 (size.height * 0.02).ph,
