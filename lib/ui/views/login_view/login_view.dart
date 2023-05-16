@@ -88,7 +88,7 @@ class _LoginViewState extends State<LoginView> {
                   myButtonText: 'Login',
                   onPressed: () {
                     NetworkUtil.sendRequest(
-                      type: RequestType.POST,
+                      requestType: RequestType.POST,
                       url: 'api/web/user/login',
                       headers: {'Content-Type': 'application/json'},
                       body: {
