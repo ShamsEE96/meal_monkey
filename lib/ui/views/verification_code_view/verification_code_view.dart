@@ -1,6 +1,5 @@
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
-import 'package:meal_monkey/data/enums/message_type.dart';
+import 'package:meal_monkey/core/enums/message_type.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_toast.dart';
 import 'package:meal_monkey/ui/shared/extensions/custom_navigator_shared.dart';
@@ -10,54 +9,6 @@ import 'package:meal_monkey/ui/shared/custom_widgets/custom_button.dart';
 import 'package:meal_monkey/ui/views/reset_password_view/reset_password_view.dart';
 import 'package:meal_monkey/ui/views/new_password_view/new_password_view.dart';
 import 'package:meal_monkey/ui/views/verification_code_view/verification_code_view_widgets/verification_code_view_text_form_field.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
-
-// class VerificationCodeView extends StatelessWidget {
-//   const VerificationCodeView({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     final size = MediaQuery.of(context).size;
-//     return SafeArea(
-//       child: Scaffold(
-//         body: Column(
-//           children: [
-//             PinCodeTextField(
-//               length: 4,
-//               obscureText: true,
-//               animationType: AnimationType.fade,
-//               pinTheme: PinTheme(
-//                 shape: PinCodeFieldShape.box,
-//                 borderRadius: BorderRadius.circular(5),
-//                 fieldHeight: 50,
-//                 fieldWidth: 40,
-//                 activeFillColor: AppColors.mainWhiteColor,
-//               ),
-//               animationDuration: Duration(milliseconds: 300),
-//               backgroundColor: AppColors.mainGreyColor,
-//               enableActiveFill: true,
-//               errorAnimationController: errorController,
-//               controller: textEditingController,
-//               onCompleted: (v) {
-//                 print("Completed");
-//               },
-//               onChanged: (value) {
-//                 print(value);
-//               },
-//               beforeTextPaste: (text) {
-//                 print("Allowing to paste $text");
-//                 //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
-//                 //but you can show anything you want here, like your pop up saying wrong paste format or etc
-//                 return true;
-//               }, appContext: context,
-//             )
-//           ],
-//         ),
-//       ),
-
-//     );
-//   }
-// }
 
 class VerificationCodeView extends StatefulWidget {
   const VerificationCodeView({super.key});
@@ -67,6 +18,7 @@ class VerificationCodeView extends StatefulWidget {
 }
 
 class _VerificationCodeViewState extends State<VerificationCodeView> {
+  int length = 4;
   List<String> otpCode = [];
   late List<Widget> otpList;
   List<FocusNode> focusNodeList = List.generate(4, (index) => FocusNode());
@@ -105,13 +57,12 @@ class _VerificationCodeViewState extends State<VerificationCodeView> {
     }
   }
 
-  // @override
-  // void dispose() {
-  //   // dispose of the TextEditingController and FocusNode objects
-  //   controllerList.forEach((controller) => controller.dispose());
-  //   focusNodeList.forEach((node) => node.dispose());
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    controllerList.forEach((controller) => controller.dispose());
+    focusNodeList.forEach((node) => node.dispose());
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +92,7 @@ class _VerificationCodeViewState extends State<VerificationCodeView> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: otpList = List.generate(
-                  4,
+                  length,
                   (index) => OneTimePasscodeTextFormField(
                     fillColor: AppColors.fillGreyColor,
                     hintTextColor: AppColors.placeholderGreyColor,
@@ -152,14 +103,6 @@ class _VerificationCodeViewState extends State<VerificationCodeView> {
                     onChanged: (value) {
                       enterOTP(value, index);
                       sendData(size);
-                      // otpList[index] != (otpList.length - 1)
-                      //     ? moveFocus(value, context)
-                      //     : sendData(value, context);
-                      // setState(() {
-                      //   otpList[index] != (otpList.length - 1)
-                      //       ? moveFocus(value, context)
-                      //       : sendData(value, context);
-                      // });
                     },
                   ),
                 ),
@@ -169,15 +112,7 @@ class _VerificationCodeViewState extends State<VerificationCodeView> {
               (size.height * 0.06).ph,
               CustomButton(
                 myButtonText: 'Next',
-                onPressed: () {
-                  // setState(() {
-                  //   // controllerList.forEach((element) {
-                  //   //   otpCode = otpCode + element.text;
-                  //   // });
-                  // });
-                  // sendData(value);
-                  // context.pushReplacement(NewPasswordView());
-                },
+                onPressed: () {},
               ),
               (size.height * 0.04).ph,
               Container(
@@ -207,30 +142,3 @@ class _VerificationCodeViewState extends State<VerificationCodeView> {
     );
   }
 }
-
-
-
-
-
-
-
-                  // OneTimePasscodeTextFormField(
-                  //   fillColor: AppColors.fillGreyColor,
-                  //   hintTextColor: AppColors.placeholderGreyColor,
-                  //   myHintText: '*',
-                  // ),
-                  // OneTimePasscodeTextFormField(
-                  //   fillColor: AppColors.fillGreyColor,
-                  //   hintTextColor: AppColors.placeholderGreyColor,
-                  //   myHintText: '*',
-                  // ),
-                  // OneTimePasscodeTextFormField(
-                  //   fillColor: AppColors.fillGreyColor,
-                  //   hintTextColor: AppColors.placeholderGreyColor,
-                  //   myHintText: '*',
-                  // ),
-                  // OneTimePasscodeTextFormField(
-                  //   fillColor: AppColors.fillGreyColor,
-                  //   hintTextColor: AppColors.placeholderGreyColor,
-                  //   myHintText: '*',
-                  // ),
