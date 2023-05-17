@@ -6,7 +6,6 @@ import 'package:meal_monkey/ui/views/intro_view/intro_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meal_monkey/ui/views/landing_view/landing_view.dart';
 import 'package:meal_monkey/ui/views/main_view/main_view.dart';
-import 'package:meal_monkey/testlab/test_home_view/test_home_view.dart';
 
 class SplashScreenView extends StatefulWidget {
   const SplashScreenView({super.key});
