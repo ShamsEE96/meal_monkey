@@ -22,11 +22,7 @@ class NetworkUtil {
       //?--- To Save api response -----
       late http.Response response;
 
-      //?--- To Save api status code -----
-      int statusCode = 0;
-
       //!--- Required convert api response to Map -----
-      String strResponse = '';
       Map<String, dynamic> jsonResponse = {};
 
       //*--- Make call correct request type -----
@@ -48,11 +44,10 @@ class NetworkUtil {
               headers: headers, body: jsonEncode(body));
           break;
       }
-      statusCode = response.statusCode;
-      strResponse = Utf8Codec().decode(response.bodyBytes);
 
-      jsonResponse.putIfAbsent('response', () => jsonDecode(strResponse));
-      jsonResponse.putIfAbsent('statusCode', () => statusCode);
+      jsonResponse.putIfAbsent(
+          'response', () => jsonDecode(Utf8Codec().decode(response.bodyBytes)));
+      jsonResponse.putIfAbsent('statusCode', () => response.statusCode);
 
       return jsonResponse;
     } catch (e) {
