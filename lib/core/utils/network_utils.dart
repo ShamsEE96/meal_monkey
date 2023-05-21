@@ -45,8 +45,18 @@ class NetworkUtil {
           break;
       }
 
+      Map<String, dynamic>? result;
+      try {
+        result = jsonDecode(Utf8Codec().decode(response.bodyBytes));
+      } catch (e) {}
+
       jsonResponse.putIfAbsent(
-          'response', () => jsonDecode(Utf8Codec().decode(response.bodyBytes)));
+          'response',
+          () => result == null
+              ? jsonDecode({
+                  'title': Utf8Codec().decode(response.bodyBytes),
+                }.toString())
+              : jsonDecode(Utf8Codec().decode(response.bodyBytes)));
       jsonResponse.putIfAbsent('statusCode', () => response.statusCode);
 
       return jsonResponse;
