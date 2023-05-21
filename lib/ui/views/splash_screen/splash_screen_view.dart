@@ -20,9 +20,10 @@ class _SplashScreenViewState extends State<SplashScreenView> {
     Future.delayed(
       Duration(seconds: 4),
     ).then((value) {
-      String tokenValue = SharedPreferencesRepository.getToken();
+      // String tokenValue = SharedPreferencesRepository.getToken();
 
-      if (SharedPreferencesRepository.getFirstLaunch() && tokenValue == '') {
+      if (SharedPreferencesRepository.getFirstLaunch() &&
+          SharedPreferencesRepository.getTokenInfo() == null) {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -31,7 +32,7 @@ class _SplashScreenViewState extends State<SplashScreenView> {
             },
           ),
         );
-      } else if (tokenValue != '') {
+      } else if (SharedPreferencesRepository.getTokenInfo() != null) {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
