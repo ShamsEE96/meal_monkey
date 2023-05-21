@@ -1,10 +1,14 @@
+import 'dart:convert';
+
+import 'package:meal_monkey/core/data/models/apis/token_info.dart';
 import 'package:meal_monkey/core/enums/data_type.dart';
 import 'package:meal_monkey/main.dart';
 
 class SharedPreferencesRepository {
   //!--- Keys ----
   static String PREF_FIRST_LAUNCH = 'first_launch';
-  static String TOKEN = 'token';
+  static String PREF_ISLOGGED = 'first_launch';
+  static String PREF_TOKEN = 'token';
 
   static void setFirstLaunch(bool value) {
     setPreference(
@@ -22,25 +26,42 @@ class SharedPreferencesRepository {
     }
   }
 
-  static void setToken(String token) {
+  static void setTokenInfo(TokenInfoModel value) {
     setPreference(
       dataType: DataType.STRING,
-      key: TOKEN,
-      value: token,
+      key: PREF_TOKEN,
+      value: jsonEncode(value.toJson()),
     );
   }
 
-  static String getToken() {
-    if (globalSharedPreferences.containsKey(TOKEN)) {
-      return getPreference(key: TOKEN);
+  static TokenInfoModel? getTokenInfo() {
+    if (globalSharedPreferences.containsKey(PREF_TOKEN)) {
+      return TokenInfoModel.fromJson(
+          jsonDecode(getPreference(key: PREF_TOKEN)));
     } else {
-      return '';
+      return null;
     }
   }
 
-  static void clearToken() {
-    globalSharedPreferences.setString(TOKEN, '');
+  static void clearTokenInfo() {
+    globalSharedPreferences.remove(PREF_TOKEN);
   }
+
+  // static void setFirstLogin(bool value) {
+  //   setPreference(
+  //     dataType: DataType.BOOL,
+  //     key: PREF_ISLOGGED,
+  //     value: value,
+  //   );
+  // }
+
+  // static bool getFirstLogin() {
+  //   if (globalSharedPreferences.containsKey(PREF_ISLOGGED)) {
+  //     return getPreference(key: PREF_ISLOGGED);
+  //   } else {
+  //     return true;
+  //   }
+  // }
 
   //!--- Main Function ----
   static setPreference({
