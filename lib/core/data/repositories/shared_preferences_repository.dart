@@ -1,14 +1,14 @@
 import 'dart:convert';
 
-import 'package:meal_monkey/core/data/models/apis/token_info.dart';
+import 'package:meal_monkey/core/data/models/apis/token_info_model.dart';
 import 'package:meal_monkey/core/enums/data_type.dart';
 import 'package:meal_monkey/main.dart';
 
 class SharedPreferencesRepository {
   //!--- Keys ----
   static String PREF_FIRST_LAUNCH = 'first_launch';
-  static String PREF_ISLOGGED = 'first_launch';
   static String PREF_TOKEN = 'token';
+  // static String PREF_ISLOGGED = 'is_logged';
 
   static void setFirstLaunch(bool value) {
     setPreference(
@@ -44,8 +44,11 @@ class SharedPreferencesRepository {
   }
 
   static void clearTokenInfo() {
-    globalSharedPreferences.remove(PREF_TOKEN);
+    // globalSharedPreferences.remove(PREF_TOKEN);
+    globalSharedPreferences.clear();
   }
+
+  static bool get isLoggedIn => getTokenInfo() != null ? true : false;
 
   // static void setFirstLogin(bool value) {
   //   setPreference(

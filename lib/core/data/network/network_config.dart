@@ -1,3 +1,4 @@
+import 'package:meal_monkey/core/data/repositories/shared_preferences_repository.dart';
 import 'package:meal_monkey/core/enums/request_type.dart';
 
 class NetworkConfig {
@@ -9,14 +10,14 @@ class NetworkConfig {
 
   static Map<String, String> getHeaders({
     bool? needAuth = true,
-    RequestType? requestType = RequestType.POST,
+    required RequestType requestType,
     Map<String, String>? extraHeaders = const {},
   }) {
     return {
       if (needAuth!)
         "Authorization":
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiQ3VzdG9tZXIiLCJuYW1lIjoiMiIsIm5iZiI6MTY4NDMzNzU4NSwiZXhwIjoxNjg0ODU1OTg1LCJpYXQiOjE2ODQzMzc1ODV9.sOlCFIG0KpUmGQUOxOnc-LnFJcsHbxKDtiTB1mKvfTg",
-      if (requestType == RequestType.POST) "Content-Type": "application/json",
+            "Bearer ${SharedPreferencesRepository.getTokenInfo()?.accessToken ?? ''}",
+      if (requestType != RequestType.GET) "Content-Type": "application/json",
       ...extraHeaders!
     };
   }

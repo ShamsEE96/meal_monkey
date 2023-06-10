@@ -52,19 +52,19 @@ class _IntroViewState extends State<IntroView> {
                 ),
               ),
               (size.width / 11).ph,
-              MyCustomText(
-                myText: titleList[currentIndex],
+              CustomText(
+                text: titleList[currentIndex],
                 fontSize: size.width * 0.1,
-                myTextColor: AppColors.mainGreyColor,
+                textColor: AppColors.mainGreyColor,
               ),
               (size.width / 11).ph,
-              MyCustomText(
-                myText: descriptionList[currentIndex],
-                myTextColor: AppColors.secondaryGreyColor,
+              CustomText(
+                text: descriptionList[currentIndex],
+                textColor: AppColors.secondaryGreyColor,
               ),
               (size.width / 11).ph,
               CustomButton(
-                myButtonText: currentIndex != 2 ? 'Next' : 'Finish',
+                text: currentIndex != 2 ? 'Next' : 'Finish',
                 onPressed: () {
                   if (currentIndex != 2) {
                     setState(() {

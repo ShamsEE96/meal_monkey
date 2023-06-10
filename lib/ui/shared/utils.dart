@@ -1,3 +1,10 @@
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:meal_monkey/app/my_app.dart';
+import 'package:meal_monkey/core/utils/network_utils.dart';
+
 bool isVaildEmail(String value) {
   RegExp regExp = new RegExp(
       r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
@@ -32,4 +39,19 @@ bool isValidSyriaMobileNo(String mobileNumber) {
 bool isVaildName(String value) {
   RegExp regExp = new RegExp(r"^[a-zA-Z]+(([\'\-\s][a-zA-Z])?[a-zA-Z]*)*$");
   return regExp.hasMatch(value);
+}
+
+String getFullImageUrl(String url) {
+  var splitedString = url.split('Images/');
+  return 'https://${NetworkUtil.baseUrl}/Images/${splitedString[1]}';
+}
+
+Size get globalSize => MediaQuery.of(globalContext!).size;
+
+double screenWidth(double percent) {
+  return Get.size.width / percent;
+}
+
+double screenHeight(double percent) {
+  return Get.size.height / percent;
 }

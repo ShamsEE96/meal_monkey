@@ -6,12 +6,14 @@ class CommonResponseModel<T> {
   CommonResponseModel.fromJson(dynamic json) {
     this.statusCode = json['statusCode'];
 
-    if (statusCode == 200)
-    // if (statusCode.toString().startsWith("2"))
+    if (statusCode.toString().startsWith("2"))
+    // if (statusCode == 200)
     {
       this.data = json['response'];
     } else {
-      if (json['response'] != null && json['response'] is Map) {
+      if (json['response'] != null &&
+          json['response'] is Map &&
+          json['response']['title'] != null) {
         this.message = json['response']['title'];
       } else {
         switch (statusCode) {
@@ -34,6 +36,6 @@ class CommonResponseModel<T> {
       }
     }
   }
-  bool get getStatus => statusCode == 200 ? true : false;
-  // bool get getStatus => statusCode.toString().startsWith("2") ? true : false;
+  bool get getStatus => statusCode.toString().startsWith("2");
+  // bool get getStatus => statusCode == 200 ;
 }

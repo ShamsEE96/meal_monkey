@@ -30,36 +30,41 @@ class _MainViewState extends State<MainView> {
         drawer: CustomDrawer(
           drawerWidth: size.width / 2,
         ),
-        bottomNavigationBar: BottomNavigationWidget(
-          bottomNavigationEnum: selected,
-          onTap: (selectedEnum, pageNumber) {
-            controller.animateToPage(
-              pageNumber,
-              duration: Duration(
-                microseconds: 500,
-              ),
-              curve: Curves.easeInCirc,
-            );
-            setState(() {
-              selected = selectedEnum;
-            });
-          },
-        ),
-        body: PageView(
-          physics: NeverScrollableScrollPhysics(),
-          controller: controller,
+        body: Stack(
           children: [
-            MenuView(),
-            OffersView(),
-            HomeView(
-              onMenuTap: () {
-                scaffoldKey.currentState!.openDrawer();
-              },
+            PageView(
+              physics: NeverScrollableScrollPhysics(),
+              controller: controller,
+              children: [
+                MenuView(),
+                OffersView(),
+                HomeView(
+                  onMenuTap: () {
+                    scaffoldKey.currentState!.openDrawer();
+                  },
+                ),
+                ProfileView(),
+                MoreView(),
+              ],
             ),
-            // HomeView(),
-            // TestHomeView(scaffoldKey: scaffoldKey),
-            ProfileView(),
-            MoreView(),
+            Positioned(
+              bottom: 0,
+              child: BottomNavigationWidget(
+                bottomNavigationEnum: selected,
+                onTap: (selectedEnum, pageNumber) {
+                  controller.animateToPage(
+                    pageNumber,
+                    duration: Duration(
+                      microseconds: 500,
+                    ),
+                    curve: Curves.easeInCirc,
+                  );
+                  setState(() {
+                    selected = selectedEnum;
+                  });
+                },
+              ),
+            ),
           ],
         ),
       ),

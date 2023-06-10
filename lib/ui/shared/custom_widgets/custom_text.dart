@@ -1,28 +1,31 @@
 import 'package:flutter/material.dart';
 
-class MyCustomText extends StatelessWidget {
-  const MyCustomText({
+class CustomText extends StatelessWidget {
+  const CustomText({
     super.key,
-    required this.myText,
-    this.myTextColor,
-    this.myTextAlign,
+    required this.text,
+    this.textColor,
+    this.textAlign,
     this.fontSize,
+    this.fontWeight,
   });
 
-  final String myText;
-  final Color? myTextColor;
-  final TextAlign? myTextAlign;
+  final String text;
+  final Color? textColor;
+  final TextAlign? textAlign;
   final double? fontSize;
+  final FontWeight? fontWeight;
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Text(
-      myText,
-      textAlign: myTextAlign ?? TextAlign.center,
+      text,
+      textAlign: textAlign ?? TextAlign.center,
       style: TextStyle(
-        color: myTextColor,
+        color: textColor,
         fontSize: fontSize ?? size.width * 0.04,
+        fontWeight: fontWeight,
       ),
     );
   }

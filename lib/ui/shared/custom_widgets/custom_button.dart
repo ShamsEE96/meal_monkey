@@ -6,18 +6,18 @@ import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
 class CustomButton extends StatelessWidget {
   CustomButton({
     super.key,
-    required this.myButtonText,
-    this.myTextColor,
+    required this.text,
+    this.textColor,
     this.backgroundColor,
     this.borderColor,
     required this.onPressed,
-    this.myImageName,
+    this.ImageName,
   });
 
-  final String myButtonText;
-  final String? myImageName;
+  final String text;
+  final String? ImageName;
   final Color? borderColor;
-  final Color? myTextColor;
+  final Color? textColor;
   final Color? backgroundColor;
   final Function? onPressed;
 
@@ -31,14 +31,14 @@ class CustomButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          if (myImageName != null) ...[
-            SvgPicture.asset('images/$myImageName.svg'),
+          if (ImageName != null) ...[
+            SvgPicture.asset('images/$ImageName.svg'),
             (size.width * 0.03).pw,
           ],
           Text(
-            myButtonText,
+            text,
             style: TextStyle(
-              color: myTextColor,
+              color: textColor,
               fontWeight: FontWeight.bold,
             ),
           ),

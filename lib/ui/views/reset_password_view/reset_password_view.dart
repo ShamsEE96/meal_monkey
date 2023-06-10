@@ -31,20 +31,20 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
           child: Center(
             child: Column(
               children: [
-                MyCustomText(
-                  myText: 'Reset Password',
-                  myTextColor: AppColors.mainGreyColor,
+                CustomText(
+                  text: 'Reset Password',
+                  textColor: AppColors.mainGreyColor,
                   fontSize: size.width * 0.1,
                 ),
                 (size.height * 0.04).ph,
-                MyCustomText(
-                  myText:
+                CustomText(
+                  text:
                       'Please enter your email to receive a \n link to create a new password via email',
-                  myTextColor: AppColors.secondaryGreyColor,
+                  textColor: AppColors.secondaryGreyColor,
                 ),
                 (size.height * 0.1).ph,
-                CustomTextField(
-                  myHintText: 'Email',
+                CustomTextFormField(
+                  hintText: 'Email',
                   controller: emailController,
                   fillColor: AppColors.fillGreyColor,
                   hintTextColor: AppColors.placeholderGreyColor,
@@ -52,7 +52,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                 ),
                 (size.height * 0.04).ph,
                 CustomButton(
-                  myButtonText: 'Send',
+                  text: 'Send',
                   onPressed: () {
                     context.pushReplacement(VerificationCodeView());
                   },

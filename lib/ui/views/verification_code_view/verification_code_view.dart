@@ -42,7 +42,6 @@ class _VerificationCodeViewState extends State<VerificationCodeView> {
   void sendData(Size size) {
     if (otpCode.length == 4) {
       CustomToast.showMessage(
-        size: size,
         message: 'OTP Correct',
         messageType: MessageType.SUCCESS,
       );
@@ -77,16 +76,16 @@ class _VerificationCodeViewState extends State<VerificationCodeView> {
           ),
           child: Column(
             children: [
-              MyCustomText(
-                myText: 'We have Sent an OTP to \n your Mobile',
-                myTextColor: AppColors.mainGreyColor,
+              CustomText(
+                text: 'We have Sent an OTP to \n your Mobile',
+                textColor: AppColors.mainGreyColor,
                 fontSize: size.width * 0.08,
               ),
               (size.height * 0.02).ph,
-              MyCustomText(
-                myText:
+              CustomText(
+                text:
                     'Please check your mobile number \n continue to reset your password',
-                myTextColor: AppColors.secondaryGreyColor,
+                textColor: AppColors.secondaryGreyColor,
               ),
               (size.height * 0.08).ph,
               Row(
@@ -111,7 +110,7 @@ class _VerificationCodeViewState extends State<VerificationCodeView> {
               Text('Your Code is : ${otpCode.join()} '),
               (size.height * 0.06).ph,
               CustomButton(
-                myButtonText: 'Next',
+                text: 'Next',
                 onPressed: () {},
               ),
               (size.height * 0.04).ph,
@@ -119,17 +118,17 @@ class _VerificationCodeViewState extends State<VerificationCodeView> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    MyCustomText(
-                      myText: 'Didn\'t Receive?',
-                      myTextColor: AppColors.secondaryGreyColor,
+                    CustomText(
+                      text: 'Didn\'t Receive?',
+                      textColor: AppColors.secondaryGreyColor,
                     ),
                     TextButton(
                       onPressed: () {
                         context.push(ResetPasswordView());
                       },
-                      child: MyCustomText(
-                        myText: 'Click Here',
-                        myTextColor: AppColors.mainOrangeColor,
+                      child: CustomText(
+                        text: 'Click Here',
+                        textColor: AppColors.mainOrangeColor,
                       ),
                     ),
                   ],

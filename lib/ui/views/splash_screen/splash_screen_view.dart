@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
 import 'package:meal_monkey/core/data/repositories/shared_preferences_repository.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
+import 'package:meal_monkey/ui/shared/utils.dart';
 import 'package:meal_monkey/ui/views/intro_view/intro_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meal_monkey/ui/views/landing_view/landing_view.dart';
@@ -19,77 +21,25 @@ class _SplashScreenViewState extends State<SplashScreenView> {
   void initState() {
     Future.delayed(
       Duration(seconds: 4),
-    ).then((value) {
-      // String tokenValue = SharedPreferencesRepository.getToken();
+    ).then(
+      (value) {
+        if (SharedPreferencesRepository.getFirstLaunch() &&
+            SharedPreferencesRepository.getTokenInfo() == null) {
+          Get.off(IntroView());
+        } else
+          Get.off(SharedPreferencesRepository.isLoggedIn
+              ? MainView()
+              : LandingView());
 
-      if (SharedPreferencesRepository.getFirstLaunch() &&
-          SharedPreferencesRepository.getTokenInfo() == null) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) {
-              return IntroView();
-            },
-          ),
-        );
-      } else if (SharedPreferencesRepository.getTokenInfo() != null) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) {
-              return MainView();
-            },
-          ),
-        );
-      } else {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) {
-              return LandingView();
-            },
-          ),
-        );
-      }
-      // else
-      //   Navigator.pushReplacement(
-      //     context,
-      //     MaterialPageRoute(
-      //       builder: (context) {
-      //         return LandingView();
-      //       },
-      //     ),
-      //   );
-      SharedPreferencesRepository.setFirstLaunch(false);
-
-      // String tokenValue = SharedPreferencesRepository.getToken();
-      // if (tokenValue != '') {
-      //   Navigator.pushReplacement(
-      //     context,
-      //     MaterialPageRoute(
-      //       builder: (context) {
-      //         return TestHomeView();
-      //       },
-      //     ),
-      //   );
-      // } else {
-      //   Navigator.pushReplacement(
-      //     context,
-      //     MaterialPageRoute(
-      //       builder: (context) {
-      //         return LandingView();
-      //       },
-      //     ),
-      //   );
-      // }
-    });
+        SharedPreferencesRepository.setFirstLaunch(false);
+      },
+    );
 
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -100,8 +50,8 @@ class _SplashScreenViewState extends State<SplashScreenView> {
             SvgPicture.asset(
               'images/bg_background.svg',
               fit: BoxFit.fill,
-              width: size.width,
-              // height: size.height,
+              width: screenWidth(1),
+              height: screenHeight(1),
             ),
             Center(
               child: Container(
@@ -117,23 +67,20 @@ class _SplashScreenViewState extends State<SplashScreenView> {
                 ),
                 child: SvgPicture.asset(
                   'images/logo.svg',
-                  width: size.width * 0.7,
+                  width: screenWidth(1.5),
                 ),
               ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                  margin: EdgeInsets.only(
-                    top: size.height * 0.7,
-                  ),
-                  child: SpinKitThreeBounce(
-                    color: AppColors.mainOrangeColor.withOpacity(0.5),
-                  )
-                  // CircularProgressIndicator(
-                  //   color: AppColors.mainOrangeColor,
-                  // ),
-                  ),
+                margin: EdgeInsets.only(
+                  top: screenHeight(1.5),
+                ),
+                child: SpinKitThreeBounce(
+                  color: AppColors.mainOrangeColor.withOpacity(0.5),
+                ),
+              ),
             ),
           ],
         ),

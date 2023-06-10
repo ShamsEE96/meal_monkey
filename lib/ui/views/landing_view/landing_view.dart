@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:meal_monkey/testroom/test_signup_view2.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
 import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_text.dart';
@@ -63,10 +64,10 @@ class LandingView extends StatelessWidget {
               padding: EdgeInsets.symmetric(
                 vertical: size.width * 0.08,
               ),
-              child: MyCustomText(
-                myText:
+              child: CustomText(
+                text:
                     'Discover the best foods from over 1,000 \n restaurants and fast delivery to your doorstep',
-                myTextColor: AppColors.secondaryGreyColor,
+                textColor: AppColors.secondaryGreyColor,
               ),
             ),
             Padding(
@@ -76,18 +77,19 @@ class LandingView extends StatelessWidget {
               child: Column(
                 children: [
                   CustomButton(
-                    myButtonText: 'Login',
+                    text: 'Login',
                     onPressed: () {
                       context.push(LoginView());
                     },
                   ),
                   (size.width * 0.05).ph,
                   CustomButton(
-                    myButtonText: 'Create an Account',
-                    myTextColor: AppColors.mainOrangeColor,
+                    text: 'Create an Account',
+                    textColor: AppColors.mainOrangeColor,
                     backgroundColor: AppColors.mainWhiteColor,
                     borderColor: AppColors.mainOrangeColor,
                     onPressed: () {
+                      // context.push(TestSignupView());
                       context.push(SignupView());
                     },
                   ),

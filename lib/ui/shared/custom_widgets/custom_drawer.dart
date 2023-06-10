@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:meal_monkey/core/data/repositories/shared_preferences_repository.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
+import 'package:meal_monkey/ui/views/splash_screen/splash_screen_view.dart';
 
 class CustomDrawer extends StatelessWidget {
   CustomDrawer({
@@ -19,11 +21,28 @@ class CustomDrawer extends StatelessWidget {
       height: drawerheight,
       width: drawerWidth,
       color: drawerBackgroundColor ?? AppColors.mainWhiteColor,
-      child: Column(
-        children: [
-          Text('Options 1'),
-          Text('Options 2'),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            IconButton(
+              onPressed: () {
+                SharedPreferencesRepository.clearTokenInfo();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return SplashScreenView();
+                    },
+                  ),
+                );
+              },
+              icon: Icon(Icons.logout),
+            ),
+            Text('Options 1'),
+            Text('Options 2'),
+          ],
+        ),
       ),
     );
   }

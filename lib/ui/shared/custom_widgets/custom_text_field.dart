@@ -1,25 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({
+class CustomTextFormField extends StatelessWidget {
+  const CustomTextFormField({
     super.key,
-    required this.myHintText,
+    required this.hintText,
     required this.controller,
     required this.fillColor,
     required this.hintTextColor,
     this.keyboardType,
     this.obscureText = false,
-    this.myValidator,
+    this.validator,
+    this.prefixIcon,
+    this.prefixIconColor,
+    this.maxHeight,
+    this.maxWidth,
   });
 
-  final String myHintText;
+  final String hintText;
   final TextEditingController controller;
   final Color? fillColor;
   final Color? hintTextColor;
   final TextInputType? keyboardType;
   final bool obscureText;
-  final String? Function(String?)? myValidator;
+  final String? Function(String?)? validator;
+  final Widget? prefixIcon;
+  final Color? prefixIconColor;
+  final double? maxHeight;
+  final double? maxWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -27,15 +35,17 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
       // onChanged: myValidator,
       controller: controller,
-      validator: myValidator,
+      validator: validator,
       // autovalidateMode: AutovalidateMode.onUserInteraction,
       obscureText: obscureText,
       textAlign: TextAlign.start,
       decoration: InputDecoration(
+        prefixIcon: prefixIcon,
+        prefixIconColor: prefixIconColor,
         contentPadding: EdgeInsets.symmetric(horizontal: size.width * 0.06),
         constraints: BoxConstraints(
-          maxHeight: size.height * 0.08,
-          maxWidth: size.width * 0.9,
+          maxHeight: maxHeight ?? size.height * 0.08,
+          maxWidth: maxWidth ?? size.width * 0.9,
         ),
         border: OutlineInputBorder(
           borderSide: BorderSide(
@@ -51,7 +61,7 @@ class CustomTextField extends StatelessWidget {
         hintStyle: TextStyle(
           color: hintTextColor,
         ),
-        hintText: myHintText,
+        hintText: hintText,
         fillColor: fillColor,
       ),
       keyboardType: keyboardType ?? TextInputType.text,

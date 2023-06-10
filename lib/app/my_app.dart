@@ -1,5 +1,6 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:meal_monkey/ui/views/splash_screen/splash_screen_view.dart';
 
 class MyApp extends StatelessWidget {
@@ -7,7 +8,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    globalContext = context;
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Meal Monkey',
       builder: BotToastInit(),
@@ -19,3 +21,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+BuildContext? globalContext;

@@ -31,20 +31,20 @@ class _NewPasswordViewState extends State<NewPasswordView> {
           child: Center(
             child: Column(
               children: [
-                MyCustomText(
-                  myText: 'New Password',
-                  myTextColor: AppColors.mainGreyColor,
+                CustomText(
+                  text: 'New Password',
+                  textColor: AppColors.mainGreyColor,
                   fontSize: size.width * 0.1,
                 ),
                 (size.height * 0.02).ph,
-                MyCustomText(
-                  myText:
+                CustomText(
+                  text:
                       'Please enter your email to receive a \n link to create a new password via email',
-                  myTextColor: AppColors.secondaryGreyColor,
+                  textColor: AppColors.secondaryGreyColor,
                 ),
                 (size.height * 0.06).ph,
-                CustomTextField(
-                  myHintText: 'New Password',
+                CustomTextFormField(
+                  hintText: 'New Password',
                   controller: newPasswordController,
                   fillColor: AppColors.fillGreyColor,
                   hintTextColor: AppColors.placeholderGreyColor,
@@ -52,8 +52,8 @@ class _NewPasswordViewState extends State<NewPasswordView> {
                   obscureText: true,
                 ),
                 (size.height * 0.04).ph,
-                CustomTextField(
-                  myHintText: 'Confirm Password',
+                CustomTextFormField(
+                  hintText: 'Confirm Password',
                   controller: confirmPasswordController,
                   fillColor: AppColors.fillGreyColor,
                   hintTextColor: AppColors.placeholderGreyColor,
@@ -62,7 +62,7 @@ class _NewPasswordViewState extends State<NewPasswordView> {
                 ),
                 (size.height * 0.04).ph,
                 CustomButton(
-                  myButtonText: 'Next',
+                  text: 'Next',
                   onPressed: () {
                     context.pushReplacement(LoginView());
                   },

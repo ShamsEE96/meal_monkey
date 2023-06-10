@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meal_monkey/core/enums/message_type.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
-import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
-import 'package:meal_monkey/ui/shared/utils.dart';
 
-class CustomToast {
+class TestCustomToast {
   static showMessage({
     required String message,
     MessageType? messageType = MessageType.INFO,
@@ -43,8 +41,8 @@ class CustomToast {
       duration: Duration(seconds: 4),
       toastBuilder: (value) {
         return Container(
-          margin: EdgeInsets.all(screenWidth(10)),
-          width: screenWidth(1.25),
+          margin: EdgeInsets.all(35),
+          width: 200,
           // height: size.width * 0.4,
           decoration: BoxDecoration(
             color: AppColors.mainWhiteColor,
@@ -62,19 +60,19 @@ class CustomToast {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              (screenHeight(100)).ph,
+              // (size.height * 0.01).ph,
               SvgPicture.asset(
                 'images/$imageName.svg',
-                height: screenWidth(4),
-                width: screenWidth(4),
+                height: 50,
+                width: 50,
               ),
-              (screenHeight(100)).ph,
+              // (size.height * 0.01).ph,
               Text(
                 message,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: screenWidth(20)),
+                style: TextStyle(fontSize: 18),
               ),
-              (screenHeight(100)).ph,
+              // (size.height * 0.01).ph,
             ],
           ),
         );
