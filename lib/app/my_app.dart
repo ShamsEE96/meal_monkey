@@ -1,7 +1,7 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:meal_monkey/ui/views/splash_screen/splash_screen_view.dart';
+import 'package:meal_monkey/ui/views/splash_screen_view/splash_screen_view.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:meal_monkey/testroom/test_signup_view2.dart';
+import 'package:get/get.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
-import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
-import 'package:meal_monkey/ui/shared/custom_widgets/custom_text.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_button.dart';
-import 'package:meal_monkey/ui/shared/extensions/custom_navigator_shared.dart';
+import 'package:meal_monkey/ui/shared/custom_widgets/custom_text.dart';
+import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
+import 'package:meal_monkey/ui/shared/utils.dart';
 import 'package:meal_monkey/ui/views/login_view/login_view.dart';
 import 'package:meal_monkey/ui/views/signup_view/signup_view.dart';
 
@@ -14,7 +14,6 @@ class LandingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.mainWhiteColor,
@@ -33,9 +32,8 @@ class LandingView extends StatelessWidget {
                   child: ClipPath(
                     clipper: LandingClipper(),
                     child: Container(
-                      alignment: Alignment.bottomCenter,
-                      width: size.width,
-                      height: size.height * 0.6,
+                      width: screenWidth(1),
+                      height: screenHeight(1.4),
                       decoration: BoxDecoration(
                         color: AppColors.mainOrangeColor,
                       ),
@@ -49,12 +47,12 @@ class LandingView extends StatelessWidget {
                 Center(
                   child: Padding(
                     padding: EdgeInsets.only(
-                      top: size.height * 0.28,
+                      top: screenHeight(3),
                     ),
                     child: SvgPicture.asset(
                       'images/logo.svg',
-                      width: size.width * 0.4,
-                      height: size.width * 0.4,
+                      width: screenWidth(2.6),
+                      height: screenWidth(2.6),
                     ),
                   ),
                 ),
@@ -62,7 +60,7 @@ class LandingView extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.symmetric(
-                vertical: size.width * 0.08,
+                vertical: screenWidth(20),
               ),
               child: CustomText(
                 text:
@@ -72,27 +70,27 @@ class LandingView extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: size.width * 0.1,
+                horizontal: screenWidth(15),
               ),
               child: Column(
                 children: [
                   CustomButton(
                     text: 'Login',
                     onPressed: () {
-                      context.push(LoginView());
+                      Get.to(() => LoginView());
                     },
                   ),
-                  (size.width * 0.05).ph,
+                  (screenWidth(20)).ph,
                   CustomButton(
                     text: 'Create an Account',
                     textColor: AppColors.mainOrangeColor,
                     backgroundColor: AppColors.mainWhiteColor,
                     borderColor: AppColors.mainOrangeColor,
                     onPressed: () {
-                      // context.push(TestSignupView());
-                      context.push(SignupView());
+                      Get.to(() => SignupView());
                     },
                   ),
+                  (screenWidth(20)).ph,
                 ],
               ),
             ),
