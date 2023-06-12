@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
+import 'package:meal_monkey/ui/shared/utils.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
@@ -31,7 +32,6 @@ class CustomTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return TextFormField(
       // onChanged: myValidator,
       controller: controller,
@@ -42,10 +42,10 @@ class CustomTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         prefixIcon: prefixIcon,
         prefixIconColor: prefixIconColor,
-        contentPadding: EdgeInsets.symmetric(horizontal: size.width * 0.06),
+        contentPadding: EdgeInsets.symmetric(horizontal: screenWidth(18)),
         constraints: BoxConstraints(
-          maxHeight: maxHeight ?? size.height * 0.08,
-          maxWidth: maxWidth ?? size.width * 0.9,
+          maxWidth: maxWidth ?? screenWidth(1.1),
+          maxHeight: maxHeight ?? screenHeight(12),
         ),
         border: OutlineInputBorder(
           borderSide: BorderSide(

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:meal_monkey/core/data/repositories/shared_preferences_repository.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
-import 'package:meal_monkey/ui/views/splash_screen/splash_screen_view.dart';
+import 'package:meal_monkey/ui/views/splash_screen_view/splash_screen_view.dart';
+import 'package:meal_monkey/ui/views/splash_screen_view/splash_screen_view_controller.dart';
 
 class CustomDrawer extends StatelessWidget {
   CustomDrawer({
@@ -16,7 +18,6 @@ class CustomDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Container(
       height: drawerheight,
       width: drawerWidth,
@@ -28,14 +29,8 @@ class CustomDrawer extends StatelessWidget {
             IconButton(
               onPressed: () {
                 SharedPreferencesRepository.clearTokenInfo();
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return SplashScreenView();
-                    },
-                  ),
-                );
+                Get.delete<SplashScreenController>();
+                Get.off(() => SplashScreenView());
               },
               icon: Icon(Icons.logout),
             ),

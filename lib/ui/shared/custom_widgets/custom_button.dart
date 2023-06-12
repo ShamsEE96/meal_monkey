@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
 import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
+import 'package:meal_monkey/ui/shared/utils.dart';
 
 class CustomButton extends StatelessWidget {
   CustomButton({
@@ -23,7 +24,6 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return ElevatedButton(
       onPressed: () {
         if (onPressed != null) onPressed!();
@@ -33,7 +33,7 @@ class CustomButton extends StatelessWidget {
         children: [
           if (ImageName != null) ...[
             SvgPicture.asset('images/$ImageName.svg'),
-            (size.width * 0.03).pw,
+            (screenWidth(20)).pw,
           ],
           Text(
             text,
@@ -54,8 +54,8 @@ class CustomButton extends StatelessWidget {
         backgroundColor: backgroundColor ?? AppColors.mainOrangeColor,
         shape: StadiumBorder(),
         fixedSize: Size(
-          size.width * 0.9,
-          size.height * 0.08,
+          screenWidth(1.1),
+          screenHeight(12),
         ),
       ),
     );

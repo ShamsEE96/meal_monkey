@@ -62,19 +62,19 @@ class CustomToast {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              (screenHeight(100)).ph,
+              (screenHeight(80)).ph,
               SvgPicture.asset(
                 'images/$imageName.svg',
                 height: screenWidth(4),
                 width: screenWidth(4),
               ),
-              (screenHeight(100)).ph,
+              (screenHeight(80)).ph,
               Text(
                 message,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: screenWidth(20)),
               ),
-              (screenHeight(100)).ph,
+              (screenHeight(80)).ph,
             ],
           ),
         );

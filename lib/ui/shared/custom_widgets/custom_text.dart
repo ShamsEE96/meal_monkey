@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meal_monkey/ui/shared/utils.dart';
 
 class CustomText extends StatelessWidget {
   const CustomText({
@@ -18,13 +19,12 @@ class CustomText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Text(
       text,
       textAlign: textAlign ?? TextAlign.center,
       style: TextStyle(
         color: textColor,
-        fontSize: fontSize ?? size.width * 0.04,
+        fontSize: fontSize ?? screenWidth(25),
         fontWeight: fontWeight,
       ),
     );
