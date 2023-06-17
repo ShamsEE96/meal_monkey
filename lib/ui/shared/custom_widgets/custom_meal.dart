@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_text.dart';
 import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
+import 'package:meal_monkey/ui/shared/utils.dart';
 
 class CustomMeal extends StatelessWidget {
   const CustomMeal({
@@ -18,13 +19,12 @@ class CustomMeal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          height: size.height / 3,
-          width: size.width,
+          height: screenHeight(3),
+          width: screenWidth(1),
           child: CachedNetworkImage(
             fit: BoxFit.cover,
             imageUrl: imageUrl,
@@ -35,31 +35,31 @@ class CustomMeal extends StatelessWidget {
             errorWidget: (context, url, error) => Icon(Icons.error),
           ),
         ),
-        (size.width / 30).ph,
+        (screenWidth(30)).ph,
         Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: size.width / 22,
+            horizontal: screenWidth(22),
           ),
           child: CustomText(
             text: text,
             // text: mealList[index].name ?? '',
             textColor: textColor ?? AppColors.mainGreyColor,
-            fontSize: size.width / 20,
+            fontSize: screenWidth(20),
             fontWeight: FontWeight.bold,
           ),
         ),
-        (size.width / 30).ph,
+        (screenWidth(30)).ph,
         Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: size.width / 22,
+            horizontal: screenWidth(22),
           ),
           child: Row(
             children: [
               SvgPicture.asset(
                 'images/ic_star.svg',
                 color: AppColors.mainOrangeColor,
-                width: size.width / 18,
-                height: size.width / 18,
+                width: screenWidth(18),
+                height: screenWidth(18),
               ),
               CustomText(
                 text: ' 4.9 ',

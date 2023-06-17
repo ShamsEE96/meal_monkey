@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
-import 'package:path/path.dart' as path;
 import 'package:meal_monkey/core/enums/message_type.dart';
 import 'package:meal_monkey/core/enums/request_type.dart';
-import 'package:meal_monkey/testroom/test_custom_toast.dart';
+import 'package:meal_monkey/ui/shared/custom_widgets/custom_toast.dart';
+import 'package:path/path.dart' as path;
 
 class NetworkUtil {
   static String baseUrl = 'training.owner-tech.com';
@@ -63,7 +63,7 @@ class NetworkUtil {
       return jsonResponse;
     } catch (e) {
       print(e);
-      TestCustomToast.showMessage(
+      CustomToast.showMessage(
         message: e.toString(),
         messageType: MessageType.WARNING,
       );
@@ -174,31 +174,22 @@ class NetworkUtil {
   //   FileTypeTest? fileTypeTest;
   //   switch (fileTypeTest) {
   //     case FileTypeTest.JPEG:
-  //       // TODO: Handle this case.
   //       break;
   //     case FileTypeTest.JPG:
-  //       // TODO: Handle this case.
   //       break;
   //     case FileTypeTest.PNG:
-  //       // TODO: Handle this case.
   //       break;
   //     case FileTypeTest.PDF:
-  //       // TODO: Handle this case.
   //       break;
   //     case FileTypeTest.DOC:
-  //       // TODO: Handle this case.
   //       break;
   //     case FileTypeTest.DOCX:
-  //       // TODO: Handle this case.
   //       break;
   //     case FileTypeTest.XLS:
-  //       // TODO: Handle this case.
   //       break;
   //     case FileTypeTest.XLSX:
-  //       // TODO: Handle this case.
   //       break;
   //     case FileTypeTest.UNKNOWN:
-  //       // TODO: Handle this case.
   //       break;
   //   }
   // }

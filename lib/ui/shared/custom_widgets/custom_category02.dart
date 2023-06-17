@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_text.dart';
 import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
+import 'package:meal_monkey/ui/shared/utils.dart';
 
 class CustomCategory02 extends StatelessWidget {
   const CustomCategory02({
@@ -18,7 +19,6 @@ class CustomCategory02 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -26,8 +26,8 @@ class CustomCategory02 extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: (size.width / 10) * 8,
-            height: (size.width / 10) * 6,
+            width: screenWidth(1.25),
+            height: screenWidth(1.65),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
             ),
@@ -37,31 +37,31 @@ class CustomCategory02 extends StatelessWidget {
                 imageUrl: imageUrl,
                 fit: BoxFit.cover,
                 placeholder: (context, url) => SizedBox(
-                  width: size.width / 10,
-                  height: size.width / 10,
+                  width: screenWidth(10),
+                  height: screenWidth(10),
                   child: CircularProgressIndicator(),
                 ),
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),
             ),
           ),
-          (size.height / 100).ph,
+          (screenHeight(100)).ph,
           Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: size.width / 30,
+              horizontal: screenWidth(30),
             ),
             child: CustomText(
               text: text,
               // text: mealList[index].name ?? '',
               textColor: textColor ?? AppColors.mainGreyColor,
-              fontSize: size.width / 17,
+              fontSize: screenWidth(17),
               fontWeight: FontWeight.bold,
             ),
           ),
-          (size.height / 100).ph,
+          (screenHeight(100)).ph,
           Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: size.width / 30,
+              horizontal: screenWidth(30),
             ),
             child: Row(
               children: [
@@ -80,12 +80,12 @@ class CustomCategory02 extends StatelessWidget {
                   textColor: AppColors.placeholderGreyColor,
                   // fontSize: ,
                 ),
-                (size.width / 6).pw,
+                (screenWidth(6)).pw,
                 SvgPicture.asset(
                   'images/ic_star.svg',
                   color: AppColors.mainOrangeColor,
-                  width: size.width / 18,
-                  height: size.width / 18,
+                  width: screenWidth(18),
+                  height: screenWidth(18),
                 ),
                 CustomText(
                   text: ' 4.9 ',

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_text.dart';
 import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
+import 'package:meal_monkey/ui/shared/utils.dart';
 
 class CustomCategory extends StatelessWidget {
   const CustomCategory({
@@ -15,15 +16,14 @@ class CustomCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-            width: size.width / 4,
-            height: size.width / 4,
+            width: screenWidth(4),
+            height: screenWidth(4),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
             ),
@@ -32,15 +32,15 @@ class CustomCategory extends StatelessWidget {
               child: CachedNetworkImage(
                 imageUrl: imageUrl,
                 placeholder: (context, url) => SizedBox(
-                  width: size.width / 10,
-                  height: size.width / 10,
+                  width: screenWidth(10),
+                  height: screenWidth(10),
                   child: CircularProgressIndicator(),
                 ),
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),
             ),
           ),
-          (size.height / 100).ph,
+          (screenHeight(100)).ph,
           CustomText(
             text: text,
             fontWeight: FontWeight.bold,
