@@ -26,6 +26,6 @@ class FileUtil {
         break;
     }
 
-    return FileTypeModel(path ?? '', type);
+    return FileTypeModel(path: path ?? '', type: type);
   }
 }
