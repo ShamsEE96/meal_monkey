@@ -1,8 +1,5 @@
-import 'dart:ui';
-
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:meal_monkey/app/my_app.dart';
+import 'package:meal_monkey/core/data/repositories/shared_preferences_repository.dart';
 import 'package:meal_monkey/core/utils/network_utils.dart';
 
 bool isVaildEmail(String value) {
@@ -46,7 +43,7 @@ String getFullImageUrl(String url) {
   return 'https://${NetworkUtil.baseUrl}/Images/${splitedString[1]}';
 }
 
-Size get globalSize => MediaQuery.of(globalContext!).size;
+// Size get globalSize => MediaQuery.of(globalContext!).size;
 
 double screenWidth(double percent) {
   return Get.size.width / percent;
@@ -55,3 +52,5 @@ double screenWidth(double percent) {
 double screenHeight(double percent) {
   return Get.size.height / percent;
 }
+
+SharedPreferencesRepository get storage => Get.find();

@@ -1,5 +1,5 @@
-import 'package:meal_monkey/core/data/repositories/shared_preferences_repository.dart';
 import 'package:meal_monkey/core/enums/request_type.dart';
+import 'package:meal_monkey/ui/shared/utils.dart';
 
 class NetworkConfig {
   static String BASE_API = 'api/web/';
@@ -15,8 +15,7 @@ class NetworkConfig {
   }) {
     return {
       if (needAuth!)
-        "Authorization":
-            "Bearer ${SharedPreferencesRepository.getTokenInfo()?.accessToken ?? ''}",
+        "Authorization": "Bearer ${storage.getTokenInfo()?.accessToken ?? ''}",
       if (requestType != RequestType.GET) "Content-Type": "application/json",
       ...extraHeaders!
     };
