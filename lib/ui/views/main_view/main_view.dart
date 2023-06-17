@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:meal_monkey/core/enums/bottom_navigation.dart';
+import 'package:get/get.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_drawer.dart';
+import 'package:meal_monkey/ui/shared/utils.dart';
 import 'package:meal_monkey/ui/views/main_view/home_view/home_view.dart';
+import 'package:meal_monkey/ui/views/main_view/main_view_controller.dart';
 import 'package:meal_monkey/ui/views/main_view/main_view_widgets/bottom_navigation_widget.dart';
 import 'package:meal_monkey/ui/views/main_view/menu_view/menu_view.dart';
 import 'package:meal_monkey/ui/views/main_view/more_view/more_view.dart';
@@ -16,56 +18,50 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
-  BottomNavigationEnum selected = BottomNavigationEnum.HOME;
-  PageController controller = PageController(initialPage: 2);
-  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  // BottomNavigationEnum selected = BottomNavigationEnum.HOME;
+  // PageController controller = PageController(initialPage: 2);
+  // GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  MainController controller = Get.put(MainController());
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return SafeArea(
       child: Scaffold(
-        key: scaffoldKey,
+        key: controller.scaffoldKey,
         drawer: CustomDrawer(
-          drawerWidth: size.width / 2,
+          drawerWidth: screenWidth(2),
         ),
-        body: Stack(
-          children: [
-            PageView(
-              physics: NeverScrollableScrollPhysics(),
-              controller: controller,
+        body: Obx(
+          () {
+            return Stack(
               children: [
-                MenuView(),
-                OffersView(),
-                HomeView(
-                  onMenuTap: () {
-                    scaffoldKey.currentState!.openDrawer();
-                  },
-                ),
-                ProfileView(),
-                MoreView(),
-              ],
-            ),
-            Positioned(
-              bottom: 0,
-              child: BottomNavigationWidget(
-                bottomNavigationEnum: selected,
-                onTap: (selectedEnum, pageNumber) {
-                  controller.animateToPage(
-                    pageNumber,
-                    duration: Duration(
-                      microseconds: 500,
+                PageView(
+                  physics: NeverScrollableScrollPhysics(),
+                  controller: controller.pageController,
+                  children: [
+                    MenuView(),
+                    OffersView(),
+                    HomeView(
+                      onMenuTap: () {
+                        controller.scaffoldKey.currentState!.openDrawer();
+                      },
                     ),
-                    curve: Curves.easeInCirc,
-                  );
-                  setState(() {
-                    selected = selectedEnum;
-                  });
-                },
-              ),
-            ),
-          ],
+                    ProfileView(),
+                    MoreView(),
+                  ],
+                ),
+                Positioned(
+                  bottom: 0,
+                  child: BottomNavigationWidget(
+                    bottomNavigationEnum: controller.selectedPage.value,
+                    onTap: (selectedEnum, pageNumber) {
+                      controller.pageNavigation(selectedEnum, pageNumber);
+                    },
+                  ),
+                ),
+              ],
+            );
+          },
         ),
       ),
     );

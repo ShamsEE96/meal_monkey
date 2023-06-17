@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meal_monkey/core/enums/bottom_navigation.dart';
+import 'package:meal_monkey/core/translation/app_translation.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
 import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
+import 'package:meal_monkey/ui/shared/utils.dart';
 
 class BottomNavigationWidget extends StatefulWidget {
   const BottomNavigationWidget({
@@ -21,8 +23,6 @@ class BottomNavigationWidget extends StatefulWidget {
 class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
@@ -32,7 +32,7 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
             shadow: Shadow(
               offset: Offset(
                 0,
-                -size.width / 40,
+                -screenWidth(40),
               ),
               blurRadius: 10,
               color: AppColors.mainGreyColor.withOpacity(0.11),
@@ -41,8 +41,8 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
           child: ClipPath(
             clipper: BottomNavigationClipper(),
             child: Container(
-              width: size.width,
-              height: size.height / 8,
+              width: screenWidth(1),
+              height: screenHeight(8),
               alignment: Alignment.bottomCenter,
               decoration: BoxDecoration(
                 color: AppColors.mainWhiteColor,
@@ -51,61 +51,61 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
           ),
         ),
         Positioned(
-          bottom: size.width / 30,
+          bottom: screenWidth(30),
           right: 0,
           left: 0,
           child: Padding(
             padding: EdgeInsets.symmetric(
-              vertical: size.width / 38,
-              horizontal: size.width / 23,
+              vertical: screenWidth(38),
+              horizontal: screenWidth(23),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 navItem(
-                    imageName: 'ic_menu',
-                    text: 'Menu',
-                    isSelected: widget.bottomNavigationEnum ==
-                        BottomNavigationEnum.MENU,
-                    onTap: () {
-                      widget.onTap(BottomNavigationEnum.MENU, 0);
-                    },
-                    size: size),
+                  imageName: 'ic_menu',
+                  text: tr('key_main_view_bottom_navigation_bar_item_menu'),
+                  isSelected:
+                      widget.bottomNavigationEnum == BottomNavigationEnum.MENU,
+                  onTap: () {
+                    widget.onTap(BottomNavigationEnum.MENU, 0);
+                  },
+                ),
                 navItem(
-                    imageName: 'ic_shopping',
-                    text: 'Offers',
-                    isSelected: widget.bottomNavigationEnum ==
-                        BottomNavigationEnum.OFFERS,
-                    onTap: () {
-                      widget.onTap(BottomNavigationEnum.OFFERS, 1);
-                    },
-                    size: size),
-                (size.width / 4).pw,
+                  imageName: 'ic_shopping',
+                  text: tr('key_main_view_bottom_navigation_bar_item_offers'),
+                  isSelected: widget.bottomNavigationEnum ==
+                      BottomNavigationEnum.OFFERS,
+                  onTap: () {
+                    widget.onTap(BottomNavigationEnum.OFFERS, 1);
+                  },
+                ),
+                (screenWidth(4)).pw,
                 navItem(
-                    imageName: 'ic_user',
-                    text: 'Profile',
-                    isSelected: widget.bottomNavigationEnum ==
-                        BottomNavigationEnum.PROFILE,
-                    onTap: () {
-                      widget.onTap(BottomNavigationEnum.PROFILE, 3);
-                    },
-                    size: size),
+                  imageName: 'ic_user',
+                  text: tr('key_main_view_bottom_navigation_bar_item_profile'),
+                  isSelected: widget.bottomNavigationEnum ==
+                      BottomNavigationEnum.PROFILE,
+                  onTap: () {
+                    widget.onTap(BottomNavigationEnum.PROFILE, 3);
+                  },
+                ),
                 navItem(
-                    imageName: 'ic_more',
-                    text: 'More',
-                    isSelected: widget.bottomNavigationEnum ==
-                        BottomNavigationEnum.MORE,
-                    onTap: () {
-                      widget.onTap(BottomNavigationEnum.MORE, 4);
-                    },
-                    size: size),
+                  imageName: 'ic_more',
+                  text: tr('key_main_view_bottom_navigation_bar_item_more'),
+                  isSelected:
+                      widget.bottomNavigationEnum == BottomNavigationEnum.MORE,
+                  onTap: () {
+                    widget.onTap(BottomNavigationEnum.MORE, 4);
+                  },
+                ),
               ],
             ),
           ),
         ),
         Padding(
           padding: EdgeInsets.only(
-            bottom: size.height / 13,
+            bottom: screenHeight(13),
           ),
           child: InkWell(
             onTap: () {
@@ -116,7 +116,7 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
                   widget.bottomNavigationEnum == BottomNavigationEnum.HOME
                       ? AppColors.mainOrangeColor
                       : AppColors.placeholderGreyColor,
-              radius: size.width / 11,
+              radius: screenWidth(11),
               child: SvgPicture.asset(
                 'images/ic_home.svg',
                 color: AppColors.mainWhiteColor,
@@ -133,7 +133,6 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
     required String text,
     required bool isSelected,
     required Function onTap,
-    required Size size,
   }) {
     return InkWell(
       onTap: () {
@@ -146,17 +145,17 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
             color: isSelected
                 ? AppColors.mainOrangeColor
                 : AppColors.placeholderGreyColor,
-            width: size.width / 17,
-            height: size.width / 17,
+            width: screenWidth(17),
+            height: screenWidth(17),
           ),
-          (size.width / 35).ph,
+          (screenWidth(35)).ph,
           Text(
             text,
             style: TextStyle(
               color: isSelected
                   ? AppColors.mainOrangeColor
                   : AppColors.placeholderGreyColor,
-              fontSize: size.width / 30,
+              fontSize: screenWidth(30),
             ),
           )
         ],

@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:meal_monkey/core/translation/app_translation.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_category.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_category02.dart';
-import 'package:meal_monkey/ui/shared/custom_widgets/custom_catrgory03.dart';
+import 'package:meal_monkey/ui/shared/custom_widgets/custom_category03.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_meal.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_text.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_text_field.dart';
@@ -42,7 +43,7 @@ class _HomeViewState extends State<HomeView> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomText(
-                    text: 'Good morning Akila!',
+                    text: '${tr('key_home_view_greeting')} Akila!',
                     textColor: AppColors.mainGreyColor,
                     fontSize: screenWidth(15),
                   ),
@@ -64,7 +65,7 @@ class _HomeViewState extends State<HomeView> {
                 horizontal: screenWidth(22),
               ),
               child: CustomText(
-                text: 'Delivering to',
+                text: tr('key_home_view_delivering_to'),
                 textColor: AppColors.placeholderGreyColor,
                 fontSize: screenWidth(30),
               ),
@@ -75,7 +76,7 @@ class _HomeViewState extends State<HomeView> {
                 horizontal: screenWidth(22),
               ),
               child: CustomText(
-                text: 'Current Location',
+                text: tr('key_home_view_current_location'),
                 textColor: AppColors.placeholderGreyColor,
                 fontSize: screenWidth(20),
                 fontWeight: FontWeight.bold,
@@ -84,7 +85,7 @@ class _HomeViewState extends State<HomeView> {
             (screenWidth(15)).ph,
             Center(
               child: CustomTextFormField(
-                hintText: 'Search food',
+                hintText: tr('key_home_view_search'),
                 controller: controller.searchController,
                 fillColor: AppColors.fillGreyColor,
                 hintTextColor: AppColors.placeholderGreyColor,
@@ -132,14 +133,14 @@ class _HomeViewState extends State<HomeView> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomText(
-                    text: 'Popular Restaurents',
+                    text: tr('key_home_view_popular_restaurents'),
                     textColor: AppColors.mainGreyColor,
                     fontSize: screenWidth(15),
                   ),
                   InkWell(
                     onTap: () {},
                     child: CustomText(
-                      text: 'View all',
+                      text: tr('key_home_view_view_all'),
                       textColor: AppColors.mainOrangeColor,
                       fontSize: screenWidth(25),
                     ),
@@ -180,14 +181,14 @@ class _HomeViewState extends State<HomeView> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomText(
-                    text: 'Most Popular',
+                    text: tr('key_home_view_most_popular'),
                     textColor: AppColors.mainGreyColor,
                     fontSize: screenWidth(15),
                   ),
                   InkWell(
                     onTap: () {},
                     child: CustomText(
-                      text: 'View all',
+                      text: tr('key_home_view_view_all'),
                       textColor: AppColors.mainOrangeColor,
                       fontSize: screenWidth(25),
                     ),
@@ -235,14 +236,14 @@ class _HomeViewState extends State<HomeView> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomText(
-                    text: 'Recent Items',
+                    text: tr('key_home_view_recent_items'),
                     textColor: AppColors.mainGreyColor,
                     fontSize: screenWidth(15),
                   ),
                   InkWell(
                     onTap: () {},
                     child: CustomText(
-                      text: 'View all',
+                      text: tr('key_home_view_view_all'),
                       textColor: AppColors.mainOrangeColor,
                       fontSize: screenWidth(25),
                     ),

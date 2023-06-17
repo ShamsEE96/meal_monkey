@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:meal_monkey/core/data/repositories/shared_preferences_repository.dart';
 import 'package:meal_monkey/core/data/repositories/user_repository.dart';
 import 'package:meal_monkey/core/enums/message_type.dart';
 import 'package:meal_monkey/core/services/base_controller.dart';
+import 'package:meal_monkey/core/translation/app_translation.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_toast.dart';
+import 'package:meal_monkey/ui/shared/utils.dart';
 import 'package:meal_monkey/ui/views/main_view/main_view.dart';
 
 class LoginController extends BaseController {
@@ -33,19 +34,20 @@ class LoginController extends BaseController {
             message: l,
           );
         }, (r) {
-          SharedPreferencesRepository.setTokenInfo(r);
+          storage.setTokenInfo(r);
           //SharedPrefrenceRepository.setLoggedIn(true);
           Get.off(() => MainView());
         });
       });
 
       CustomToast.showMessage(
-        message: 'Everything ok',
+        message: tr('key_bot_toast_general_success'),
         messageType: MessageType.SUCCESS,
       );
     } else {
+      // isLoading.value = false;
       CustomToast.showMessage(
-        message: 'Error while connecting to server',
+        message: tr('key_bot_toast_general_rejected'),
         messageType: MessageType.REJECTED,
       );
     }

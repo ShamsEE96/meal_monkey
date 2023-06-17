@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
+import 'package:meal_monkey/ui/shared/utils.dart';
 
 class OneTimePasscodeTextFormField extends StatelessWidget {
   const OneTimePasscodeTextFormField({
@@ -28,7 +29,6 @@ class OneTimePasscodeTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return TextFormField(
       focusNode: focusNode,
       // textInputAction: TextInputAction.next,
@@ -44,8 +44,8 @@ class OneTimePasscodeTextFormField extends StatelessWidget {
       textAlignVertical: TextAlignVertical.center,
       decoration: InputDecoration(
         constraints: BoxConstraints(
-          maxHeight: size.width * 0.2,
-          maxWidth: size.width * 0.2,
+          maxHeight: screenWidth(5),
+          maxWidth: screenWidth(5),
         ),
         border: OutlineInputBorder(
           borderSide: BorderSide(

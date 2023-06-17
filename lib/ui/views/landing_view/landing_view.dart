@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:meal_monkey/core/translation/app_translation.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_button.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_text.dart';
+import 'package:meal_monkey/ui/shared/custom_widgets/cutsom_app_language.dart';
 import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
 import 'package:meal_monkey/ui/shared/utils.dart';
 import 'package:meal_monkey/ui/views/login_view/login_view.dart';
@@ -33,7 +35,7 @@ class LandingView extends StatelessWidget {
                     clipper: LandingClipper(),
                     child: Container(
                       width: screenWidth(1),
-                      height: screenHeight(1.4),
+                      height: screenHeight(1.5),
                       decoration: BoxDecoration(
                         color: AppColors.mainOrangeColor,
                       ),
@@ -58,13 +60,13 @@ class LandingView extends StatelessWidget {
                 ),
               ],
             ),
+            CustomAppLanguage(),
             Padding(
               padding: EdgeInsets.symmetric(
                 vertical: screenWidth(20),
               ),
               child: CustomText(
-                text:
-                    'Discover the best foods from over 1,000 \n restaurants and fast delivery to your doorstep',
+                text: tr('key_landing_view_description'),
                 textColor: AppColors.secondaryGreyColor,
               ),
             ),
@@ -75,14 +77,14 @@ class LandingView extends StatelessWidget {
               child: Column(
                 children: [
                   CustomButton(
-                    text: 'Login',
+                    text: tr('key_login'),
                     onPressed: () {
                       Get.to(() => LoginView());
                     },
                   ),
                   (screenWidth(20)).ph,
                   CustomButton(
-                    text: 'Create an Account',
+                    text: tr('key_landing_view_create_account'),
                     textColor: AppColors.mainOrangeColor,
                     backgroundColor: AppColors.mainWhiteColor,
                     borderColor: AppColors.mainOrangeColor,

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:meal_monkey/core/translation/app_translation.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
-import 'package:meal_monkey/ui/shared/extensions/custom_navigator_shared.dart';
-import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
-import 'package:meal_monkey/ui/shared/custom_widgets/custom_text.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_button.dart';
+import 'package:meal_monkey/ui/shared/custom_widgets/custom_text.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_text_field.dart';
+import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
+import 'package:meal_monkey/ui/shared/utils.dart';
 import 'package:meal_monkey/ui/views/login_view/login_view.dart';
+import 'package:meal_monkey/ui/views/new_password_view/new_password_view_controller.dart';
 
 class NewPasswordView extends StatefulWidget {
   const NewPasswordView({super.key});
@@ -15,59 +18,74 @@ class NewPasswordView extends StatefulWidget {
 }
 
 class _NewPasswordViewState extends State<NewPasswordView> {
-  TextEditingController newPasswordController = TextEditingController();
-  TextEditingController confirmPasswordController = TextEditingController();
-
+  NewPasswordController controller = Get.put(NewPasswordController());
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: size.height * 0.03,
-          ),
-          child: Center(
-            child: Column(
-              children: [
-                CustomText(
-                  text: 'New Password',
-                  textColor: AppColors.mainGreyColor,
-                  fontSize: size.width * 0.1,
-                ),
-                (size.height * 0.02).ph,
-                CustomText(
-                  text:
-                      'Please enter your email to receive a \n link to create a new password via email',
-                  textColor: AppColors.secondaryGreyColor,
-                ),
-                (size.height * 0.06).ph,
-                CustomTextFormField(
-                  hintText: 'New Password',
-                  controller: newPasswordController,
-                  fillColor: AppColors.fillGreyColor,
-                  hintTextColor: AppColors.placeholderGreyColor,
-                  keyboardType: TextInputType.visiblePassword,
-                  obscureText: true,
-                ),
-                (size.height * 0.04).ph,
-                CustomTextFormField(
-                  hintText: 'Confirm Password',
-                  controller: confirmPasswordController,
-                  fillColor: AppColors.fillGreyColor,
-                  hintTextColor: AppColors.placeholderGreyColor,
-                  keyboardType: TextInputType.visiblePassword,
-                  obscureText: true,
-                ),
-                (size.height * 0.04).ph,
-                CustomButton(
-                  text: 'Next',
-                  onPressed: () {
-                    context.pushReplacement(LoginView());
-                  },
-                ),
-              ],
+        body: Form(
+          key: controller.formKey,
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: screenHeight(40),
+            ),
+            child: Center(
+              child: Column(
+                children: [
+                  CustomText(
+                    text: tr('key_new_password'),
+                    textColor: AppColors.mainGreyColor,
+                    fontSize: screenWidth(10),
+                  ),
+                  (screenHeight(80)).ph,
+                  CustomText(
+                    text: tr('key_new_password_view_description'),
+                    textColor: AppColors.secondaryGreyColor,
+                  ),
+                  (screenHeight(15)).ph,
+                  CustomTextFormField(
+                    hintText: tr('key_new_password'),
+                    controller: controller.newPasswordController,
+                    validator: (value) {
+                      if (value!.isEmpty || !isVaildPassword(value)) {
+                        return tr('key_password_validation');
+                      }
+                      return null;
+                    },
+                    fillColor: AppColors.fillGreyColor,
+                    hintTextColor: AppColors.placeholderGreyColor,
+                    keyboardType: TextInputType.visiblePassword,
+                    obscureText: true,
+                  ),
+                  (screenHeight(20)).ph,
+                  CustomTextFormField(
+                    hintText: tr('key_confirm_password'),
+                    controller: controller.confirmPasswordController,
+                    validator: (value) {
+                      if (value!.isEmpty || !isVaildPassword(value)) {
+                        return tr('key_password_validation');
+                      }
+                      if (controller.newPasswordController.value !=
+                          controller.confirmPasswordController.value) {
+                        return tr('key_confirm_password_validation');
+                      }
+                      return null;
+                    },
+                    fillColor: AppColors.fillGreyColor,
+                    hintTextColor: AppColors.placeholderGreyColor,
+                    keyboardType: TextInputType.visiblePassword,
+                    obscureText: true,
+                  ),
+                  (screenHeight(20)).ph,
+                  CustomButton(
+                    text: tr('key_next'),
+                    onPressed: () {
+                      Get.off(() => LoginView());
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
         ),

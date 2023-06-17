@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+import 'package:meal_monkey/core/translation/app_translation.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_button.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_text.dart';
@@ -27,117 +28,115 @@ class _LoginViewState extends State<LoginView> {
       child: Scaffold(
         body: Form(
           key: controller.formKey,
-          child: Padding(
+          child: ListView(
             padding: EdgeInsets.symmetric(
               horizontal: screenWidth(20),
               vertical: screenHeight(30),
             ),
-            child: Column(
-              children: [
-                CustomText(
-                  text: 'Login',
-                  fontSize: screenWidth(10),
-                  textColor: AppColors.mainGreyColor,
-                ),
-                (screenHeight(30)).ph,
-                CustomText(
-                  text: 'Add your details to login',
-                  textColor: AppColors.secondaryGreyColor,
-                ),
-                (screenHeight(50)).ph,
-                CustomTextFormField(
-                  hintText: 'Your Email',
-                  controller: controller.emailController,
-                  validator: (value) {
-                    if (value!.isEmpty || !isVaildEmail(value)) {
-                      return 'Please enter a valid email';
-                    }
-                    return null;
-                  },
-                  fillColor: AppColors.fillGreyColor,
-                  hintTextColor: AppColors.placeholderGreyColor,
-                  keyboardType: TextInputType.emailAddress,
-                ),
-                (screenHeight(30)).ph,
-                CustomTextFormField(
-                  hintText: 'Password',
-                  controller: controller.passwordController,
-                  validator: (value) {
-                    if (value!.isEmpty || !isVaildPassword(value)) {
-                      return 'Please enter a valid password';
-                    }
-                    return null;
-                  },
-                  fillColor: AppColors.fillGreyColor,
-                  hintTextColor: AppColors.placeholderGreyColor,
-                  keyboardType: TextInputType.visiblePassword,
-                  obscureText: true,
-                ),
-                (screenHeight(30)).ph,
-                Obx(() {
-                  return controller.isLoading.value
-                      ? SpinKitThreeBounce(
-                          color: AppColors.mainOrangeColor,
-                        )
-                      : CustomButton(
-                          text: 'Login',
-                          onPressed: () {
-                            controller.login();
-                          },
-                        );
-                }),
-                (screenHeight(40)).ph,
-                TextButton(
-                  onPressed: () {
-                    Get.to(() => ResetPasswordView());
-                  },
-                  child: CustomText(
-                    text: 'Forgot your password?',
-                    textColor: AppColors.mainOrangeColor,
-                  ),
-                ),
-                (screenHeight(30)).ph,
-                CustomText(
-                  text: 'or Login With',
-                  textColor: AppColors.secondaryGreyColor,
-                ),
-                (screenHeight(30)).ph,
-                CustomButton(
-                  text: 'Login with Facebook',
-                  ImageName: 'ic_facebook',
-                  onPressed: () {},
-                  backgroundColor: AppColors.mainBlueColor,
-                ),
-                (screenHeight(30)).ph,
-                CustomButton(
-                  text: 'Login with Google',
-                  ImageName: 'ic_google_plus_logo',
-                  onPressed: () {},
-                  backgroundColor: AppColors.mainRedColor,
-                ),
-                Spacer(),
-                Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CustomText(
-                        text: 'Don\'t have an Account? ',
-                        textColor: AppColors.secondaryGreyColor,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Get.to(() => SignupView());
+            children: [
+              CustomText(
+                text: tr('key_login'),
+                fontSize: screenWidth(10),
+                textColor: AppColors.mainGreyColor,
+              ),
+              (screenHeight(30)).ph,
+              CustomText(
+                text: tr('key_login_view_details'),
+                textColor: AppColors.secondaryGreyColor,
+              ),
+              (screenHeight(50)).ph,
+              CustomTextFormField(
+                hintText: tr('key_email'),
+                controller: controller.emailController,
+                validator: (value) {
+                  if (value!.isEmpty || !isVaildEmail(value)) {
+                    return tr('key_email_validation');
+                  }
+                  return null;
+                },
+                fillColor: AppColors.fillGreyColor,
+                hintTextColor: AppColors.placeholderGreyColor,
+                keyboardType: TextInputType.emailAddress,
+              ),
+              (screenHeight(30)).ph,
+              CustomTextFormField(
+                hintText: tr('key_password'),
+                controller: controller.passwordController,
+                validator: (value) {
+                  if (value!.isEmpty || !isVaildPassword(value)) {
+                    return tr('key_password_validation');
+                  }
+                  return null;
+                },
+                fillColor: AppColors.fillGreyColor,
+                hintTextColor: AppColors.placeholderGreyColor,
+                keyboardType: TextInputType.visiblePassword,
+                obscureText: true,
+              ),
+              (screenHeight(30)).ph,
+              Obx(() {
+                return controller.isLoading.value
+                    ? SpinKitThreeBounce(
+                        color: AppColors.mainOrangeColor,
+                      )
+                    : CustomButton(
+                        text: tr('key_login'),
+                        onPressed: () {
+                          controller.login();
                         },
-                        child: CustomText(
-                          text: ' Sign Up',
-                          textColor: AppColors.mainOrangeColor,
-                        ),
-                      ),
-                    ],
-                  ),
+                      );
+              }),
+              (screenHeight(40)).ph,
+              TextButton(
+                onPressed: () {
+                  Get.to(() => ResetPasswordView());
+                },
+                child: CustomText(
+                  text: tr('key_forgot_password'),
+                  textColor: AppColors.mainOrangeColor,
                 ),
-              ],
-            ),
+              ),
+              (screenHeight(30)).ph,
+              CustomText(
+                text: tr('key_login_view_options'),
+                textColor: AppColors.secondaryGreyColor,
+              ),
+              (screenHeight(30)).ph,
+              CustomButton(
+                text: tr('key_login_with_facebook'),
+                ImageName: 'ic_facebook',
+                onPressed: () {},
+                backgroundColor: AppColors.mainBlueColor,
+              ),
+              (screenHeight(30)).ph,
+              CustomButton(
+                text: tr('key_login_with_google'),
+                ImageName: 'ic_google_plus_logo',
+                onPressed: () {},
+                backgroundColor: AppColors.mainRedColor,
+              ),
+              (screenHeight(30)).ph,
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomText(
+                      text: '${tr('key_login_view_no_account')} ',
+                      textColor: AppColors.secondaryGreyColor,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Get.to(() => SignupView());
+                      },
+                      child: CustomText(
+                        text: ' ${tr('key_signup')}',
+                        textColor: AppColors.mainOrangeColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),
