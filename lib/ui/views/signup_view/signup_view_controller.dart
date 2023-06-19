@@ -72,6 +72,13 @@ class SignupController extends BaseController {
 
   void showBottomSheet() {
     Get.bottomSheet(
+      backgroundColor: AppColors.mainWhiteColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadiusDirectional.only(
+          topStart: Radius.circular(20),
+          topEnd: Radius.circular(20),
+        ),
+      ),
       Column(
         mainAxisSize: MainAxisSize.min,
         children: [
