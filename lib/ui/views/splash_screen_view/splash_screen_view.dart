@@ -31,7 +31,7 @@ class _SplashScreenViewState extends State<SplashScreenView> {
           alignment: AlignmentDirectional.bottomCenter,
           children: [
             SvgPicture.asset(
-              'images/bg_background.svg',
+              'assets/images/bg_background.svg',
               fit: BoxFit.fill,
               width: screenWidth(1),
               height: screenHeight(1),
@@ -49,7 +49,7 @@ class _SplashScreenViewState extends State<SplashScreenView> {
                   ),
                 ),
                 child: SvgPicture.asset(
-                  'images/logo.svg',
+                  'assets/images/logo.svg',
                   width: screenWidth(1.5),
                 ),
               ),
