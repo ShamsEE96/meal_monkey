@@ -18,11 +18,13 @@ class HomeController extends BaseController {
 
   bool get isCategoryLoading =>
       requestStatus == RequestStatus.LOADING &&
-      operationType == OperationType.CATEGORY;
+      operationTypeList.contains(OperationType.CATEGORY);
+  // operationType == OperationType.CATEGORY;
 
   bool get isMealLoading =>
       requestStatus == RequestStatus.LOADING &&
-      operationType == OperationType.MEAL;
+      operationTypeList.contains(OperationType.MEAL);
+  // operationType == OperationType.MEAL;
 
   @override
   void onInit() {
