@@ -1,10 +1,13 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:get/get.dart';
 import 'package:meal_monkey/core/enums/operation_type.dart';
 import 'package:meal_monkey/core/enums/request_status.dart';
+import 'package:meal_monkey/ui/shared/utils.dart';
 
 class BaseController extends GetxController {
   var requestStatus = RequestStatus.DEFAULT.obs;
   var operationType = OperationType.NONE.obs;
+  RxList<OperationType> operationTypeList = <OperationType>[].obs;
 
   set setRequestStatus(RequestStatus value) {
     requestStatus.value = value;
@@ -25,9 +28,20 @@ class BaseController extends GetxController {
     OperationType? operationType = OperationType.NONE,
   }) async {
     setRequestStatus = RequestStatus.LOADING;
-    setOperationType = operationType!;
+    operationTypeList.add(operationType!);
+    // setOperationType = operationType!;
     await function;
     setRequestStatus = RequestStatus.DEFAULT;
-    setOperationType = OperationType.NONE;
+    operationTypeList.remove(operationType);
+    // setOperationType = OperationType.NONE;
+  }
+
+  Future runFutureFunctionWithFullLoading({
+    required Future function,
+    OperationType? operationType = OperationType.NONE,
+  }) async {
+    customLoader();
+    await function;
+    BotToast.closeAllLoading();
   }
 }
