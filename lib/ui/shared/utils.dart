@@ -1,6 +1,13 @@
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:meal_monkey/core/data/repositories/shared_preferences_repository.dart';
+import 'package:meal_monkey/core/enums/message_type.dart';
 import 'package:meal_monkey/core/utils/network_utils.dart';
+import 'package:meal_monkey/ui/shared/colors.dart';
+import 'package:meal_monkey/ui/shared/custom_widgets/custom_toast.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 bool isVaildEmail(String value) {
   RegExp regExp = new RegExp(
@@ -46,11 +53,60 @@ String getFullImageUrl(String url) {
 // Size get globalSize => MediaQuery.of(globalContext!).size;
 
 double screenWidth(double percent) {
-  return Get.size.width / percent;
+  if (GetPlatform.isMobile) {
+    return Get.width / percent;
+  } else
+    return Get.height / percent;
 }
 
 double screenHeight(double percent) {
-  return Get.size.height / percent;
+  if (GetPlatform.isMobile) {
+    return Get.height / percent;
+  } else
+    return Get.width / percent;
 }
 
-SharedPreferencesRepository get storage => Get.find();
+SharedPreferencesRepository get storage =>
+    Get.find<SharedPreferencesRepository>();
+
+Future cLaunchUrl(Uri url) async {
+  if (!await launchUrl(url)) {
+    CustomToast.showMessage(
+      message: 'Can\'t Launch URL',
+      messageType: MessageType.REJECTED,
+    );
+  }
+}
+
+String? encodeQueryParameters(Map<String, String> params) {
+  return params.entries
+      .map((MapEntry<String, String> e) =>
+          '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+      .join('&');
+}
+
+final Uri emailLaunchUri = Uri(
+  scheme: 'mailto',
+  path: 'smith@example.com',
+  query: encodeQueryParameters(<String, String>{
+    'subject': 'Example Subject & Symbols are allowed!',
+  }),
+);
+
+void customLoader() => BotToast.showCustomLoading(
+        // duration: Duration(seconds: 10),
+        toastBuilder: (context) {
+      return Container(
+        width: screenWidth(3),
+        height: screenWidth(3),
+        decoration: BoxDecoration(
+          color: AppColors.placeholderGreyColor.withOpacity(0.5),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Lottie.asset(
+          'assets/animations/64809-pizza-loading.json',
+          width: screenWidth(5),
+          height: screenWidth(5),
+        ),
+      );
+    });
