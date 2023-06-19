@@ -70,7 +70,10 @@ SharedPreferencesRepository get storage =>
     Get.find<SharedPreferencesRepository>();
 
 Future cLaunchUrl(Uri url) async {
-  if (!await launchUrl(url)) {
+  if (!await launchUrl(
+    url,
+    mode: LaunchMode.externalApplication,
+  )) {
     CustomToast.showMessage(
       message: 'Can\'t Launch URL',
       messageType: MessageType.REJECTED,
