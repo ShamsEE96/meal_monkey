@@ -50,7 +50,7 @@ class _HomeViewState extends State<HomeView> {
                   InkWell(
                     onTap: () {},
                     child: SvgPicture.asset(
-                      'images/ic_shopping_cart.svg',
+                      'assets/images/ic_shopping_cart.svg',
                       color: AppColors.mainOrangeColor,
                       width: screenWidth(12),
                       height: screenWidth(12),

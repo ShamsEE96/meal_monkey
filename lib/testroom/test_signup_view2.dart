@@ -100,7 +100,7 @@
 //                           radius: size.width / 4,
 //                           backgroundImage: choosedImage == null
 //                               ? Image.asset(
-//                                   "images/cat.jpg",
+//                                   "assets/images/cat.jpg",
 //                                   fit: BoxFit.fill,
 //                                 ).image
 //                               : Image.file(

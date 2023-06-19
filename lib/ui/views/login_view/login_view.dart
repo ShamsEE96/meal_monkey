@@ -75,7 +75,7 @@ class _LoginViewState extends State<LoginView> {
               ),
               (screenHeight(30)).ph,
               Obx(() {
-                return controller.isLoading.value
+                return controller.isLoginLoading
                     ? SpinKitThreeBounce(
                         color: AppColors.mainOrangeColor,
                       )

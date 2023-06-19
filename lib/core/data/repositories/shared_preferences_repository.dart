@@ -65,7 +65,7 @@ class SharedPreferencesRepository {
     if (globalSharedPreferences.containsKey(PREF_APP_LANG)) {
       return getPreference(key: PREF_APP_LANG);
     } else {
-      return 'en';
+      return 'ar';
     }
   }
   //  void setFirstLogin(bool value) {

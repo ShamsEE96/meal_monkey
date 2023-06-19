@@ -40,7 +40,7 @@ class LandingView extends StatelessWidget {
                         color: AppColors.mainOrangeColor,
                       ),
                       child: SvgPicture.asset(
-                        'images/background_objects.svg',
+                        'assets/images/background_objects.svg',
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -52,7 +52,7 @@ class LandingView extends StatelessWidget {
                       top: screenHeight(3),
                     ),
                     child: SvgPicture.asset(
-                      'images/logo.svg',
+                      'assets/images/logo.svg',
                       width: screenWidth(2.6),
                       height: screenWidth(2.6),
                     ),

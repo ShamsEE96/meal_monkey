@@ -64,7 +64,7 @@ class CustomToast {
             children: [
               (screenHeight(80)).ph,
               SvgPicture.asset(
-                'images/$imageName.svg',
+                'assets/images/$imageName.svg',
                 height: screenWidth(4),
                 width: screenWidth(4),
               ),

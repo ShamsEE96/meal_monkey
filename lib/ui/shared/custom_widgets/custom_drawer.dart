@@ -53,7 +53,7 @@ class CustomDrawer extends StatelessWidget {
                         },
                         child: CustomText(text: 'English'),
                       ),
-                      (screenWidth(10)).ph,
+                      (screenWidth(20)).ph,
                       InkWell(
                         onTap: () {
                           storage.setAppLanguage('ar');
@@ -62,7 +62,7 @@ class CustomDrawer extends StatelessWidget {
                         },
                         child: CustomText(text: 'العربية'),
                       ),
-                      (screenWidth(10)).ph,
+                      (screenWidth(20)).ph,
                       InkWell(
                         onTap: () {
                           storage.setAppLanguage('tr');

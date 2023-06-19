@@ -82,7 +82,7 @@ class CustomCategory02 extends StatelessWidget {
                 ),
                 (screenWidth(6)).pw,
                 SvgPicture.asset(
-                  'images/ic_star.svg',
+                  'assets/images/ic_star.svg',
                   color: AppColors.mainOrangeColor,
                   width: screenWidth(18),
                   height: screenWidth(18),

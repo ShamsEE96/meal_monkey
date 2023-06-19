@@ -118,7 +118,7 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
                       : AppColors.placeholderGreyColor,
               radius: screenWidth(11),
               child: SvgPicture.asset(
-                'images/ic_home.svg',
+                'assets/images/ic_home.svg',
                 color: AppColors.mainWhiteColor,
               ),
             ),
@@ -141,7 +141,7 @@ class _BottomNavigationWidgetState extends State<BottomNavigationWidget> {
       child: Column(
         children: [
           SvgPicture.asset(
-            'images/$imageName.svg',
+            'assets/images/$imageName.svg',
             color: isSelected
                 ? AppColors.mainOrangeColor
                 : AppColors.placeholderGreyColor,

@@ -32,7 +32,7 @@ class CustomButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           if (ImageName != null) ...[
-            SvgPicture.asset('images/$ImageName.svg'),
+            SvgPicture.asset('assets/images/$ImageName.svg'),
             (screenWidth(20)).pw,
           ],
           Text(

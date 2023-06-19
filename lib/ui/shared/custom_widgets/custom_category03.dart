@@ -1,4 +1,3 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -84,7 +83,7 @@ class CustomCategory03 extends StatelessWidget {
               Row(
                 children: [
                   SvgPicture.asset(
-                    'images/ic_star.svg',
+                    'assets/images/ic_star.svg',
                     color: AppColors.mainOrangeColor,
                     width: screenWidth(18),
                     height: screenWidth(18),
