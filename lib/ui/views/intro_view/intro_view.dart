@@ -20,16 +20,7 @@ class IntroView extends StatefulWidget {
 
 class _IntroViewState extends State<IntroView> {
   IntroController controller = Get.put(IntroController());
-  List<String> titleList = [
-    tr('key_intro_title_01'),
-    tr('key_intro_title_02'),
-    tr('key_intro_title_03'),
-  ];
-  List<String> descriptionList = [
-    tr('key_intro_description_01'),
-    tr('key_intro_description_02'),
-    tr('key_intro_description_03'),
-  ];
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -44,7 +35,7 @@ class _IntroViewState extends State<IntroView> {
                     CustomAppLanguage(),
                     (screenWidth(11)).ph,
                     SvgPicture.asset(
-                      'images/intro${controller.currentIndex.value}.svg',
+                      'assets/images/intro${controller.currentIndex.value}.svg',
                       height: screenWidth(1.25),
                       width: screenWidth(1.25),
                     ),
@@ -59,15 +50,16 @@ class _IntroViewState extends State<IntroView> {
                     ),
                     (screenWidth(11)).ph,
                     CustomText(
-                      // text: titleList[controller.currentIndex.value],
-                      text: controller.title,
+                      text: controller.titleList[controller.currentIndex.value],
+                      // text: controller.title,
                       fontSize: screenWidth(10),
                       textColor: AppColors.mainGreyColor,
                     ),
                     (screenWidth(11)).ph,
                     CustomText(
-                      // text: descriptionList[controller.currentIndex.value],
-                      text: controller.description,
+                      text: controller
+                          .descriptionList[controller.currentIndex.value],
+                      // text: controller.description,
                       textColor: AppColors.secondaryGreyColor,
                     ),
                     (screenWidth(11)).ph,
