@@ -14,6 +14,8 @@ class CustomTextFormField extends StatelessWidget {
     this.validator,
     this.prefixIcon,
     this.prefixIconColor,
+    this.suffixIcon,
+    this.suffixIconColor,
     this.maxHeight,
     this.maxWidth,
   });
@@ -27,6 +29,8 @@ class CustomTextFormField extends StatelessWidget {
   final String? Function(String?)? validator;
   final Widget? prefixIcon;
   final Color? prefixIconColor;
+  final Widget? suffixIcon;
+  final Color? suffixIconColor;
   final double? maxHeight;
   final double? maxWidth;
 
@@ -42,6 +46,8 @@ class CustomTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         prefixIcon: prefixIcon,
         prefixIconColor: prefixIconColor,
+        suffixIcon: suffixIcon,
+        suffixIconColor: suffixIconColor,
         contentPadding: EdgeInsets.symmetric(horizontal: screenWidth(18)),
         constraints: BoxConstraints(
           maxWidth: maxWidth ?? screenWidth(1.1),
