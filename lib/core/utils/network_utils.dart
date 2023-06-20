@@ -111,7 +111,11 @@ class NetworkUtil {
       } catch (e) {}
 
       responseJson.putIfAbsent('statusCode', () => response.statusCode);
-      responseJson.putIfAbsent('response', () => jsonDecode(value));
+      responseJson.putIfAbsent(
+          'response',
+          () => value == "" && response.statusCode == 200
+              ? {'title': 'Register Successful!'}
+              : jsonDecode(value));
 
       return responseJson;
     } catch (error) {

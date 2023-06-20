@@ -20,7 +20,7 @@ class SignupController extends BaseController {
       TextEditingController(text: 'Shams');
   TextEditingController ageController = TextEditingController(text: '26');
   TextEditingController emailController =
-      TextEditingController(text: 'shams@gmail.com');
+      TextEditingController(text: 'shams5@gmail.com');
   TextEditingController passwordController =
       TextEditingController(text: 'Shams@123');
   TextEditingController confirmPasswordController =
@@ -30,39 +30,70 @@ class SignupController extends BaseController {
   final ImagePicker picker = ImagePicker();
   Rx<FileTypeModel> selectedFile = FileTypeModel().obs;
   RxBool showOptions = false.obs;
-  RxBool isLoading = false.obs;
 
+  // void register() {
+  //   // isLoading.value = true;
+  //   if (formKey.currentState!.validate()) {
+  //     isLoading.value = true;
+  //     UserRepository()
+  //         .register(
+  //           email: emailController.text,
+  //           firstname: firstnameController.text,
+  //           lastname: lastnameController.text,
+  //           age: int.parse(ageController.text),
+  //           password: passwordController.text,
+  //           photoPath: selectedFile.value.path ?? '',
+  //         )
+  //         .then(
+  //           (value) => value.fold(
+  //             (l) {
+  //               isLoading.value = false;
+
+  //               CustomToast.showMessage(
+  //                 messageType: MessageType.REJECTED,
+  //                 message: l,
+  //               );
+  //             },
+  //             (r) {
+  //               Get.off(() => LoginView());
+  //             },
+  //           ),
+  //         );
+  //   } else {
+  //     // isLoading.value = false;
+  //     CustomToast.showMessage(
+  //       message: tr('key_bot_toast_general_rejected'),
+  //       messageType: MessageType.REJECTED,
+  //     );
+  //   }
+  // }
   void register() {
-    // isLoading.value = true;
     if (formKey.currentState!.validate()) {
-      isLoading.value = true;
-      // runFutureFunctionWithLoading(function: function);
-      UserRepository()
-          .register(
-            email: emailController.text,
-            firstname: firstnameController.text,
-            lastname: lastnameController.text,
-            age: int.parse(ageController.text),
-            password: passwordController.text,
-            photoPath: selectedFile.value.path ?? '',
-          )
-          .then(
-            (value) => value.fold(
-              (l) {
-                isLoading.value = false;
-
-                CustomToast.showMessage(
-                  messageType: MessageType.REJECTED,
-                  message: l,
-                );
-              },
-              (r) {
-                Get.off(() => LoginView());
-              },
+      runFutureFunctionWithFullLoading(
+        function: UserRepository()
+            .register(
+              email: emailController.text,
+              firstname: firstnameController.text,
+              lastname: lastnameController.text,
+              age: int.parse(ageController.text),
+              password: passwordController.text,
+              photoPath: selectedFile.value.path ?? '',
+            )
+            .then(
+              (value) => value.fold(
+                (l) {
+                  CustomToast.showMessage(
+                    messageType: MessageType.REJECTED,
+                    message: l,
+                  );
+                },
+                (r) {
+                  Get.off(() => LoginView());
+                },
+              ),
             ),
-          );
+      );
     } else {
-      // isLoading.value = false;
       CustomToast.showMessage(
         message: tr('key_bot_toast_general_rejected'),
         messageType: MessageType.REJECTED,

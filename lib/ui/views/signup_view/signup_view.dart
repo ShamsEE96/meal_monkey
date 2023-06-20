@@ -95,10 +95,12 @@ class _SignupViewState extends State<SignupView> {
                               controller.showBottomSheet();
                             },
                             child: CircleAvatar(
-                              backgroundColor: AppColors.mainOrangeColor,
+                              backgroundColor:
+                                  AppColors.mainOrangeColor.withOpacity(0.5),
                               child: Icon(
                                 Icons.edit,
-                                color: AppColors.mainWhiteColor,
+                                color:
+                                    AppColors.mainWhiteColor.withOpacity(0.8),
                               ),
                               radius: screenWidth(15),
                             ),
@@ -215,7 +217,8 @@ class _SignupViewState extends State<SignupView> {
               (screenHeight(65)).ph,
               Obx(
                 () {
-                  return controller.isLoading.value
+                  // return controller.isLoading.value
+                  return controller.isLoading
                       ? SpinKitThreeBounce(
                           color: AppColors.mainOrangeColor,
                         )
