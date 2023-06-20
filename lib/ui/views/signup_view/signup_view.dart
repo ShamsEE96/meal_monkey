@@ -182,37 +182,75 @@ class _SignupViewState extends State<SignupView> {
                 keyboardType: TextInputType.emailAddress,
               ),
               (screenHeight(65)).ph,
-              CustomTextFormField(
-                hintText: tr('key_password'),
-                controller: controller.passwordController,
-                validator: (value) {
-                  if (value!.isEmpty || !isVaildPassword(value)) {
-                    return tr('key_password_validation');
-                  }
-                  return null;
-                },
-                fillColor: AppColors.fillGreyColor,
-                hintTextColor: AppColors.placeholderGreyColor,
-                keyboardType: TextInputType.visiblePassword,
-                obscureText: true,
+              Obx(
+                () => CustomTextFormField(
+                  hintText: tr('key_password'),
+                  controller: controller.passwordController,
+                  validator: (value) {
+                    if (value!.isEmpty || !isVaildPassword(value)) {
+                      return tr('key_password_validation');
+                    }
+                    return null;
+                  },
+                  fillColor: AppColors.fillGreyColor,
+                  hintTextColor: AppColors.placeholderGreyColor,
+                  keyboardType: TextInputType.visiblePassword,
+                  obscureText: !controller.passwordVisible.value,
+                  suffixIcon: InkWell(
+                    onTap: () {
+                      controller.hidePassword(
+                        controller.passwordVisible,
+                        controller.passwordVisible.value,
+                      );
+                    },
+                    child: controller.passwordVisible.value
+                        ? Icon(
+                            Icons.visibility,
+                            color: AppColors.mainOrangeColor,
+                          )
+                        : Icon(
+                            Icons.visibility_off,
+                            color: AppColors.mainOrangeColor,
+                          ),
+                  ),
+                ),
               ),
               (screenHeight(65)).ph,
-              CustomTextFormField(
-                hintText: tr('key_confirm_password'),
-                controller: controller.confirmPasswordController,
-                validator: (value) {
-                  if (value!.isEmpty || !isVaildPassword(value)) {
-                    return tr('key_password_validation');
-                  } else if (controller.passwordController.text !=
-                      controller.confirmPasswordController.text) {
-                    return tr('key_confirm_password_validation');
-                  }
-                  return null;
-                },
-                fillColor: AppColors.fillGreyColor,
-                hintTextColor: AppColors.placeholderGreyColor,
-                keyboardType: TextInputType.visiblePassword,
-                obscureText: true,
+              Obx(
+                () => CustomTextFormField(
+                  hintText: tr('key_confirm_password'),
+                  controller: controller.confirmPasswordController,
+                  validator: (value) {
+                    if (value!.isEmpty || !isVaildPassword(value)) {
+                      return tr('key_password_validation');
+                    } else if (controller.passwordController.text !=
+                        controller.confirmPasswordController.text) {
+                      return tr('key_confirm_password_validation');
+                    }
+                    return null;
+                  },
+                  fillColor: AppColors.fillGreyColor,
+                  hintTextColor: AppColors.placeholderGreyColor,
+                  keyboardType: TextInputType.visiblePassword,
+                  obscureText: !controller.passwordConfirmationVisible.value,
+                  suffixIcon: InkWell(
+                    onTap: () {
+                      controller.hidePassword(
+                        controller.passwordConfirmationVisible,
+                        controller.passwordConfirmationVisible.value,
+                      );
+                    },
+                    child: controller.passwordConfirmationVisible.value
+                        ? Icon(
+                            Icons.visibility,
+                            color: AppColors.mainOrangeColor,
+                          )
+                        : Icon(
+                            Icons.visibility_off,
+                            color: AppColors.mainOrangeColor,
+                          ),
+                  ),
+                ),
               ),
               (screenHeight(65)).ph,
               Obx(

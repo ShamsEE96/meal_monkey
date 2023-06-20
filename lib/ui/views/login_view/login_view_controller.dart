@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meal_monkey/core/data/repositories/user_repository.dart';
 import 'package:meal_monkey/core/enums/message_type.dart';
-import 'package:meal_monkey/core/enums/operation_type.dart';
-import 'package:meal_monkey/core/enums/request_status.dart';
 import 'package:meal_monkey/core/services/base_controller.dart';
 import 'package:meal_monkey/core/translation/app_translation.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_toast.dart';
@@ -17,11 +15,16 @@ class LoginController extends BaseController {
       TextEditingController(text: 'Test@1234');
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  // RxBool isLoading = false.obs;
 
-  bool get isLoginLoading =>
-      requestStatus == RequestStatus.LOADING &&
-      operationTypeList.contains(OperationType.NONE);
+  RxBool passwordVisible = false.obs;
+
+  void hidePassword(RxBool password, bool value) {
+    password.value = !value;
+  }
+
+  // bool get isLoginLoading =>
+  //     requestStatus == RequestStatus.LOADING &&
+  //     operationTypeList.contains(OperationType.NONE);
   // operationType == OperationType.CATEGORY;
 
   // void login() {

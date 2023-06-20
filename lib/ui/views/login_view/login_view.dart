@@ -59,23 +59,42 @@ class _LoginViewState extends State<LoginView> {
                 keyboardType: TextInputType.emailAddress,
               ),
               (screenHeight(30)).ph,
-              CustomTextFormField(
-                hintText: tr('key_password'),
-                controller: controller.passwordController,
-                validator: (value) {
-                  if (value!.isEmpty || !isVaildPassword(value)) {
-                    return tr('key_password_validation');
-                  }
-                  return null;
-                },
-                fillColor: AppColors.fillGreyColor,
-                hintTextColor: AppColors.placeholderGreyColor,
-                keyboardType: TextInputType.visiblePassword,
-                obscureText: true,
+              Obx(
+                () => CustomTextFormField(
+                  hintText: tr('key_password'),
+                  controller: controller.passwordController,
+                  validator: (value) {
+                    if (value!.isEmpty || !isVaildPassword(value)) {
+                      return tr('key_password_validation');
+                    }
+                    return null;
+                  },
+                  suffixIcon: InkWell(
+                    onTap: () {
+                      controller.hidePassword(
+                        controller.passwordVisible,
+                        controller.passwordVisible.value,
+                      );
+                    },
+                    child: controller.passwordVisible.value
+                        ? Icon(
+                            Icons.visibility,
+                            color: AppColors.mainOrangeColor,
+                          )
+                        : Icon(
+                            Icons.visibility_off,
+                            color: AppColors.mainOrangeColor,
+                          ),
+                  ),
+                  fillColor: AppColors.fillGreyColor,
+                  hintTextColor: AppColors.placeholderGreyColor,
+                  keyboardType: TextInputType.visiblePassword,
+                  obscureText: !controller.passwordVisible.value,
+                ),
               ),
               (screenHeight(30)).ph,
               Obx(() {
-                return controller.isLoginLoading
+                return controller.isLoading
                     ? SpinKitThreeBounce(
                         color: AppColors.mainOrangeColor,
                       )
