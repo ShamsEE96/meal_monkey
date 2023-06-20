@@ -7,7 +7,8 @@ import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
 import 'package:meal_monkey/ui/shared/utils.dart';
 
 class CustomAppLanguage extends StatefulWidget {
-  const CustomAppLanguage({super.key});
+  final Function? extraFunction;
+  const CustomAppLanguage({super.key, this.extraFunction});
 
   @override
   State<CustomAppLanguage> createState() => _CustomAppLanguageState();
@@ -27,6 +28,7 @@ class _CustomAppLanguageState extends State<CustomAppLanguage> {
                   storage.setAppLanguage('en');
                   Get.updateLocale(getLocale());
                   Get.back();
+                  if (widget.extraFunction != null) widget.extraFunction!();
                 },
                 child: CustomText(text: 'English'),
               ),
@@ -36,6 +38,7 @@ class _CustomAppLanguageState extends State<CustomAppLanguage> {
                   storage.setAppLanguage('ar');
                   Get.updateLocale(getLocale());
                   Get.back();
+                  if (widget.extraFunction != null) widget.extraFunction!();
                 },
                 child: CustomText(text: 'العربية'),
               ),
@@ -45,6 +48,7 @@ class _CustomAppLanguageState extends State<CustomAppLanguage> {
                   storage.setAppLanguage('tr');
                   Get.updateLocale(getLocale());
                   Get.back();
+                  if (widget.extraFunction != null) widget.extraFunction!();
                 },
                 child: CustomText(text: 'Türkçe'),
               ),

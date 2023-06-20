@@ -20,22 +20,22 @@ class IntroController extends BaseController {
 
   void nextIntro() {
     if (currentIndex.value != 2) {
-      textList();
+      // textList();
       currentIndex.value += 1;
     } else
       Get.off(() => LandingView());
   }
 
-  void textList() {
-    if (currentIndex.value == 0) {
-      title = tr('key_intro_title_01');
-      description = tr('key_intro_description_01');
-    } else if (currentIndex.value == 1) {
-      title = tr('key_intro_title_02');
-      description = tr('key_intro_description_02');
-    } else if (currentIndex.value == 2) {
-      title = tr('key_intro_title_03');
-      description = tr('key_intro_description_03');
-    }
-  }
+  // void textList() {
+  //   if (currentIndex.value == 0) {
+  //     title = tr('key_intro_title_01');
+  //     description = tr('key_intro_description_01');
+  //   } else if (currentIndex.value == 1) {
+  //     title = tr('key_intro_title_02');
+  //     description = tr('key_intro_description_02');
+  //   } else if (currentIndex.value == 2) {
+  //     title = tr('key_intro_title_03');
+  //     description = tr('key_intro_description_03');
+  //   }
+  // }
 }

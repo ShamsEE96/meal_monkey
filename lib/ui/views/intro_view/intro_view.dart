@@ -32,7 +32,18 @@ class _IntroViewState extends State<IntroView> {
                 child: Column(
                   children: [
                     (screenWidth(11)).ph,
-                    CustomAppLanguage(),
+                    CustomAppLanguage(extraFunction: () {
+                      controller.titleList = [
+                        tr('key_intro_title_01'),
+                        tr('key_intro_title_02'),
+                        tr('key_intro_title_03'),
+                      ];
+                      controller.descriptionList = [
+                        tr('key_intro_description_01'),
+                        tr('key_intro_description_02'),
+                        tr('key_intro_description_03'),
+                      ];
+                    }),
                     (screenWidth(11)).ph,
                     SvgPicture.asset(
                       'assets/images/intro${controller.currentIndex.value}.svg',
