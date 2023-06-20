@@ -9,6 +9,10 @@ class BaseController extends GetxController {
   var operationType = OperationType.NONE.obs;
   RxList<OperationType> operationTypeList = <OperationType>[].obs;
 
+  bool get isLoading =>
+      requestStatus == RequestStatus.LOADING &&
+      operationTypeList.contains(OperationType.NONE);
+
   set setRequestStatus(RequestStatus value) {
     requestStatus.value = value;
   }
