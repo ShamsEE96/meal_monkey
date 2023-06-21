@@ -13,6 +13,7 @@ import 'package:meal_monkey/ui/shared/custom_widgets/custom_text_field.dart';
 import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
 import 'package:meal_monkey/ui/shared/utils.dart';
 import 'package:meal_monkey/ui/views/main_view/home_view/home_view_controller.dart';
+import 'package:meal_monkey/ui/views/meal_view/meal_details_view.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key, required this.onMenuTap});
@@ -160,13 +161,22 @@ class _HomeViewState extends State<HomeView> {
                         shrinkWrap: true,
                         itemCount: controller.mealList.length,
                         itemBuilder: (BuildContext context, int index) {
-                          return CustomMeal(
-                            imageUrl:
-                                controller.mealList[index].images!.length > 0
-                                    ? getFullImageUrl(
-                                        controller.mealList[index].images![0])
-                                    : '',
-                            text: controller.mealList[index].name ?? '',
+                          return InkWell(
+                            onTap: () {
+                              Get.to(
+                                () => MealDetailsView(
+                                  selecetedMeal: controller.mealList[index],
+                                ),
+                              );
+                            },
+                            child: CustomMeal(
+                              imageUrl:
+                                  controller.mealList[index].images!.length > 0
+                                      ? getFullImageUrl(
+                                          controller.mealList[index].images![0])
+                                      : '',
+                              text: controller.mealList[index].name ?? '',
+                            ),
                           );
                         },
                       );
