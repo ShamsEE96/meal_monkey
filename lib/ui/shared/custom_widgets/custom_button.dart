@@ -7,20 +7,24 @@ import 'package:meal_monkey/ui/shared/utils.dart';
 class CustomButton extends StatelessWidget {
   CustomButton({
     super.key,
-    required this.text,
+    this.text,
     this.textColor,
     this.backgroundColor,
     this.borderColor,
     required this.onPressed,
     this.ImageName,
+    this.width,
+    this.height,
   });
 
-  final String text;
+  final String? text;
   final String? ImageName;
   final Color? borderColor;
   final Color? textColor;
   final Color? backgroundColor;
   final Function? onPressed;
+  final double? width;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +40,7 @@ class CustomButton extends StatelessWidget {
             (screenWidth(20)).pw,
           ],
           Text(
-            text,
+            text ?? "",
             style: TextStyle(
               color: textColor,
               fontWeight: FontWeight.bold,
@@ -54,8 +58,8 @@ class CustomButton extends StatelessWidget {
         backgroundColor: backgroundColor ?? AppColors.mainOrangeColor,
         shape: StadiumBorder(),
         fixedSize: Size(
-          screenWidth(1.1),
-          screenHeight(12),
+          width ?? screenWidth(1.1),
+          height ?? screenHeight(12),
         ),
       ),
     );
