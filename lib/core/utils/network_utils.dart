@@ -113,8 +113,10 @@ class NetworkUtil {
       responseJson.putIfAbsent('statusCode', () => response.statusCode);
       responseJson.putIfAbsent(
           'response',
-          () => value == "" && response.statusCode == 200
-              ? {'title': 'Register Successful!'}
+          () => value is String
+              ? {'title': value}
+              // () => value == "" && response.statusCode == 200
+              //     ? {'title': 'Register Successful!'}
               : jsonDecode(value));
 
       return responseJson;
