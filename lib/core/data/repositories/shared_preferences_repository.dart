@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:get/get.dart';
 import 'package:meal_monkey/core/data/models/apis/token_info_model.dart';
+import 'package:meal_monkey/core/data/models/cart_model.dart';
 import 'package:meal_monkey/core/enums/data_type.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,6 +12,7 @@ class SharedPreferencesRepository {
   String PREF_FIRST_LAUNCH = 'first_launch';
   String PREF_TOKEN = 'token';
   String PREF_APP_LANG = 'app_lang';
+  String PREF_CART_LIST = 'cart_list';
   //  String PREF_ISLOGGED = 'is_logged';
 
   void setFirstLaunch(bool value) {
@@ -51,6 +53,22 @@ class SharedPreferencesRepository {
     globalSharedPreferences.clear();
   }
 
+  void setCartList(List<CartModel> list) {
+    setPreference(
+      dataType: DataType.STRING,
+      key: PREF_CART_LIST,
+      value: CartModel.encode(list),
+    );
+  }
+
+  List<CartModel> getCartList() {
+    if (globalSharedPreferences.containsKey(PREF_CART_LIST)) {
+      return CartModel.decode(getPreference(key: PREF_CART_LIST));
+    } else {
+      return [];
+    }
+  }
+
   bool get isLoggedIn => getTokenInfo() != null ? true : false;
 
   void setAppLanguage(String value) {
@@ -68,6 +86,7 @@ class SharedPreferencesRepository {
       return 'ar';
     }
   }
+
   //  void setFirstLogin(bool value) {
   //   setPreference(
   //     dataType: DataType.BOOL,
