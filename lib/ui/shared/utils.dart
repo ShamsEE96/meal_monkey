@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:meal_monkey/core/data/repositories/shared_preferences_repository.dart';
-import 'package:meal_monkey/core/enums/message_type.dart';
 import 'package:meal_monkey/core/utils/network_utils.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
-import 'package:meal_monkey/ui/shared/custom_widgets/custom_toast.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 bool isVaildEmail(String value) {
   RegExp regExp = new RegExp(
@@ -68,33 +65,6 @@ double screenHeight(double percent) {
 
 SharedPreferencesRepository get storage =>
     Get.find<SharedPreferencesRepository>();
-
-Future cLaunchUrl(Uri url) async {
-  if (!await launchUrl(
-    url,
-    mode: LaunchMode.externalApplication,
-  )) {
-    CustomToast.showMessage(
-      message: 'Can\'t Launch URL',
-      messageType: MessageType.REJECTED,
-    );
-  }
-}
-
-String? encodeQueryParameters(Map<String, String> params) {
-  return params.entries
-      .map((MapEntry<String, String> e) =>
-          '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
-      .join('&');
-}
-
-final Uri emailLaunchUri = Uri(
-  scheme: 'mailto',
-  path: 'smith@example.com',
-  query: encodeQueryParameters(<String, String>{
-    'subject': 'Example Subject & Symbols are allowed!',
-  }),
-);
 
 void customLoader() => BotToast.showCustomLoading(
         // duration: Duration(seconds: 10),
