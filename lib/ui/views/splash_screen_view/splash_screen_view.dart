@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
 import 'package:meal_monkey/ui/shared/utils.dart';
-import 'package:meal_monkey/ui/views/splash_screen_view/splash_screen_view_controller.dart';
+import 'package:meal_monkey/ui/views/splash_screen_view/splash_screen_controller.dart';
 
 class SplashScreenView extends StatefulWidget {
   const SplashScreenView({super.key});

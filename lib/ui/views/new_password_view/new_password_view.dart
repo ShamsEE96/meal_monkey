@@ -8,7 +8,7 @@ import 'package:meal_monkey/ui/shared/custom_widgets/custom_text_field.dart';
 import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
 import 'package:meal_monkey/ui/shared/utils.dart';
 import 'package:meal_monkey/ui/views/login_view/login_view.dart';
-import 'package:meal_monkey/ui/views/new_password_view/new_password_view_controller.dart';
+import 'package:meal_monkey/ui/views/new_password_view/new_password_controller.dart';
 
 class NewPasswordView extends StatefulWidget {
   const NewPasswordView({super.key});

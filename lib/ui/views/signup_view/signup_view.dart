@@ -12,7 +12,7 @@ import 'package:meal_monkey/ui/shared/custom_widgets/custom_text_field.dart';
 import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
 import 'package:meal_monkey/ui/shared/utils.dart';
 import 'package:meal_monkey/ui/views/login_view/login_view.dart';
-import 'package:meal_monkey/ui/views/signup_view/signup_view_controller.dart';
+import 'package:meal_monkey/ui/views/signup_view/signup_controller.dart';
 
 class SignupView extends StatefulWidget {
   const SignupView({super.key});

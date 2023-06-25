@@ -3,7 +3,7 @@ import 'package:meal_monkey/core/data/models/apis/meal_model.dart';
 import 'package:meal_monkey/core/data/models/cart_model.dart';
 import 'package:meal_monkey/ui/shared/utils.dart';
 import 'package:meal_monkey/ui/views/cart_view/cart_view.dart';
-import 'package:meal_monkey/ui/views/main_view/main_view_controller.dart';
+import 'package:meal_monkey/ui/views/main_view/main_controller.dart';
 
 class MealDetailsController extends MainController {
   MealDetailsController({required MealModel mealModel}) {

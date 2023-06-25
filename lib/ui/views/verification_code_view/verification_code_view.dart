@@ -10,7 +10,7 @@ import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
 import 'package:meal_monkey/ui/shared/utils.dart';
 import 'package:meal_monkey/ui/views/new_password_view/new_password_view.dart';
 import 'package:meal_monkey/ui/views/reset_password_view/reset_password_view.dart';
-import 'package:meal_monkey/ui/views/verification_code_view/verification_code_view_controller.dart';
+import 'package:meal_monkey/ui/views/verification_code_view/verification_code_controller.dart';
 import 'package:meal_monkey/ui/views/verification_code_view/verification_code_view_widgets/verification_code_view_text_form_field.dart';
 
 class VerificationCodeView extends StatefulWidget {

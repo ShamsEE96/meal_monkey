@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_drawer.dart';
 import 'package:meal_monkey/ui/shared/utils.dart';
 import 'package:meal_monkey/ui/views/main_view/home_view/home_view.dart';
-import 'package:meal_monkey/ui/views/main_view/main_view_controller.dart';
+import 'package:meal_monkey/ui/views/main_view/main_controller.dart';
 import 'package:meal_monkey/ui/views/main_view/main_view_widgets/bottom_navigation_widget.dart';
 import 'package:meal_monkey/ui/views/main_view/menu_view/menu_view.dart';
 import 'package:meal_monkey/ui/views/main_view/more_view/more_view.dart';

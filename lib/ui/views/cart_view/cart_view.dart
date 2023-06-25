@@ -5,7 +5,7 @@ import 'package:meal_monkey/ui/shared/custom_widgets/custom_button.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_text.dart';
 import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
 import 'package:meal_monkey/ui/shared/utils.dart';
-import 'package:meal_monkey/ui/views/cart_view/cart_view_controller.dart';
+import 'package:meal_monkey/ui/views/cart_view/cart_controller.dart';
 
 class CartView extends StatefulWidget {
   const CartView({super.key});

@@ -7,7 +7,7 @@ import 'package:meal_monkey/ui/shared/custom_widgets/custom_text.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_text_field.dart';
 import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
 import 'package:meal_monkey/ui/shared/utils.dart';
-import 'package:meal_monkey/ui/views/reset_password_view/reset_password_view_controller.dart';
+import 'package:meal_monkey/ui/views/reset_password_view/reset_password_controller.dart';
 import 'package:meal_monkey/ui/views/verification_code_view/verification_code_view.dart';
 
 class ResetPasswordView extends StatefulWidget {
