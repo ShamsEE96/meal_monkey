@@ -123,14 +123,14 @@ class _LoginViewState extends State<LoginView> {
               (screenHeight(30)).ph,
               CustomButton(
                 text: tr('key_login_with_facebook'),
-                ImageName: 'ic_facebook',
+                imageName: 'ic_facebook',
                 onPressed: () {},
                 backgroundColor: AppColors.mainBlueColor,
               ),
               (screenHeight(30)).ph,
               CustomButton(
                 text: tr('key_login_with_google'),
-                ImageName: 'ic_google_plus_logo',
+                imageName: 'ic_google_plus_logo',
                 onPressed: () {},
                 backgroundColor: AppColors.mainRedColor,
               ),

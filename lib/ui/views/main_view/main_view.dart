@@ -18,9 +18,6 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
-  // BottomNavigationEnum selected = BottomNavigationEnum.HOME;
-  // PageController controller = PageController(initialPage: 2);
-  // GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   MainController controller = Get.put(MainController());
 
   @override
