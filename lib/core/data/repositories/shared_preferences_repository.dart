@@ -83,7 +83,7 @@ class SharedPreferencesRepository {
     if (globalSharedPreferences.containsKey(PREF_APP_LANG)) {
       return getPreference(key: PREF_APP_LANG);
     } else {
-      return 'ar';
+      return 'en';
     }
   }
 
