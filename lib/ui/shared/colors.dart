@@ -12,4 +12,5 @@ class AppColors {
   static Color secondaryGreyColor = Color.fromRGBO(124, 125, 126, 1);
   static Color placeholderGreyColor = Color.fromRGBO(182, 183, 183, 1);
   static Color fillGreyColor = Color.fromRGBO(242, 242, 242, 1);
+  static Color dropShadowColor = Color.fromRGBO(0, 0, 0, 0.16);
 }

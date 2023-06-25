@@ -67,5 +67,11 @@ class ENLanguage {
         "key_dialog_choose_language_title": "Choose App Language",
         "key_bot_toast_general_success": "Everything ok",
         "key_bot_toast_general_rejected": "Error while connecting to server",
+        "key_meal_details_view_number_of_portions": "Number of Portions",
+        "key_description": "Description",
+        "key_price_currency": "SYP",
+        "key_price_per_portion": "per Portion",
+        "key_price_total": "Total Price",
+        "key_cart_add": "Add to Cart",
       };
 }
