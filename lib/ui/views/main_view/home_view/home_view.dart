@@ -12,6 +12,7 @@ import 'package:meal_monkey/ui/shared/custom_widgets/custom_text.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_text_field.dart';
 import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
 import 'package:meal_monkey/ui/shared/utils.dart';
+import 'package:meal_monkey/ui/views/cart_view/cart_view.dart';
 import 'package:meal_monkey/ui/views/main_view/home_view/home_view_controller.dart';
 import 'package:meal_monkey/ui/views/meal_details_view/meal_details_view.dart';
 
@@ -49,7 +50,9 @@ class _HomeViewState extends State<HomeView> {
                     fontSize: screenWidth(15),
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(() => CartView());
+                    },
                     child: SvgPicture.asset(
                       'assets/images/ic_shopping_cart.svg',
                       color: AppColors.mainOrangeColor,
