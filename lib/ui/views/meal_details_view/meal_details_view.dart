@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:meal_monkey/core/data/models/apis/meal_model.dart';
@@ -47,7 +48,7 @@ class _MealDetailsViewState extends State<MealDetailsView> {
               child: CachedNetworkImage(
                 height: screenHeight(2),
                 fit: BoxFit.cover,
-                imageUrl: widget.selecetedMeal.images![0],
+                imageUrl: controller.model.images![0],
                 // imageUrl: mealList[index].images!.length > 0
                 //     ? getFullImageUrl(mealList[index].images![0])
                 //     : '',
@@ -55,8 +56,11 @@ class _MealDetailsViewState extends State<MealDetailsView> {
                 errorWidget: (context, url, error) => Icon(Icons.error),
               ),
             ),
-            Positioned(
+            PositionedDirectional(
               bottom: 0,
+              // textDirection: storage.getAppLanguage() == 'ar'
+              //     ? TextDirection.rtl
+              //     : TextDirection.ltr,
               child: Container(
                 width: screenWidth(1),
                 decoration: BoxDecoration(
@@ -97,8 +101,51 @@ class _MealDetailsViewState extends State<MealDetailsView> {
                             ],
                           ),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              Obx(
+                                () {
+                                  return Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      RatingBar(
+                                        initialRating: controller.rating.value,
+                                        direction: Axis.horizontal,
+                                        itemCount: 5,
+                                        itemSize: screenWidth(22),
+                                        ratingWidget: RatingWidget(
+                                          full: SvgPicture.asset(
+                                            'assets/images/ic_star_full.svg',
+                                            color: AppColors.mainOrangeColor,
+                                          ),
+                                          half: SvgPicture.asset(
+                                            'assets/images/ic_star_full.svg',
+                                            color: AppColors.mainOrangeColor,
+                                          ),
+                                          empty: SvgPicture.asset(
+                                            'assets/images/ic_star_empty.svg',
+                                            color: AppColors.mainOrangeColor,
+                                          ),
+                                        ),
+                                        itemPadding: EdgeInsets.symmetric(
+                                            horizontal: 4.0),
+                                        onRatingUpdate: (rating) {
+                                          controller.rating.value = rating;
+                                          print(controller.rating.value);
+                                        },
+                                      ),
+                                      CustomText(
+                                        text:
+                                            '${controller.rating.value.toStringAsFixed(0)} ${tr('key_rating')}',
+                                        fontSize: screenWidth(27.5),
+                                        textColor: AppColors.mainOrangeColor,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
@@ -307,39 +354,32 @@ class _MealDetailsViewState extends State<MealDetailsView> {
                 ),
               ),
             ),
-            InkWell(
-              onTap: () {
-                // controller.showBottomSheet();
-              },
-              child: Padding(
-                padding: EdgeInsetsDirectional.only(
-                  top: screenHeight(3),
-                  start: screenWidth(1.5),
-                  // end: screenWidth(15),
+            PositionedDirectional(
+              top: screenHeight(2.75),
+              start: screenWidth(1.5),
+              end: screenWidth(15),
+              child: Container(
+                padding: EdgeInsets.all(screenWidth(20)),
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                child: SvgPicture.asset(
+                  'assets/images/ic_heart.svg',
+                  // fit: BoxFit.cover,
+                  color: AppColors.mainOrangeColor,
+                  // width: screenWidth(30),
+                  // height: screenWidth(30),
                 ),
-                child: Container(
-                  padding: EdgeInsets.all(screenWidth(20)),
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  child: SvgPicture.asset(
-                    'assets/images/ic_heart.svg',
-                    // fit: BoxFit.cover,
-                    color: AppColors.mainOrangeColor,
-                    // width: screenWidth(30),
-                    // height: screenWidth(30),
-                  ),
-                  width: (screenWidth(6)),
-                  height: (screenWidth(6)),
-                  decoration: BoxDecoration(
-                    color: AppColors.mainWhiteColor,
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.dropShadowColor,
-                        blurRadius: 6,
-                        offset: Offset(0, 3),
-                      ),
-                    ],
-                  ),
+                width: (screenWidth(6)),
+                height: (screenWidth(6)),
+                decoration: BoxDecoration(
+                  color: AppColors.mainWhiteColor,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.dropShadowColor,
+                      blurRadius: 6,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
                 ),
               ),
             ),
