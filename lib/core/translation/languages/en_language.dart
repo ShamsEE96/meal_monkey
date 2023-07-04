@@ -73,5 +73,6 @@ class ENLanguage {
         "key_price_per_portion": "per Portion",
         "key_price_total": "Total Price",
         "key_cart_add": "Add to Cart",
+        "key_rating": "Star Rating",
       };
 }
