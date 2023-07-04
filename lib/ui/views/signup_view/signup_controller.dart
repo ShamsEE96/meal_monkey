@@ -14,12 +14,12 @@ import 'package:meal_monkey/ui/views/login_view/login_view.dart';
 
 class SignupController extends BaseController {
   TextEditingController firstnameController =
-      TextEditingController(text: 'ShamsEE');
+      TextEditingController(text: 'AbdulRahman');
   TextEditingController lastnameController =
-      TextEditingController(text: 'Shams');
-  TextEditingController ageController = TextEditingController(text: '26');
+      TextEditingController(text: 'Shams Eddin');
+  TextEditingController ageController = TextEditingController(text: '27');
   TextEditingController emailController =
-      TextEditingController(text: 'shams5@gmail.com');
+      TextEditingController(text: 'wolfsh96@gmail.com');
   TextEditingController passwordController =
       TextEditingController(text: 'Shams@123');
   TextEditingController confirmPasswordController =
