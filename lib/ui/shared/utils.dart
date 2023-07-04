@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:meal_monkey/core/data/repositories/shared_preferences_repository.dart';
+import 'package:meal_monkey/core/services/cart_service.dart';
 import 'package:meal_monkey/core/utils/network_utils.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
 
@@ -66,6 +67,8 @@ double screenHeight(double percent) {
 SharedPreferencesRepository get storage =>
     Get.find<SharedPreferencesRepository>();
 
+CartService get cartService => Get.find<CartService>();
+
 void customLoader() => BotToast.showCustomLoading(
         // duration: Duration(seconds: 10),
         toastBuilder: (context) {
@@ -83,3 +86,6 @@ void customLoader() => BotToast.showCustomLoading(
         ),
       );
     });
+
+double get taxAmount => 0.18;
+double get deliveryFeesAmount => 0.1;
