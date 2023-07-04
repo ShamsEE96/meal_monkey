@@ -17,6 +17,8 @@ class MyApp extends StatelessWidget {
       locale: getLocale(),
       fallbackLocale: getLocale(),
       translations: AppTranslation(),
+      defaultTransition: Transition.downToUp,
+      transitionDuration: Duration(milliseconds: 50),
       builder: BotToastInit(),
       navigatorObservers: [BotToastNavigatorObserver()],
       theme: ThemeData(
