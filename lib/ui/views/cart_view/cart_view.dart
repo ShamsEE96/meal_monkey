@@ -112,17 +112,18 @@ class _CartViewState extends State<CartView> {
             Column(
               children: [
                 CustomText(
-                  text: 'SubTotal : ${cartService.subTotal.toStringAsFixed(2)}',
+                  text:
+                      'SubTotal : ${cartService.subTotal.value.toStringAsFixed(2)}',
                 ),
                 CustomText(
-                  text: 'Tax : ${cartService.tax.toStringAsFixed(2)}',
+                  text: 'Tax : ${cartService.tax.value.toStringAsFixed(2)}',
                 ),
                 CustomText(
                   text:
-                      'Delivary Fee : ${cartService.deliverFees.toStringAsFixed(2)}',
+                      'Delivary Fee : ${cartService.deliverFees.value.toStringAsFixed(2)}',
                 ),
                 CustomText(
-                  text: 'Total : ${cartService.total.toStringAsFixed(2)}',
+                  text: 'Total : ${cartService.total.value.toStringAsFixed(2)}',
                 ),
               ],
             ),
