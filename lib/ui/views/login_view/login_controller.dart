@@ -10,9 +10,9 @@ import 'package:meal_monkey/ui/views/main_view/main_view.dart';
 
 class LoginController extends BaseController {
   TextEditingController emailController =
-      TextEditingController(text: 'Test@gmail.com');
+      TextEditingController(text: 'wolfsh96@gmail.com');
   TextEditingController passwordController =
-      TextEditingController(text: 'Test@1234');
+      TextEditingController(text: 'Shams@123');
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
