@@ -13,6 +13,7 @@ class SharedPreferencesRepository {
   String PREF_TOKEN = 'token';
   String PREF_APP_LANG = 'app_lang';
   String PREF_CART_LIST = 'cart_list';
+  String PREF_ORDER_PLACED = 'order_placed';
   //  String PREF_ISLOGGED = 'is_logged';
 
   void setFirstLaunch(bool value) {
@@ -26,6 +27,22 @@ class SharedPreferencesRepository {
   bool getFirstLaunch() {
     if (globalSharedPreferences.containsKey(PREF_FIRST_LAUNCH)) {
       return getPreference(key: PREF_FIRST_LAUNCH);
+    } else {
+      return true;
+    }
+  }
+
+  void setOrderPlaced(bool value) {
+    setPreference(
+      dataType: DataType.BOOL,
+      key: PREF_ORDER_PLACED,
+      value: value,
+    );
+  }
+
+  bool getOrderPlaced() {
+    if (globalSharedPreferences.containsKey(PREF_ORDER_PLACED)) {
+      return getPreference(key: PREF_ORDER_PLACED);
     } else {
       return true;
     }

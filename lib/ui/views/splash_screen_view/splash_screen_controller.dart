@@ -8,6 +8,10 @@ import 'package:meal_monkey/ui/views/main_view/main_view.dart';
 class SplashScreenController extends BaseController {
   @override
   void onInit() {
+    if (storage.getOrderPlaced()) {
+      cartService.clearCart();
+      storage.setOrderPlaced(false);
+    }
     Future.delayed(
       Duration(seconds: 4),
     ).then(
