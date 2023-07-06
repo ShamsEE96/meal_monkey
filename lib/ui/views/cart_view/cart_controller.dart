@@ -4,66 +4,91 @@ import 'package:meal_monkey/core/services/base_controller.dart';
 import 'package:meal_monkey/ui/shared/utils.dart';
 
 class CartController extends BaseController {
-  RxList<CartModel> cartList = <CartModel>[].obs;
-  RxDouble subTotal = 0.0.obs;
-  RxDouble tax = 0.0.obs; // equals to subTotal * 0.18
-  RxDouble deliveryFee = 0.0.obs; // equals to (subTotal + tax)*0.1
-  RxDouble total = 0.0.obs;
-
+  RxList<CartModel> cartList = cartService.cartList;
   @override
   void onInit() {
-    cartList.value = storage.getCartList();
     super.onInit();
   }
 
-  double calcSubTotal() {
-    cartList.forEach((element) {
-      subTotal.value = subTotal.value + (element.total!).toDouble();
-    });
-    return subTotal.value;
+  void removeFromCartList(CartModel cartModel) {
+    cartService.removeFromCartList(
+      cartModel: cartModel,
+    );
   }
 
-  double calcTax() {
-    tax.value = (subTotal.value * 0.18).toDouble();
-    return tax.value;
+  void changeCount({
+    required bool increase,
+    required CartModel cartModel,
+  }) {
+    cartService.changeMealCount(
+      increase: increase,
+      cartModel: cartModel,
+    );
   }
 
-  double calcDeliveryFee() {
-    deliveryFee.value = ((subTotal.value + tax.value) * 0.1).toDouble();
-    return deliveryFee.value;
-  }
+  //!---- First -----
 
-  double calcTotal() {
-    total.value = subTotal.value + tax.value + deliveryFee.value;
-    return total.value;
-  }
+  // RxDouble subTotal = 0.0.obs;
+  // RxDouble tax = 0.0.obs;
+  // RxDouble deliverFees = 0.0.obs;
+  // RxDouble total = 0.0.obs;
 
-  void removeFromCartList(CartModel model) {
-    cartList.remove(model);
-    storage.setCartList(cartList);
-  }
+  // void calcCartTotal() {
+  //   subTotal.value = 0.0;
+  //   tax.value = 0.0;
+  //   deliverFees.value = 0.0;
+  //   total.value = 0.0;
 
-  void changeCount(bool increase, CartModel model) {
-    CartModel? result = cartList.firstWhere(
-        (element) => element.mealModel!.id == model.mealModel!.id, orElse: () {
-      return CartModel();
-    });
+  //   subTotal.value = cartList.fold(
+  //       0, (previousValue, element) => previousValue + element.total!);
+  //   tax.value += subTotal.value * taxAmount;
+  //   deliverFees.value += (subTotal.value + tax.value) * deliveryFeesAmount;
+  //   total.value = subTotal.value + deliverFees.value + tax.value;
+  // }
 
-    int index = cartList.indexOf(result);
+  // //!--- Second -----
+  // double calcSubTotal() {
+  //   return cartService.calcCartSubTotal();
+  // }
 
-    if (increase) {
-      result.count = result.count! + 1;
-      result.total = result.total! + model.mealModel!.price!.toDouble();
-    } else {
-      if (result.count! > 1) {
-        result.count = result.count! - 1;
-        result.total = result.total! - model.mealModel!.price!.toDouble();
-      }
-    }
+  // double calcTax() {
+  //   return cartService.calcCartTax();
+  // }
 
-    cartList.remove(result);
-    cartList.insert(index, result);
+  // double calcDeliveryFees() {
+  //   return cartService.calcCartDeliveryFees();
+  // }
 
-    storage.setCartList(cartList);
-  }
+  // double calcTotal() {
+  //   return cartService.calcCartTotal();
+  // }
+
+  // void calcTotals() {
+  //   calcSubTotal();
+  //   calcTax();
+  //   calcDeliveryFees();
+  //   calcTotal();
+  // }
+
+  // //!--- Third ----
+  // Map<String, double> calcTotals() {
+  //   double subTotal = 0.0;
+  //   double tax = 0.0;
+  //   double deliverFees = 0.0;
+  //   double total = 0.0;
+
+  //   cartList.forEach((element) {
+  //     subTotal += element.total ?? 0.0;
+  //   });
+  //   tax += subTotal * taxAmount;
+  //   deliverFees += (subTotal + tax) * deliverAmount;
+  //   total = subTotal + deliverFees + tax;
+
+  //   return {
+  //     "subTotal": subTotal,
+  //     "tax": tax,
+  //     "deliverFees": deliverFees,
+  //     "total": total
+  //   };
+  // }
 }

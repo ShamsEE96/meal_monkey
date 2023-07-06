@@ -39,11 +39,13 @@ class _CartViewState extends State<CartView> {
                               style: TextStyle(fontSize: screenWidth(10)),
                             ),
                             IconButton(
-                                onPressed: () {
-                                  controller.removeFromCartList(
-                                      controller.cartList[index]);
-                                },
-                                icon: Icon(Icons.delete))
+                              onPressed: () {
+                                controller.removeFromCartList(
+                                    controller.cartList[index]);
+                                // setState(() {});
+                              },
+                              icon: Icon(Icons.delete),
+                            )
                           ],
                         ),
                         Row(
@@ -56,16 +58,15 @@ class _CartViewState extends State<CartView> {
                                   controller.cartList[index].count == 1
                                       ? AppColors.placeholderGreyColor
                                       : AppColors.mainOrangeColor,
-                              onPressed:
-                                  // controller.cartList[index].count == 1
-                                  //     ? null
-                                  //     :
-                                  () {
-                                controller.changeCount(
-                                    false, controller.cartList[index]);
-                              },
+                              onPressed: controller.cartList[index].count == 1
+                                  ? null
+                                  : () {
+                                      controller.changeCount(
+                                        increase: false,
+                                        cartModel: controller.cartList[index],
+                                      );
+                                    },
                             ),
-
                             (screenWidth(50)).pw,
                             CustomButton(
                               text:
@@ -77,8 +78,6 @@ class _CartViewState extends State<CartView> {
                               borderColor: AppColors.mainOrangeColor,
                               onPressed: () {},
                             ),
-                            // Text(controller.cartList[index].count.toString(),
-                            //     style: TextStyle(fontSize: screenWidth(10))),
                             (screenWidth(50)).pw,
                             CustomButton(
                               text: '+',
@@ -86,13 +85,17 @@ class _CartViewState extends State<CartView> {
                               width: screenWidth(6),
                               onPressed: () {
                                 controller.changeCount(
-                                    true, controller.cartList[index]);
+                                  increase: true,
+                                  cartModel: controller.cartList[index],
+                                );
                               },
                             ),
                           ],
                         ),
-                        Text(controller.cartList[index].total.toString(),
-                            style: TextStyle(fontSize: screenWidth(10))),
+                        CustomText(
+                          text: '${controller.cartList[index].total}',
+                          fontSize: screenWidth(10),
+                        ),
                       ],
                     );
                   },
@@ -106,28 +109,22 @@ class _CartViewState extends State<CartView> {
                 );
               },
             ),
-            Obx(
-              () {
-                return Column(
-                  children: [
-                    CustomText(
-                      text:
-                          'SubTotal : ${controller.calcSubTotal().toStringAsFixed(2)}',
-                    ),
-                    CustomText(
-                      text: 'Tax : ${controller.calcTax().toStringAsFixed(2)}',
-                    ),
-                    CustomText(
-                      text:
-                          'Delivary Fee : ${controller.calcDeliveryFee().toStringAsFixed(2)}',
-                    ),
-                    CustomText(
-                      text:
-                          'Total : ${controller.calcTotal().toStringAsFixed(2)}',
-                    ),
-                  ],
-                );
-              },
+            Column(
+              children: [
+                CustomText(
+                  text: 'SubTotal : ${cartService.subTotal.toStringAsFixed(2)}',
+                ),
+                CustomText(
+                  text: 'Tax : ${cartService.tax.toStringAsFixed(2)}',
+                ),
+                CustomText(
+                  text:
+                      'Delivary Fee : ${cartService.deliverFees.toStringAsFixed(2)}',
+                ),
+                CustomText(
+                  text: 'Total : ${cartService.total.toStringAsFixed(2)}',
+                ),
+              ],
             ),
           ],
         ),

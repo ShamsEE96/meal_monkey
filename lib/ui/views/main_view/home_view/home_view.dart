@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:meal_monkey/core/translation/app_translation.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
+import 'package:meal_monkey/ui/shared/custom_widgets/custom_cart.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_category.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_category02.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_category03.dart';
@@ -12,7 +12,6 @@ import 'package:meal_monkey/ui/shared/custom_widgets/custom_text.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_text_field.dart';
 import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
 import 'package:meal_monkey/ui/shared/utils.dart';
-import 'package:meal_monkey/ui/views/cart_view/cart_view.dart';
 import 'package:meal_monkey/ui/views/main_view/home_view/home_controller.dart';
 import 'package:meal_monkey/ui/views/meal_details_view/meal_details_view.dart';
 
@@ -49,17 +48,22 @@ class _HomeViewState extends State<HomeView> {
                     textColor: AppColors.mainGreyColor,
                     fontSize: screenWidth(15),
                   ),
-                  InkWell(
-                    onTap: () {
-                      Get.to(() => CartView());
-                    },
-                    child: SvgPicture.asset(
-                      'assets/images/ic_shopping_cart.svg',
-                      color: AppColors.mainOrangeColor,
-                      width: screenWidth(12),
-                      height: screenWidth(12),
+                  Obx(
+                    () => CustomCart(
+                      cartCount: cartService.cartCount.value,
                     ),
-                  ),
+                  )
+                  // InkWell(
+                  //   onTap: () {
+                  //     Get.to(() => CartView());
+                  //   },
+                  //   child: SvgPicture.asset(
+                  //     'assets/images/ic_shopping_cart.svg',
+                  //     color: AppColors.mainOrangeColor,
+                  //     width: screenWidth(12),
+                  //     height: screenWidth(12),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -165,6 +169,11 @@ class _HomeViewState extends State<HomeView> {
                         itemCount: controller.mealList.length,
                         itemBuilder: (BuildContext context, int index) {
                           return InkWell(
+                            onLongPress: () {
+                              controller.addToCart(
+                                mealModel: controller.mealList[index],
+                              );
+                            },
                             onTap: () {
                               Get.to(
                                 () => MealDetailsView(

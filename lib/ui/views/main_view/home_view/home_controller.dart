@@ -9,6 +9,7 @@ import 'package:meal_monkey/core/enums/operation_type.dart';
 import 'package:meal_monkey/core/enums/request_status.dart';
 import 'package:meal_monkey/core/services/base_controller.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_toast.dart';
+import 'package:meal_monkey/ui/shared/utils.dart';
 
 class HomeController extends BaseController {
   TextEditingController searchController = TextEditingController();
@@ -74,6 +75,19 @@ class HomeController extends BaseController {
           );
         },
       ),
+    );
+  }
+
+  void addToCart({required MealModel mealModel}) {
+    cartService.addToCartList(
+      mealModel: mealModel,
+      count: 1,
+      afterAdd: () {
+        CustomToast.showMessage(
+          message: 'Added to Cart',
+          messageType: MessageType.SUCCESS,
+        );
+      },
     );
   }
 }
