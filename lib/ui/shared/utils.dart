@@ -1,11 +1,20 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:meal_monkey/app/my_app_controller.dart';
 import 'package:meal_monkey/core/data/repositories/shared_preferences_repository.dart';
+import 'package:meal_monkey/core/enums/connectivity_status.dart';
+import 'package:meal_monkey/core/enums/message_type.dart';
 import 'package:meal_monkey/core/services/cart_service.dart';
+import 'package:meal_monkey/core/services/connectivity_service.dart';
+import 'package:meal_monkey/core/services/location_service.dart';
+import 'package:meal_monkey/core/translation/app_translation.dart';
 import 'package:meal_monkey/core/utils/network_utils.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
+import 'package:meal_monkey/ui/shared/custom_widgets/custom_button.dart';
+import 'package:meal_monkey/ui/shared/custom_widgets/custom_toast.dart';
 
 bool isVaildEmail(String value) {
   RegExp regExp = new RegExp(
@@ -68,6 +77,8 @@ SharedPreferencesRepository get storage =>
     Get.find<SharedPreferencesRepository>();
 
 CartService get cartService => Get.find<CartService>();
+LocationService get locationService => Get.find<LocationService>();
+ConnectivityService get connectivityService => Get.find<ConnectivityService>();
 
 void customLoader() => BotToast.showCustomLoading(
         // duration: Duration(seconds: 10),
@@ -89,3 +100,57 @@ void customLoader() => BotToast.showCustomLoading(
 
 double get taxAmount => 0.18;
 double get deliveryFeesAmount => 0.1;
+
+bool get isOnline =>
+    Get.find<MyAppController>().connectivityStatus == ConnectivityStatus.ONLINE;
+
+bool get isOffline =>
+    Get.find<MyAppController>().connectivityStatus ==
+    ConnectivityStatus.OFFLINE;
+
+void checkConnection(Function function) {
+  if (isOnline)
+    function();
+  else
+    showNoConnectionMessage();
+}
+
+// bool checkConnectionOffilne() {
+//   return isOnline;
+// }
+
+void showNoConnectionMessage() {
+  CustomToast.showMessage(
+    message: 'Please check internet connection',
+    messageType: MessageType.WARNING,
+  );
+}
+
+void showAlertDialoug({
+  required String? middleText,
+  required Function? onCancel,
+  required Function? onConfirm,
+}) {
+  Get.defaultDialog(
+    middleText: middleText ?? "",
+    cancel: CustomButton(
+      onPressed: () {
+        if (onCancel != null) onCancel();
+      },
+      width: screenWidth(3),
+      text: tr("key_no"),
+      backgroundColor: AppColors.mainRedColor,
+    ),
+    confirm: CustomButton(
+      onPressed: () {
+        if (onConfirm != null) onConfirm();
+      },
+      width: screenWidth(3),
+      text: tr("key_yes"),
+    ),
+    onCancel: () {}, onConfirm: () {},
+
+    // content:
+  );
+  // SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+}

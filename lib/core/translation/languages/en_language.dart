@@ -65,6 +65,10 @@ class ENLanguage {
         "key_gallery": "Gallery",
         "key_file": "File",
         "key_dialog_choose_language_title": "Choose App Language",
+        "key_dialog_location_ask_turn_on":
+            "Please turn on location service for the app to work.",
+        "key_dialog_location_ask_permission":
+            "Please grant location permission for the app to work.",
         "key_bot_toast_general_success": "Everything ok",
         "key_bot_toast_general_rejected": "Error while connecting to server",
         "key_meal_details_view_number_of_portions": "Number of Portions",
@@ -74,5 +78,7 @@ class ENLanguage {
         "key_price_total": "Total Price",
         "key_cart_add": "Add to Cart",
         "key_rating": "Star Rating",
+        "key_yes": "Yes",
+        "key_no": "No",
       };
 }

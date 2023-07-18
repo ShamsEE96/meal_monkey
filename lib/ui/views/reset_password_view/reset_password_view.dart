@@ -62,7 +62,11 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                   CustomButton(
                     text: tr('key_send'),
                     onPressed: () {
-                      Get.off(() => VerificationCodeView());
+                      controller.emailSent = controller.emailController.text;
+                      storage.setResetPasswordEmail(
+                          controller.emailController.text);
+                      controller.forgotPassword();
+                      // Get.off(() => VerificationCodeView());
                       // if (controller.formKey.currentState!.validate()) {
                       //   Get.off(() => VerificationCodeView());
                       // } else {

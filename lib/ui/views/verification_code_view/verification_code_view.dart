@@ -12,6 +12,7 @@ import 'package:meal_monkey/ui/views/new_password_view/new_password_view.dart';
 import 'package:meal_monkey/ui/views/reset_password_view/reset_password_view.dart';
 import 'package:meal_monkey/ui/views/verification_code_view/verification_code_controller.dart';
 import 'package:meal_monkey/ui/views/verification_code_view/verification_code_view_widgets/verification_code_view_text_form_field.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerificationCodeView extends StatefulWidget {
   const VerificationCodeView({super.key});
@@ -132,6 +133,7 @@ class _VerificationCodeViewState extends State<VerificationCodeView> {
                     ],
                   ),
                 ),
+                // PinCodeTextField(appContext: appContext, length: length)
               ],
             ),
           ),

@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:meal_monkey/core/data/models/cart_model.dart';
 import 'package:meal_monkey/core/services/base_controller.dart';
 import 'package:meal_monkey/ui/shared/utils.dart';
+import 'package:meal_monkey/ui/views/checkout_view/checkout_view.dart';
 
 class CartController extends BaseController {
   RxList<CartModel> cartList = cartService.cartList;
@@ -24,6 +25,16 @@ class CartController extends BaseController {
       increase: increase,
       cartModel: cartModel,
     );
+  }
+
+  void checkout() {
+    runFutureFunctionWithFullLoading(
+      function: Future.delayed(
+        Duration(seconds: 2),
+      ),
+    ).then((value) {
+      Get.off(() => CheckoutView());
+    });
   }
 
   //!---- First -----

@@ -24,6 +24,7 @@ class _MainViewState extends State<MainView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         key: controller.scaffoldKey,
         drawer: CustomDrawer(
           drawerWidth: screenWidth(2),

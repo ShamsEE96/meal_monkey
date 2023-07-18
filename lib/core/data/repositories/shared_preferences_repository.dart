@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
+import 'package:meal_monkey/app/app_config.dart';
 import 'package:meal_monkey/core/data/models/apis/token_info_model.dart';
 import 'package:meal_monkey/core/data/models/cart_model.dart';
 import 'package:meal_monkey/core/enums/data_type.dart';
@@ -14,6 +15,7 @@ class SharedPreferencesRepository {
   String PREF_APP_LANG = 'app_lang';
   String PREF_CART_LIST = 'cart_list';
   String PREF_ORDER_PLACED = 'order_placed';
+  String PREF_EMAIL_RESET_PASSWORD = 'email_reset_password';
   //  String PREF_ISLOGGED = 'is_logged';
 
   void setFirstLaunch(bool value) {
@@ -100,8 +102,29 @@ class SharedPreferencesRepository {
     if (globalSharedPreferences.containsKey(PREF_APP_LANG)) {
       return getPreference(key: PREF_APP_LANG);
     } else {
-      return 'en';
+      return AppConfig.defaultLanguage;
     }
+  }
+
+  void setResetPasswordEmail(String value) {
+    setPreference(
+      dataType: DataType.STRING,
+      key: PREF_EMAIL_RESET_PASSWORD,
+      value: value,
+    );
+  }
+
+  String getResetPasswordEmail() {
+    if (globalSharedPreferences.containsKey(PREF_EMAIL_RESET_PASSWORD)) {
+      return getPreference(key: PREF_EMAIL_RESET_PASSWORD);
+    } else {
+      return '';
+    }
+  }
+
+  void clearResetPasswordEmail() {
+    globalSharedPreferences.remove(PREF_EMAIL_RESET_PASSWORD);
+    // globalSharedPreferences.clear();
   }
 
   //  void setFirstLogin(bool value) {

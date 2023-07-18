@@ -50,3 +50,7 @@ class CartModel {
           .map<CartModel>((item) => CartModel.fromJson(item))
           .toList();
 }
+
+
+// object => json => string
+// object <= json <= string

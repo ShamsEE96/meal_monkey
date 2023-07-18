@@ -18,7 +18,10 @@ class LoginController extends BaseController {
 
   RxBool passwordVisible = false.obs;
 
-  void hidePassword(RxBool password, bool value) {
+  void hidePassword({
+    required RxBool password,
+    required bool value,
+  }) {
     password.value = !value;
   }
 

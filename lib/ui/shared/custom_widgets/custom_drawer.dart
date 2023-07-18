@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meal_monkey/app/my_app.dart';
+import 'package:meal_monkey/testroom/test_url_luancher/url_launcher_util.dart';
+import 'package:meal_monkey/testroom/test_url_luancher/url_type.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_text.dart';
 import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
 import 'package:meal_monkey/ui/shared/utils.dart';
 import 'package:meal_monkey/ui/views/splash_screen_view/splash_screen_view.dart';
-import 'package:meal_monkey/ui/views/splash_screen_view/splash_screen_view_controller.dart';
+import 'package:meal_monkey/ui/views/splash_screen_view/splash_screen_controller.dart';
 
 class CustomDrawer extends StatelessWidget {
   CustomDrawer({
@@ -79,7 +81,16 @@ class CustomDrawer extends StatelessWidget {
                 Icons.language,
                 color: AppColors.mainOrangeColor,
               ),
-            )
+            ),
+            IconButton(
+              onPressed: () async {
+                await UrlLauncherUtil.startLaunchUrl(
+                  url: Uri.parse('https://www.google.com'),
+                  type: UrlType.WEB,
+                );
+              },
+              icon: Icon(Icons.launch),
+            ),
           ],
         ),
       ),

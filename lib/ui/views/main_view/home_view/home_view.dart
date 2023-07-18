@@ -48,6 +48,19 @@ class _HomeViewState extends State<HomeView> {
                     textColor: AppColors.mainGreyColor,
                     fontSize: screenWidth(15),
                   ),
+                  (screenWidth(20)).pw,
+                  Obx(
+                    () {
+                      return Icon(
+                        controller.isOnline.value ? Icons.wifi : Icons.wifi_off,
+                        color: controller.isOnline.value
+                            ? AppColors.mainGreenColor
+                            : AppColors.mainRedColor,
+                      );
+                    },
+                  ),
+                  (screenWidth(20)).pw,
+
                   Obx(
                     () => CustomCart(
                       cartCount: cartService.cartCount.value,

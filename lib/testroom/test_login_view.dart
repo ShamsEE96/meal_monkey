@@ -122,14 +122,14 @@
 //                 (size.height * 0.02).ph,
 //                 CustomButton(
 //                   text: 'Login with Facebook',
-//                   ImageName: 'ic_facebook',
+//                   imageName: 'ic_facebook',
 //                   onPressed: () {},
 //                   backgroundColor: AppColors.mainBlueColor,
 //                 ),
 //                 (size.height * 0.02).ph,
 //                 CustomButton(
 //                   text: 'Login with Google',
-//                   ImageName: 'ic_google_plus_logo',
+//                   imageName: 'ic_google_plus_logo',
 //                   onPressed: () {},
 //                   backgroundColor: AppColors.mainRedColor,
 //                 ),

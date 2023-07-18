@@ -81,7 +81,7 @@ class _NewPasswordViewState extends State<NewPasswordView> {
                   CustomButton(
                     text: tr('key_next'),
                     onPressed: () {
-                      Get.off(() => LoginView());
+                      controller.newPassword();
                     },
                   ),
                 ],

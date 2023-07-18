@@ -26,10 +26,18 @@
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
+	
 
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Required for Registertion</string>
 	<key>NSCameraUsageDescription</key>
+	<string>Required for Registertion</string>
+
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Required for Registertion</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Required for Registertion</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Required for Registertion</string>
 
 	<key>UIMainStoryboardFile</key>

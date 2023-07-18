@@ -72,8 +72,8 @@ class _LoginViewState extends State<LoginView> {
                   suffixIcon: InkWell(
                     onTap: () {
                       controller.hidePassword(
-                        controller.passwordVisible,
-                        controller.passwordVisible.value,
+                        password: controller.passwordVisible,
+                        value: controller.passwordVisible.value,
                       );
                     },
                     child: controller.passwordVisible.value

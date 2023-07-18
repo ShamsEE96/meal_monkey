@@ -109,23 +109,34 @@ class _CartViewState extends State<CartView> {
                 );
               },
             ),
-            Column(
-              children: [
-                CustomText(
-                  text:
-                      'SubTotal : ${cartService.subTotal.value.toStringAsFixed(2)}',
-                ),
-                CustomText(
-                  text: 'Tax : ${cartService.tax.value.toStringAsFixed(2)}',
-                ),
-                CustomText(
-                  text:
-                      'Delivary Fee : ${cartService.deliverFees.value.toStringAsFixed(2)}',
-                ),
-                CustomText(
-                  text: 'Total : ${cartService.total.value.toStringAsFixed(2)}',
-                ),
-              ],
+            Obx(
+              () {
+                return Column(
+                  children: [
+                    CustomText(
+                      text:
+                          'SubTotal : ${cartService.subTotal.value.toStringAsFixed(2)}',
+                    ),
+                    CustomText(
+                      text: 'Tax : ${cartService.tax.value.toStringAsFixed(2)}',
+                    ),
+                    CustomText(
+                      text:
+                          'Delivary Fee : ${cartService.deliverFees.value.toStringAsFixed(2)}',
+                    ),
+                    CustomText(
+                      text:
+                          'Total : ${cartService.total.value.toStringAsFixed(2)}',
+                    ),
+                    CustomButton(
+                      text: 'Checkout',
+                      onPressed: () {
+                        controller.checkout();
+                      },
+                    )
+                  ],
+                );
+              },
             ),
           ],
         ),

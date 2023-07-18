@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:location/location.dart';
 import 'package:meal_monkey/core/translation/app_translation.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_button.dart';
@@ -9,6 +10,7 @@ import 'package:meal_monkey/ui/shared/custom_widgets/cutsom_app_language.dart';
 import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
 import 'package:meal_monkey/ui/shared/utils.dart';
 import 'package:meal_monkey/ui/views/login_view/login_view.dart';
+import 'package:meal_monkey/ui/views/map_view/map_view.dart';
 import 'package:meal_monkey/ui/views/signup_view/signup_view.dart';
 
 class LandingView extends StatelessWidget {
@@ -35,7 +37,7 @@ class LandingView extends StatelessWidget {
                     clipper: LandingClipper(),
                     child: Container(
                       width: screenWidth(1),
-                      height: screenHeight(1.5),
+                      height: screenHeight(2.5),
                       decoration: BoxDecoration(
                         color: AppColors.mainOrangeColor,
                       ),
@@ -78,8 +80,16 @@ class LandingView extends StatelessWidget {
                 children: [
                   CustomButton(
                     text: tr('key_login'),
-                    onPressed: () {
-                      Get.to(() => LoginView());
+                    onPressed: () async {
+                      // Get.to(() => LoginView());
+                      LocationData? currentLocation =
+                          await locationService.getUserCurrentLocation();
+                      if (currentLocation != null)
+                        Get.to(
+                          () => MapView(currentLocation: currentLocation),
+                        );
+
+                      // showAlertDialoug();
                     },
                   ),
                   (screenWidth(20)).ph,
@@ -107,68 +117,86 @@ class LandingClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     Path path0 = Path();
-    path0.moveTo(size.width, 0);
-    path0.lineTo(0, 0);
-    path0.quadraticBezierTo(
-        0, size.height * 0.3959520, 0, size.height * 0.5279360);
-    path0.cubicTo(
-        size.width * -0.0001500,
-        size.height * 0.5522720,
-        size.width * 0.0034250,
-        size.height * 0.5618880,
-        size.width * 0.0488000,
-        size.height * 0.5594080);
-    path0.cubicTo(
-        size.width * 0.1109750,
-        size.height * 0.5595880,
-        size.width * 0.2353250,
-        size.height * 0.5599480,
-        size.width * 0.2975000,
-        size.height * 0.5601280);
-    path0.cubicTo(
-        size.width * 0.3109000,
-        size.height * 0.5596000,
-        size.width * 0.3205500,
-        size.height * 0.5560960,
-        size.width * 0.3206250,
-        size.height * 0.5434080);
-    path0.cubicTo(
-        size.width * 0.3328250,
-        size.height * 0.4923360,
-        size.width * 0.3389500,
-        size.height * 0.4070400,
-        size.width * 0.5007000,
-        size.height * 0.3988480);
-    path0.cubicTo(
-        size.width * 0.6604000,
-        size.height * 0.4063680,
-        size.width * 0.6637500,
-        size.height * 0.4946080,
-        size.width * 0.6743000,
-        size.height * 0.5448320);
-    path0.cubicTo(
-        size.width * 0.6740750,
-        size.height * 0.5578400,
-        size.width * 0.6916750,
-        size.height * 0.5601440,
-        size.width * 0.7000000,
-        size.height * 0.5603840);
-    path0.cubicTo(
-        size.width * 0.7628250,
-        size.height * 0.5603160,
-        size.width * 0.8830000,
-        size.height * 0.5600320,
-        size.width * 0.9513000,
-        size.height * 0.5601120);
-    path0.cubicTo(
-        size.width * 0.9866750,
-        size.height * 0.5594720,
-        size.width * 1.0010000,
-        size.height * 0.5583360,
-        size.width,
-        size.height * 0.5286080);
-    path0.quadraticBezierTo(
-        size.width * 1.0048000, size.height * 0.3926080, size.width, 0);
+    // path0.moveTo(size.width, 0);
+    // path0.lineTo(0, 0);
+    // path0.quadraticBezierTo(
+    //     0, size.height * 0.3959520, 0, size.height * 0.5279360);
+    // path0.cubicTo(
+    //     size.width * -0.0001500,
+    //     size.height * 0.5522720,
+    //     size.width * 0.0034250,
+    //     size.height * 0.5618880,
+    //     size.width * 0.0488000,
+    //     size.height * 0.5594080);
+    // path0.cubicTo(
+    //     size.width * 0.1109750,
+    //     size.height * 0.5595880,
+    //     size.width * 0.2353250,
+    //     size.height * 0.5599480,
+    //     size.width * 0.2975000,
+    //     size.height * 0.5601280);
+    // path0.cubicTo(
+    //     size.width * 0.3109000,
+    //     size.height * 0.5596000,
+    //     size.width * 0.3205500,
+    //     size.height * 0.5560960,
+    //     size.width * 0.3206250,
+    //     size.height * 0.5434080);
+    // path0.cubicTo(
+    //     size.width * 0.3328250,
+    //     size.height * 0.4923360,
+    //     size.width * 0.3389500,
+    //     size.height * 0.4070400,
+    //     size.width * 0.5007000,
+    //     size.height * 0.3988480);
+    // path0.cubicTo(
+    //     size.width * 0.6604000,
+    //     size.height * 0.4063680,
+    //     size.width * 0.6637500,
+    //     size.height * 0.4946080,
+    //     size.width * 0.6743000,
+    //     size.height * 0.5448320);
+    // path0.cubicTo(
+    //     size.width * 0.6740750,
+    //     size.height * 0.5578400,
+    //     size.width * 0.6916750,
+    //     size.height * 0.5601440,
+    //     size.width * 0.7000000,
+    //     size.height * 0.5603840);
+    // path0.cubicTo(
+    //     size.width * 0.7628250,
+    //     size.height * 0.5603160,
+    //     size.width * 0.8830000,
+    //     size.height * 0.5600320,
+    //     size.width * 0.9513000,
+    //     size.height * 0.5601120);
+    // path0.cubicTo(
+    //     size.width * 0.9866750,
+    //     size.height * 0.5594720,
+    //     size.width * 1.0010000,
+    //     size.height * 0.5583360,
+    //     size.width,
+    //     size.height * 0.5286080);
+    // path0.quadraticBezierTo(
+    //     size.width * 1.0048000, size.height * 0.3926080, size.width, 0);
+    // path0.close();
+
+    path0.moveTo(size.width * 0.0008333, size.height * 0.0014286);
+    path0.lineTo(size.width, 0);
+    path0.quadraticBezierTo(size.width, size.height * 0.6964286, size.width,
+        size.height * 0.9285714);
+    path0.quadraticBezierTo(size.width * 0.9968083, size.height * 1.0063571,
+        size.width * 0.9591667, size.height);
+    path0.lineTo(size.width * 0.6664500, size.height);
+    path0.quadraticBezierTo(size.width * 0.6596000, size.height * 0.7251000,
+        size.width * 0.5001750, size.height * 0.7281714);
+    path0.quadraticBezierTo(size.width * 0.3309417, size.height * 0.7312429,
+        size.width * 0.3327583, size.height);
+    path0.lineTo(size.width * 0.0460500, size.height);
+    path0.quadraticBezierTo(size.width * 0.0006667, size.height * 1.0078714, 0,
+        size.height * 0.9271429);
+    path0.quadraticBezierTo(size.width * 0.0002083, size.height * 0.6957143,
+        size.width * 0.0008333, size.height * 0.0014286);
     path0.close();
     return path0;
   }

@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meal_monkey/core/data/models/apis/category_model.dart';
 import 'package:meal_monkey/core/data/models/apis/meal_model.dart';
 import 'package:meal_monkey/core/data/repositories/category_repository.dart';
 import 'package:meal_monkey/core/data/repositories/meal_repository.dart';
+import 'package:meal_monkey/core/enums/connectivity_status.dart';
 import 'package:meal_monkey/core/enums/message_type.dart';
 import 'package:meal_monkey/core/enums/operation_type.dart';
 import 'package:meal_monkey/core/enums/request_status.dart';
@@ -16,6 +19,13 @@ class HomeController extends BaseController {
 
   RxList<CategoryModel> categoryList = <CategoryModel>[].obs;
   RxList<MealModel> mealList = <MealModel>[].obs;
+  RxBool isOnline = true.obs;
+
+  void checkConnection() {
+    connectivityService.connectivityStatusController.stream.listen((event) {
+      isOnline.value = event == ConnectivityStatus.ONLINE;
+    });
+  }
 
   bool get isCategoryLoading =>
       requestStatus == RequestStatus.LOADING &&
@@ -32,6 +42,12 @@ class HomeController extends BaseController {
     getAllCategory();
     getAllMeal();
     super.onInit();
+  }
+
+  @override
+  void onReady() {
+    checkConnection();
+    super.onReady();
   }
 
   void getAllCategory() {

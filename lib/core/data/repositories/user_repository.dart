@@ -90,4 +90,72 @@ class UserRepository {
       return Left(e.toString());
     }
   }
+
+  Future<Either<String, Map<String, dynamic>>> forgotPassword({
+    required String email,
+    // required String password,
+  }) async {
+    try {
+      return NetworkUtil.sendRequest(
+        requestType: RequestType.POST,
+        url: UserEndpoints.forgotPassword,
+        headers: NetworkConfig.getHeaders(
+          requestType: RequestType.POST,
+          needAuth: false,
+        ),
+        params: {
+          "email1": email,
+        },
+      ).then(
+        (response) {
+          CommonResponseModel<Map<String, dynamic>> commonResponse =
+              CommonResponseModel.fromJson(response);
+          if (commonResponse.getStatus) {
+            return Right(
+              commonResponse.data ?? {},
+            );
+          } else {
+            return Left(commonResponse.message ?? '');
+          }
+        },
+      );
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+  Future<Either<String, Map<String, dynamic>>> newPassword({
+    required String email,
+    required String password,
+    required String confirmPassword,
+  }) async {
+    try {
+      return NetworkUtil.sendRequest(
+        requestType: RequestType.POST,
+        url: UserEndpoints.resetPassword + "/${email}",
+        headers: NetworkConfig.getHeaders(
+          requestType: RequestType.POST,
+          needAuth: false,
+        ),
+        body: {
+          "password": password,
+          "confirmPassword": confirmPassword,
+        },
+      ).then(
+        (response) {
+          CommonResponseModel<Map<String, dynamic>> commonResponse =
+              CommonResponseModel.fromJson(response);
+          if (commonResponse.getStatus) {
+            return Right(
+              commonResponse.data ?? {},
+            );
+          } else {
+            return Left(commonResponse.message ?? '');
+          }
+        },
+      );
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
 }

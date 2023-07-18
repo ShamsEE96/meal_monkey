@@ -46,15 +46,15 @@ class CartService {
   }
 
   void calcCartTotal() {
-    subTotal.value = 0.0;
-    tax.value = 0.0;
-    deliverFees.value = 0.0;
-    total.value = 0.0;
+    // subTotal.value = 0.0;
+    // tax.value = 0.0;
+    // deliverFees.value = 0.0;
+    // total.value = 0.0;
 
     subTotal.value = cartList.fold(
         0, (previousValue, element) => previousValue + element.total!);
-    tax.value += subTotal.value * taxAmount;
-    deliverFees.value += (subTotal.value + tax.value) * deliveryFeesAmount;
+    tax.value = subTotal.value * taxAmount;
+    deliverFees.value = (subTotal.value + tax.value) * deliveryFeesAmount;
     total.value = subTotal.value + deliverFees.value + tax.value;
   }
 
@@ -107,7 +107,7 @@ class CartService {
       );
     }
     storage.setCartList(cartList);
-    cartCount += count;
+    cartCount.value += count;
     if (afterAdd != null) afterAdd();
 
     calcCartTotal();
@@ -131,18 +131,18 @@ class CartService {
   }) {
     CartModel? result = getCartModel(cartModel.mealModel!)!;
     int index = getIndex(result);
-    double mealTotal =
-        calcMealTotal(mealModel: result.mealModel!, count: result.count!);
+    // double mealTotal =
+    //     calcMealTotal(mealModel: result.mealModel!, count: result.count!);
 
     if (increase) {
       result.count = result.count! + 1;
-      result.total = result.total! + mealTotal;
+      result.total = result.total! + cartModel.mealModel!.price!;
       cartCount.value += 1;
       calcCartTotal();
     } else {
       if (result.count! > 1) {
         result.count = result.count! - 1;
-        result.total = result.total! - mealTotal;
+        result.total = result.total! - cartModel.mealModel!.price!;
         cartCount.value -= 1;
         calcCartTotal();
       }
@@ -156,9 +156,8 @@ class CartService {
 
   void clearCart() {
     cartList.clear();
+    storage.setCartList(cartList);
     cartCount.value = getCartCount();
     calcCartTotal();
-
-    storage.setCartList(cartList);
   }
 }

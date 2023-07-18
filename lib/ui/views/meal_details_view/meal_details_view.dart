@@ -29,7 +29,8 @@ class _MealDetailsViewState extends State<MealDetailsView> {
   late MealDetailsController controller;
   @override
   void initState() {
-    controller = MealDetailsController(mealModel: widget.selecetedMeal);
+    controller =
+        Get.put(MealDetailsController(mealModel: widget.selecetedMeal));
     super.initState();
   }
 
@@ -91,8 +92,6 @@ class _MealDetailsViewState extends State<MealDetailsView> {
                           Row(
                             children: [
                               CustomText(
-                                // text:
-                                // "no name foundno name foundno name foundno name found",
                                 text: controller.model.name ?? "no name found",
                                 textColor: AppColors.mainGreyColor,
                                 fontSize: screenWidth(15),
