@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:meal_monkey/core/enums/connectivity_status.dart';
+import 'package:meal_monkey/core/utils/network_utils.dart';
 
 class ConnectivityService {
   StreamController<ConnectivityStatus> connectivityStatusController =
@@ -12,6 +13,7 @@ class ConnectivityService {
 
     connectivity.onConnectivityChanged.listen((event) {
       connectivityStatusController.add(getStatus(event));
+      NetworkUtil.online = getStatus(event) == ConnectivityStatus.ONLINE;
     });
   }
 

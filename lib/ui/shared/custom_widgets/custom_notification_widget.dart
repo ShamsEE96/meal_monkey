@@ -1,19 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_text.dart';
 import 'package:meal_monkey/ui/shared/utils.dart';
-import 'package:meal_monkey/ui/views/cart_view/cart_view.dart';
 
-class CustomCart extends StatefulWidget {
-  const CustomCart({super.key, required this.cartCount});
-  final int? cartCount;
+class CustomNotificationWidget extends StatefulWidget {
+  const CustomNotificationWidget({
+    super.key,
+    required this.count,
+    required this.imageName,
+    required this.onTap,
+  });
+
+  final int? count;
+  final String? imageName;
+  final Function? onTap;
+
   @override
-  State<CustomCart> createState() => _CustomCartState();
+  State<CustomNotificationWidget> createState() =>
+      _CustomNotificationWidgetState();
 }
 
-class _CustomCartState extends State<CustomCart> {
+class _CustomNotificationWidgetState extends State<CustomNotificationWidget> {
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -21,10 +29,10 @@ class _CustomCartState extends State<CustomCart> {
       children: [
         InkWell(
           onTap: () {
-            Get.to(() => CartView());
+            if (widget.onTap != null) widget.onTap!();
           },
           child: SvgPicture.asset(
-            'assets/images/ic_shopping_cart.svg',
+            'assets/images/${widget.imageName}.svg',
             color: AppColors.mainOrangeColor,
             width: screenWidth(10),
             height: screenWidth(10),
@@ -34,11 +42,11 @@ class _CustomCartState extends State<CustomCart> {
           top: -screenWidth(100),
           end: -screenWidth(100),
           child: Visibility(
-            visible: widget.cartCount != 0,
+            visible: widget.count != 0,
             child: Container(
               clipBehavior: Clip.antiAliasWithSaveLayer,
               child: CustomText(
-                text: '${widget.cartCount}',
+                text: '${widget.count}',
                 textColor: AppColors.mainWhiteColor,
                 fontSize: screenWidth(30),
                 fontWeight: FontWeight.bold,

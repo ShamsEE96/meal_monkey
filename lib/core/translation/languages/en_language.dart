@@ -71,6 +71,7 @@ class ENLanguage {
             "Please grant location permission for the app to work.",
         "key_bot_toast_general_success": "Everything ok",
         "key_bot_toast_general_rejected": "Error while connecting to server",
+        "key_bot_toast_offline": "Check Your Network Connection",
         "key_meal_details_view_number_of_portions": "Number of Portions",
         "key_description": "Description",
         "key_price_currency": "SYP",

@@ -81,13 +81,13 @@ class LandingView extends StatelessWidget {
                   CustomButton(
                     text: tr('key_login'),
                     onPressed: () async {
-                      // Get.to(() => LoginView());
-                      LocationData? currentLocation =
-                          await locationService.getUserCurrentLocation();
-                      if (currentLocation != null)
-                        Get.to(
-                          () => MapView(currentLocation: currentLocation),
-                        );
+                      Get.to(() => LoginView());
+                      // LocationData? currentLocation =
+                      //     await locationService.getUserCurrentLocation();
+                      // if (currentLocation != null)
+                      //   Get.to(
+                      //     () => MapView(currentLocation: currentLocation),
+                      //   );
 
                       // showAlertDialoug();
                     },

@@ -3,7 +3,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:meal_monkey/core/translation/app_translation.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
-import 'package:meal_monkey/ui/shared/custom_widgets/custom_cart.dart';
+import 'package:meal_monkey/ui/shared/custom_widgets/custom_notification_widget.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_category.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_category02.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_category03.dart';
@@ -12,6 +12,7 @@ import 'package:meal_monkey/ui/shared/custom_widgets/custom_text.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_text_field.dart';
 import 'package:meal_monkey/ui/shared/extensions/custom_sized_box_shared.dart';
 import 'package:meal_monkey/ui/shared/utils.dart';
+import 'package:meal_monkey/ui/views/cart_view/cart_view.dart';
 import 'package:meal_monkey/ui/views/main_view/home_view/home_controller.dart';
 import 'package:meal_monkey/ui/views/meal_details_view/meal_details_view.dart';
 
@@ -62,9 +63,15 @@ class _HomeViewState extends State<HomeView> {
                   (screenWidth(20)).pw,
 
                   Obx(
-                    () => CustomCart(
-                      cartCount: cartService.cartCount.value,
-                    ),
+                    () {
+                      return CustomNotificationWidget(
+                        imageName: "ic_shopping_cart",
+                        count: cartService.cartCount.value,
+                        onTap: () {
+                          Get.to(() => CartView());
+                        },
+                      );
+                    },
                   )
                   // InkWell(
                   //   onTap: () {
@@ -77,6 +84,28 @@ class _HomeViewState extends State<HomeView> {
                   //     height: screenWidth(12),
                   //   ),
                   // ),
+                ],
+              ),
+            ),
+            (screenWidth(20)).ph,
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: screenWidth(22),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Obx(
+                    () {
+                      return CustomNotificationWidget(
+                        imageName: "ic_bell_notification",
+                        count: controller.notifcationCount.value,
+                        onTap: () {
+                          controller.notifcationCount.value = 0;
+                        },
+                      );
+                    },
+                  ),
                 ],
               ),
             ),

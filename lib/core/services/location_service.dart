@@ -31,6 +31,8 @@ class LocationService {
     LocationData locationData, {
     bool showLoader = true,
   }) async {
+    if (showLoader) customLoader();
+
     List<geo.Placemark> placemarks = await geo.placemarkFromCoordinates(
         locationData.latitude ?? 0.0, locationData.longitude ?? 0.0);
 

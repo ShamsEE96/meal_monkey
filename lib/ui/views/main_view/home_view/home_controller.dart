@@ -41,6 +41,7 @@ class HomeController extends BaseController {
   void onInit() {
     getAllCategory();
     getAllMeal();
+    increaseNotificationCount();
     super.onInit();
   }
 
@@ -105,5 +106,13 @@ class HomeController extends BaseController {
         );
       },
     );
+  }
+
+  RxInt notifcationCount = 0.obs;
+
+  void increaseNotificationCount() {
+    notificationService.notifcationStream.stream.listen((event) {
+      notifcationCount.value++;
+    });
   }
 }
