@@ -78,6 +78,10 @@ class LoginController extends BaseController {
               message: l,
             );
           }, (r) {
+            CustomToast.showMessage(
+              message: tr('key_bot_toast_general_success'),
+              messageType: MessageType.SUCCESS,
+            );
             storage.setTokenInfo(r);
             //SharedPrefrenceRepository.setLoggedIn(true);
             Get.off(() => MainView());
@@ -85,10 +89,10 @@ class LoginController extends BaseController {
         }),
       );
 
-      CustomToast.showMessage(
-        message: tr('key_bot_toast_general_success'),
-        messageType: MessageType.SUCCESS,
-      );
+      // CustomToast.showMessage(
+      //   message: tr('key_bot_toast_general_success'),
+      //   messageType: MessageType.SUCCESS,
+      // );
     } else {
       CustomToast.showMessage(
         message: tr('key_bot_toast_general_rejected'),

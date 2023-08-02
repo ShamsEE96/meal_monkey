@@ -10,6 +10,7 @@ import 'package:meal_monkey/core/enums/message_type.dart';
 import 'package:meal_monkey/core/services/cart_service.dart';
 import 'package:meal_monkey/core/services/connectivity_service.dart';
 import 'package:meal_monkey/core/services/location_service.dart';
+import 'package:meal_monkey/core/services/notification_service.dart';
 import 'package:meal_monkey/core/translation/app_translation.dart';
 import 'package:meal_monkey/core/utils/network_utils.dart';
 import 'package:meal_monkey/ui/shared/colors.dart';
@@ -79,6 +80,7 @@ SharedPreferencesRepository get storage =>
 CartService get cartService => Get.find<CartService>();
 LocationService get locationService => Get.find<LocationService>();
 ConnectivityService get connectivityService => Get.find<ConnectivityService>();
+NotificationService get notificationService => Get.find<NotificationService>();
 
 void customLoader() => BotToast.showCustomLoading(
         // duration: Duration(seconds: 10),
@@ -127,11 +129,13 @@ void showNoConnectionMessage() {
 }
 
 void showAlertDialoug({
+  String? title,
   required String? middleText,
   required Function? onCancel,
   required Function? onConfirm,
 }) {
   Get.defaultDialog(
+    title: title ?? "",
     middleText: middleText ?? "",
     cancel: CustomButton(
       onPressed: () {

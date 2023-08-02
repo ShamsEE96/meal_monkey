@@ -1,15 +1,18 @@
 import 'dart:convert';
 
+import 'package:bot_toast/bot_toast.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 import 'package:meal_monkey/core/enums/message_type.dart';
 import 'package:meal_monkey/core/enums/request_type.dart';
+import 'package:meal_monkey/core/translation/app_translation.dart';
 import 'package:meal_monkey/ui/shared/custom_widgets/custom_toast.dart';
 import 'package:path/path.dart' as path;
 
 class NetworkUtil {
   static String baseUrl = 'training.owner-tech.com';
   static var client = http.Client();
+  static bool online = true;
 
   static Future<dynamic> sendRequest({
     required RequestType requestType,
@@ -19,6 +22,13 @@ class NetworkUtil {
     Map<String, dynamic>? params,
   }) async {
     try {
+      if (!online) {
+        CustomToast.showMessage(
+            message: tr("key_bot_toast_offline"),
+            messageType: MessageType.WARNING);
+        BotToast.closeAllLoading();
+        return;
+      }
       //!--- Required for request -----
       //*--- Make full api url -----
       var uri = Uri.https(baseUrl, url, params);
